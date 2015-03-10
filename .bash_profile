@@ -1,9 +1,3 @@
-# MySQL Path
-# export PATH="/usr/local/mysql/bin:$PATH"
-
-# PHP Liip Path
-# export PATH="/usr/local/php5/bin:$PATH"
-
 # Homebrew Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
