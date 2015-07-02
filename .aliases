@@ -84,5 +84,11 @@ alias badge="tput bel"
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
+# Convert a Quicktime MOV to a GIF (requires FFMPEG to be installed)
+movtogif(){
+    ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - |\
+    convert -delay 5 -layers Optimize -loop 0 - "$2"
+}
+
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
