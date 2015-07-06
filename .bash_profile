@@ -9,7 +9,7 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="./vendor/bin:$PATH"
 
 # Local Binary Path
-export PATH="~/bin:$PATH"
+export PATH="~/.bin:$PATH"
 
 # Load Dot Files
 # See: https://github.com/mathiasbynens/dotfiles
