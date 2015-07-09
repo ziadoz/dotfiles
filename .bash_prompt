@@ -18,5 +18,5 @@ BG_WHITE="$(tput setab 7)"
 
 # Export Prompts and Colours
 export CLICOLOR=1
-export PS1="${BLUE}\u@\h${RESET} : ${YELLOW}\w${RESET} \n$ "
+export PS1="${BLUE}\u@\h${RESET} : ${YELLOW}\w${RESET} \n\$ "
 export PS2="${YELLOW}→${RESET} "
