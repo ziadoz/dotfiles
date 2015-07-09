@@ -1,5 +1,20 @@
 # Convert a video to a GIF (requires FFMPEG to be installed)
-vidtogif(){
+vidtogif() {
     ffmpeg -i "$1" -vf scale=800:-1 -r 10 -f image2pipe -vcodec ppm - |\
     convert -delay 5 -layers Optimize -loop 0 - "$2"
+}
+
+# Reset a repository back to the head
+git-rewind() {
+    git reset --hard HEAD
+}
+
+# Generate a formatted patch from a Git repository
+git-patch() {
+    git format-patch $1 --stdout > "$2"
+}
+
+# Apply a patch from Git, but do it using patch to force handling conflicts
+git-apply-force() {
+    patch -p1 < "$1"
 }
