@@ -18,3 +18,8 @@ git-patch() {
 git-apply-force() {
     patch -p1 < "$1"
 }
+
+# Show a pretty version of the Git log
+git-log-pretty() {
+    git log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --date=relative
+}
