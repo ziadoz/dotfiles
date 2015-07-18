@@ -5,8 +5,10 @@ vidtogif() {
 }
 
 # Reset a repository back to the head
-git-rewind() {
-    git reset --hard HEAD
+git-reset-force() {
+    git stash
+    git clean -df
+    git reset --hard origin/master
 }
 
 # Generate a formatted patch from a Git repository
