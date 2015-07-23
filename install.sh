@@ -15,6 +15,9 @@ brew install ffmpeg imagemagick
 echo 'Installing Shell Utilities: '
 brew install wget tree ncdu mosh
 
+echo 'Installing HTTP Utilities: '
+brew install httpie
+
 echo 'Installing Ansible: '
 brew install ansible
 
