@@ -20,3 +20,6 @@ brew install ansible
 
 echo 'Installing PHP Tap: '
 brew tap josegonzalez/php
+
+echo 'Install Composer: '
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
