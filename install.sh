@@ -1,13 +1,22 @@
-# To Do
-# - Install Home Brew
-# - Install Home Brew dependencies: 
-# bash, bash completion, zsh
-# git, mercurial, svn
-# rbenv, ruby-build
-# ffmpeg, imagemagick, wget, tree, ansible, ncdu, mosh
-# brew tap josegonzalez/php
+#!/bin/bash
 
-# Resources: 
-# http://apple.stackexchange.com/questions/12161/os-x-terminal-must-have-utilities
-# https://github.com/Bash-it/bash-it
-# http://ohmyz.sh/
+echo 'Installing Homebrew: '
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo 'Installing VCS: '
+brew install git mercurial svn
+
+echo 'Installing Ruby: '
+brew ruby-build rbenv
+
+echo 'Installing Media Packages: '
+brew install ffmpeg imagemagick
+
+echo 'Installing Shell Utilities: '
+brew install wget tree ncdu mosh
+
+echo 'Installing Ansible: '
+brew install ansible
+
+echo 'Installing PHP Tap: '
+brew tap josegonzalez/php
