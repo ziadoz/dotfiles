@@ -4,4 +4,6 @@ These are dotfiles to configure Bash for development when working with OS X. The
 
 # Todo
 
-Replace `install.sh` with a more robust Ansible script.
+* Replace `install.sh` with a more robust Ansible script.
+* Look into using Homebrew Cask to install apps (see [Developing on Yosemite](http://fredkelly.net/articles/2014/10/19/developing_on_yosemite.html)) .
+* Switch to ZSH shell. Will require shell scripts to be updated.
