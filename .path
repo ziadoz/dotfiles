@@ -7,6 +7,3 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # Composer Paths
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="./vendor/bin:$PATH"
-
-# Local Binary Path
-export PATH="~/.bin:$PATH"

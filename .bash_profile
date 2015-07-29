@@ -1,3 +1,6 @@
+# Local Binary Path
+export PATH="~/.bin:$PATH"
+
 # Load Dot Files
 # See: https://github.com/mathiasbynens/dotfiles
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
