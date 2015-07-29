@@ -14,13 +14,13 @@ if command -v rbenv > /dev/null; then
 fi
 
 # Case-insensitive globbing (used in pathname expansion)
-# shopt -s nocaseglob;
+shopt -s nocaseglob;
 
 # Append to the Bash history file, rather than overwriting it
-# shopt -s histappend;
+shopt -s histappend;
 
 # Autocorrect typos in path names when using `cd`
-# shopt -s cdspell;
+shopt -s cdspell;
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
@@ -41,4 +41,4 @@ fi;
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-# complete -W "NSGlobalDomain" defaults;
+complete -W "NSGlobalDomain" defaults;
