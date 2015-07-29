@@ -1,3 +1,10 @@
+# Set the default editor
+if command -v rbenv > /dev/null; then
+    export EDITOR='subl -w'
+else
+    export EDITOR='nano'
+fi
+
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
