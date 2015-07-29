@@ -13,7 +13,7 @@ echo 'Installing Media Packages: '
 brew install ffmpeg imagemagick
 
 echo 'Installing Shell Utilities: '
-brew install wget tree ncdu mosh
+brew install wget tree ncdu mosh archey
 
 echo 'Installing HTTP Utilities: '
 brew install httpie
