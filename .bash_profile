@@ -57,6 +57,7 @@ fi;
 # complete -W "NSGlobalDomain" defaults;
 
 # Aliases
-alias editbash="subl ~/.bash_profile"
+alias editbash="${EDITOR} ~/.bash_profile"
 alias reloadbash="reload"
 alias reloadhosts="flush"
+alias edithosts="${EDITOR} /etc/hosts"
