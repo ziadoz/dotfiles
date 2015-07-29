@@ -17,18 +17,19 @@ echo 'Then run chsh -s /usr/local/bin/bash '
 echo 'Installing VCS: '
 brew install git mercurial svn
 
-echo 'Installing Ruby: '
-brew ruby-build rbenv
+echo 'Installing Languages: '
+brew ruby-build rbenv lua
 
 echo 'Installing Media Packages: '
-brew install ffmpeg imagemagick
+brew install ffmpeg 
+brew install imagemagick --with-webp
 
 echo 'Installing Shell Utilities: '
 brew install wget --with-iri 
-brew install tree ncdu mosh archey
+brew install tree ncdu mosh archey ack p7zip 
 
 echo 'Installing HTTP Utilities: '
-brew install httpie
+brew install httpie lynx
 
 echo 'Installing Ansible: '
 brew install ansible
@@ -38,3 +39,6 @@ brew tap josegonzalez/php
 
 echo 'Install Composer: '
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+echo 'Cleaning Up '
+brew cleanup
