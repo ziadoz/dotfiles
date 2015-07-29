@@ -10,8 +10,9 @@ brew update
 brew upgrade --all
 
 echo 'Installing Bash '
-# Run chsh -s /usr/local/bin/bash to change shell
 brew install bash bash-completion
+echo 'Add /usr/local/bin/bash to /etc/shells '
+echo 'Then run chsh -s /usr/local/bin/bash '
 
 echo 'Installing VCS: '
 brew install git mercurial svn
