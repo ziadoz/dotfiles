@@ -29,7 +29,7 @@ brew install wget --with-iri
 brew install tree ncdu mosh archey ack p7zip 
 
 echo 'Installing HTTP Utilities: '
-brew install httpie lynx
+brew install httpie lynx w3m
 
 echo 'Installing Ansible: '
 brew install ansible
