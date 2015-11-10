@@ -49,9 +49,14 @@ function extract() {
 }
 
 # Regenerate MAC address (Link: http://jezenthomas.com/free-internet-on-trains/)
-function remac {
+remac() {
     sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
     sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
     sudo networksetup -detectnewhardware
     echo $(ifconfig en0 | grep ether)
+}
+
+# Lint the PHP files in the  current directory
+php-lint() {
+    find . -path ./vendor -prune -o -name "*.php" -exec php -l {} \; | grep -v "No syntax  errors"
 }
