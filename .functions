@@ -26,6 +26,11 @@ git-log-pretty() {
     git log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --date=relative
 }
 
+# Reset a specific path
+git-restore() {
+    git checkout $1 -- $2
+}
+
 # Extract based upon file ext
 function extract() {
     if [ -f $1 ]; then
