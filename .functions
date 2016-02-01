@@ -61,7 +61,7 @@ remac() {
     echo $(ifconfig en0 | grep ether)
 }
 
-# Lint the PHP files in the  current directory
+# Lint the PHP files in the specified directory
 php-lint() {
-    find . -path ./vendor -prune -o -name "*.php" -exec php -l {} \; | grep -v "No syntax  errors"
+    (find $1 -path ./vendor -prune -o -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"); test $? -eq 1
 }
