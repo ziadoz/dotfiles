@@ -4,33 +4,6 @@ vidtogif() {
     convert -delay 5 -layers Optimize -loop 0 - "$2"
 }
 
-# Reset a repository back to the head
-git-reset-force() {
-    git stash
-    git clean -df
-    git reset --hard origin/master
-}
-
-# Generate a formatted patch from a Git repository
-git-patch() {
-    git format-patch $1 --stdout > "$2"
-}
-
-# Apply a patch from Git, but do it using patch to force handling conflicts
-git-apply-force() {
-    patch -p1 < "$1"
-}
-
-# Show a pretty version of the Git log
-git-log-pretty() {
-    git log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --date=relative
-}
-
-# Reset a specific path
-git-restore() {
-    git checkout $1 -- $2
-}
-
 # Extract based upon file ext
 function extract() {
     if [ -f $1 ]; then
