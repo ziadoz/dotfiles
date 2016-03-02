@@ -26,7 +26,7 @@ brew install imagemagick --with-webp
 
 echo 'Installing Shell Utilities: '
 brew install wget --with-iri 
-brew install tree ncdu mosh archey ack p7zip ranger
+brew install tree ncdu mosh archey ack p7zip
 
 echo 'Installing HTTP Utilities: '
 brew install httpie lynx w3m
