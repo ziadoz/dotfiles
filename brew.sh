@@ -18,14 +18,14 @@ echo 'Installing VCS: '
 brew install git mercurial svn
 
 echo 'Installing Languages: '
-brew ruby-build rbenv lua
+brew ruby-build rbenv pyenv pyenv-virtualenv lua
 
 echo 'Installing Media Packages: '
-brew install ffmpeg 
+brew install ffmpeg
 brew install imagemagick --with-webp
 
 echo 'Installing Shell Utilities: '
-brew install wget --with-iri 
+brew install wget --with-iri
 brew install tree ncdu mosh archey ack p7zip
 
 echo 'Installing HTTP Utilities: '
