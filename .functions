@@ -20,12 +20,21 @@ function extract() {
     fi
 }
 
-# Regenerate MAC address (Link: http://jezenthomas.com/free-internet-on-trains/)
+# Regenerate MAC address
+# http://jezenthomas.com/free-internet-on-trains/
 remac() {
     sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
     sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
     sudo networksetup -detectnewhardware
     echo $(ifconfig en0 | grep ether)
+}
+
+# Reset device DNS
+# http://osxdaily.com/2015/06/02/change-dns-command-line-mac-os-x/
+# http://osxdaily.com/2014/09/03/list-all-network-hardware-from-the-command-line-in-os-x/
+resetdns() {
+    sudo networksetup -setdnsservers "Built-In Ethernet" 8.8.8.8 8.8.4.4
+    sudo networksetup -setdnsservers "Wi-Fi" 8.8.8.8 8.8.4.4
 }
 
 # Lint the PHP files in the specified directory
