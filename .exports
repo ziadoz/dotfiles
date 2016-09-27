@@ -1,5 +1,5 @@
 # Set the default editor
-if command -v rbenv > /dev/null; then
+if command -v subl > /dev/null; then
     export EDITOR='subl -w'
 else
     export EDITOR='nano'
