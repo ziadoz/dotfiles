@@ -41,3 +41,9 @@ resetdns() {
 php-lint() {
     (find $1 -path ./vendor -prune -o -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"); test $? -eq 1
 }
+
+# List Brew packages and their dependencies
+# http://zanshin.net/2014/02/03/how-to-list-brew-dependencies/
+brew-deps() {
+    brew list | while read cask; do echo -n $BLUE $cask $WHITE; brew deps $cask | awk '{printf(" %s ", $0)}'; echo ""; done
+}
