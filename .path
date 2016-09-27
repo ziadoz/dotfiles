@@ -3,7 +3,3 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 # Ruby Environment Path
 export PATH="$HOME/.rbenv/bin:$PATH"
-
-# Composer Paths
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="./vendor/bin:$PATH"
