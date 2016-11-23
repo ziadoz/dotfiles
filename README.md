@@ -1,4 +1,4 @@
-# Dot Files
+# Dotfiles
 These are my dotfiles to for development on Mac OS X. The `.aliases` and `.exports` files are taken and stripped down versions of [Mathias Bynens's Dotfiles](https://github.com/mathiasbynens/dotfiles).
 
 ## To Dos
