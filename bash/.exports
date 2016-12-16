@@ -1,11 +1,5 @@
 # Set the default editor
-if command -v atom > /dev/null; then
-    export EDITOR='atom'
-elif command -v subl > /dev/null; then
-    export EDITOR='subl -w'
-else
-    export EDITOR='nano'
-fi
+export EDITOR='nano'
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
