@@ -9,6 +9,9 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew update
 brew upgrade --all
 
+echo 'Installing Shell Enhancements: '
+brew install bash-completion
+
 echo 'Installing VCS: '
 brew install git mercurial svn
 
