@@ -1,5 +1,8 @@
 # Homebrew Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
+# Local Binary Path
+export PATH="~/.bin:$PATH"
+
 # Ruby Environment Path
 export PATH="$HOME/.rbenv/bin:$PATH"

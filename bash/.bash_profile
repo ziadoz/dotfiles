@@ -1,6 +1,3 @@
-# Local Binary Path
-export PATH="~/.bin:$PATH"
-
 # Load Dot Files
 # See: https://github.com/mathiasbynens/dotfiles
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
@@ -12,6 +9,13 @@ unset file;
 if command -v rbenv > /dev/null; then
     eval "$(rbenv init -)"
 fi
+
+# Add tab completion for many Bash commands
+if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+    source "$(brew --prefix)/etc/bash_completion";
+elif [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion;
+fi;
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -28,13 +32,6 @@ shopt -s cdspell;
 # for option in autocd globstar; do
 #     shopt -s "$option" 2> /dev/null;
 # done;
-
-# Add tab completion for many Bash commands
-if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-    source "$(brew --prefix)/etc/bash_completion";
-elif [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion;
-fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
