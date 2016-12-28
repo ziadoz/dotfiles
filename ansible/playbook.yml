@@ -76,13 +76,13 @@
     - name: Copy Git Configuration
       template:
         src: gitconfig.j2
-        dest: .gitconfig
+        dest: ~/.gitconfig
         mode: 0600
 
     - name: Copy Mecurial Configuration
       template:
         src: hgrc.j2
-        dest: .hgrc
+        dest: ~/.hgrc
         mode: 0600
 
     - name: Homebrew Cleanup
