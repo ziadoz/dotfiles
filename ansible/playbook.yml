@@ -63,18 +63,18 @@
 
     - name: Copy SSH Configuration
       template:
-        src: ssh/config.j2
+        src: config.j2
         dest: ~/.ssh/config
         mode: 0600
 
     - name: Copy Git Configuration
       template:
-        src: git/gitconfig.j2
+        src: gitconfig.j2
         dest: git/.gitconfig
         mode: 0600
 
     - name: Copy Mecurial Configuration
       template:
-        src: hg/hgrc.j2
+        src: hgrc.j2
         dest: hg/.hgrc
         mode: 0600
