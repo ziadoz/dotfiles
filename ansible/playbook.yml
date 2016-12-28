@@ -59,7 +59,7 @@
         - rbenv
 
     - name: Install Ruby
-      command: rbenv install 2.4.0 && rbenv global 2.4.0
+      shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
 
     - name: Copy Bash Configuration
       copy:
@@ -76,13 +76,13 @@
     - name: Copy Git Configuration
       template:
         src: gitconfig.j2
-        dest: git/.gitconfig
+        dest: .gitconfig
         mode: 0600
 
     - name: Copy Mecurial Configuration
       template:
         src: hgrc.j2
-        dest: hg/.hgrc
+        dest: .hgrc
         mode: 0600
 
     - name: Homebrew Cleanup

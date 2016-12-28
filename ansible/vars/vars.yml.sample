@@ -9,3 +9,5 @@ git:
 hg:
   name: Foo
   email: foo@bar.com
+
+ruby_version: 2.4.0
