@@ -26,7 +26,7 @@ brew install wget --with-iri
 brew install tree ncdu mosh archey screenfetch ack p7zip
 
 echo 'Installing Utilities: '
-brew install httpie sleepwatcher stow
+brew install httpie sleepwatcher
 
 echo 'Cleaning Up '
 brew cleanup
