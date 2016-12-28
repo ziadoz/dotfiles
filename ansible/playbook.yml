@@ -1,0 +1,74 @@
+---
+- hosts: localhost
+  become: yes
+  var_files:
+    - vars.yml
+  tasks:
+    - name: Update Homebrew
+      homebrew:
+        update_homebrew: yes
+        upgrade_all: yes
+
+    - name: Install Shell Enhancements
+      homebrew:
+        name: bash-completion
+        state: latest
+
+    - name: Install VCS
+      homebrew:
+        name: {{ item }}
+        state: latest
+      with_items:
+        - git
+        - mercurial
+        - svn
+
+    - name: Install Utilities
+      homebrew:
+        name: {{ item }}
+        state: latest
+      with_items:
+        - tree
+        - ncdu
+        - mosh
+        - ack
+        - p7zip
+        - archey
+        - neofetch
+        - httpie
+        - sleepwatcher
+
+    - name: Install WGet
+      homebrew:
+        name: wget
+        options: with-iri
+        state: latest
+
+    - name: Install RBEnv
+      homebrew:
+        name: {{ item }}
+        state: latest
+      with_items:
+        - ruby-build
+        - rbenv
+
+    - name: Install Ruby
+      command: rbenv install 2.4.0 && rbenv global 2.4.0
+
+    - name: Copy Bash Configuration
+      copy:
+        src: bash/
+        dest: ~/
+        mode: 0600
+
+    - name: Copy SSH Configuration
+      template:
+        src: ssh/config
+        dest: ~/.ssh/config
+        mode: 0600
+
+    - name: Copy Git Configuration
+      template:
+        src: git/gitconfig
+        dest: git/gitconfig
+        mode: 0600

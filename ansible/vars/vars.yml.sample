@@ -1,0 +1,11 @@
+---
+ssh_config:
+  - host: 127.0.0.1
+    hostname: alias
+    user: foo
+git:
+  name: Foo
+  email: foo@bar.com
+hg:
+  name: Foo
+  email: foo@bar.com

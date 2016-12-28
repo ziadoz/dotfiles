@@ -1,0 +1,22 @@
+# Mercurial Configuration
+
+[ui]
+username = {{ hg.name }} <{{ hg.email }}>
+verbose = true
+ssh = ssh -C
+editor = nano
+
+[extensions]
+hgext.convert =
+
+# Mercurial Deployment
+# File: /path/to/repository/.hg/hgrc
+# $ hg push staging
+# $ hg push live
+#
+# [paths]
+# live = ssh://<username>@<server>//var/www/vhosts/<live-website>
+# staging = ssh://<username>@<server>//var/www/vhosts/<staging-website>
+#
+# [hooks]
+# changegroup = hg update
