@@ -10,7 +10,7 @@ echo 'Installing Ansible'
 brew install ansible
 
 echo 'Running Ansible Playbook'
-ansible-playbook -i ansible/inventory ansible/playbook.yml
+ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml
 
 echo 'Cleaning Up'
 brew cleanup
