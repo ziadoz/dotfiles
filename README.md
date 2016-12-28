@@ -13,10 +13,8 @@ Run the install script and when prompted, enter your user account password:
 ```
 
 ## Todos
-* Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
-* Look into using Homebrew Cask to install apps (see [Developing on Yosemite](http://fredkelly.net/articles/2014/10/19/developing_on_yosemite.html)).
 * Add `.macos` script from [Mathias Bynens's Dotfiles](https://github.com/mathiasbynens/dotfiles).
-* Add ignore lines to host files.
+* Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 
 ## Links
 - https://github.com/ansible/ansible/issues/11695
