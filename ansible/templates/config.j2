@@ -4,7 +4,7 @@
 # $ ssh-add -l
 
 {% for config in ssh_config %}
-    Host {{ config.host }}
-    HostName {{ config.hostname }}
-    User {{ config.user }}
+Host {{ config.host }}
+HostName {{ config.hostname }}
+User {{ config.user }}
 {% endfor %}
