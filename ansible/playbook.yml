@@ -98,5 +98,16 @@
         state: link
       when: symlink_photos
 
+    - name: Update Hosts
+      blockinfile:
+        dest: /etc/hosts
+        marker: '# {mark} Security'
+        backup: yes
+        content: "{{ lookup('file', 'hosts') }}"
+      become: yes
+
+    - name: Reload Hosts
+      shell: dscacheutil -flushcache && killall -HUP mDNSResponder
+
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
