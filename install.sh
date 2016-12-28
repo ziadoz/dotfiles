@@ -1,35 +1,21 @@
 #!/usr/bin/env bash
 
-# Ask for password upfront
-sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+if ! which brew > /dev/null; then
+    echo 'Installing Homebrew: '
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
-echo 'Installing Homebrew: '
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-brew upgrade --all
+if ! brew info cask &>/dev/null; then
+  echo 'Installing Cask: '
+  brew tap caskroom/cask
+fi
 
-echo 'Installing Shell Enhancements: '
-brew install bash-completion
+if ! which ansible > /dev/null; then
+  echo 'Installing Ansible'
+  brew install ansible
+fi
 
-echo 'Installing VCS: '
-brew install git mercurial svn
-
-echo 'Installing Ansible: '
-brew install ansible
-
-echo 'Installing Languages: '
-brew ruby-build rbenv
-
-echo 'Installing Shell Utilities: '
-brew install wget --with-iri
-brew install tree ncdu mosh archey screenfetch ack p7zip
-
-echo 'Installing Utilities: '
-brew install httpie sleepwatcher
-
-echo 'Cleaning Up '
-brew cleanup
-brew prune
+echo 'Running Ansible Playbook'
+ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml
 
 echo 'Done!'

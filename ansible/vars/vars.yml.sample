@@ -1,0 +1,14 @@
+---
+ssh_config:
+  - host: alias
+    hostname: 127.0.0.1
+    user: foo
+git:
+  name: Foo
+  email: foo@bar.com
+hg:
+  name: Foo
+  email: foo@bar.com
+
+ruby_version: 2.4.0
+symlink_photos: no

@@ -1,0 +1,102 @@
+---
+- hosts: localhost
+  vars_files:
+    - vars/vars.yml
+  tasks:
+    - name: Update Homebrew
+      homebrew:
+        update_homebrew: yes
+        upgrade_all: yes
+
+    - name: Install Shell Enhancements
+      homebrew:
+        name: bash-completion
+        state: latest
+
+    - name: Install VCS
+      homebrew:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - git
+        - mercurial
+        - svn
+
+    - name: Install Utilities
+      homebrew:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - tree
+        - ncdu
+        - mosh
+        - ack
+        - p7zip
+        - archey
+        - neofetch
+        - httpie
+        - sleepwatcher
+
+    - name: Install WGet
+      homebrew:
+        name: wget
+        options: with-iri
+        state: latest
+
+    - name: Install Cask Applications
+      homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - keepingyouawake
+
+    - name: Install RBEnv
+      homebrew:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - ruby-build
+        - rbenv
+
+    - name: Install Ruby
+      shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
+
+    - name: Copy Bash Configuration
+      copy:
+        src: bash/
+        dest: ~/
+        mode: 0600
+
+    - name: Copy SSH Configuration
+      template:
+        src: config.j2
+        dest: ~/.ssh/config
+        mode: 0600
+
+    - name: Copy Git Configuration
+      template:
+        src: gitconfig.j2
+        dest: ~/.gitconfig
+        mode: 0600
+
+    - name: Copy Mecurial Configuration
+      template:
+        src: hgrc.j2
+        dest: ~/.hgrc
+        mode: 0600
+
+    - name: Create Raw Photo Library Directory
+      file:
+        path: ~/Pictures/Raw
+        state: directory
+      when: symlink_photos
+
+    - name: Symlink Photo Library
+      file:
+        src: ~/Pictures/Photos\ Library.photoslibrary/Masters/
+        dest: ~/Pictures/Raw
+        state: link
+      when: symlink_photos
+
+    - name: Homebrew Cleanup
+      shell: brew cleanup && brew prune
