@@ -89,14 +89,14 @@
       file:
         path: ~/Pictures/Raw
         state: directory
-      when: symlink_photos == yes
+      when: symlink_photos
 
     - name: Symlink Photo Library
       file:
         src: ~/Pictures/Photos\ Library.photoslibrary/Masters/
         dest: ~/Pictures/Raw
         state: link
-      when: symlink_photos == yes
+      when: symlink_photos
 
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
