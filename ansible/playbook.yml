@@ -85,5 +85,18 @@
         dest: ~/.hgrc
         mode: 0600
 
+    - name: Create Raw Photo Library Directory
+      file:
+        path: ~/Pictures/Raw
+        state: directory
+      when: symlink_photos == yes
+
+    - name: Symlink Photo Library
+      file:
+        src: ~/Pictures/Photos\ Library.photoslibrary/Masters/
+        dest: ~/Pictures/Raw
+        state: link
+      when: symlink_photos == yes
+
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
