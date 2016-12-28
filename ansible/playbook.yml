@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   become: yes
-  var_files:
-    - vars.yml
+  vars_files:
+    - vars/vars.yml
   tasks:
     - name: Update Homebrew
       homebrew:
@@ -16,7 +16,7 @@
 
     - name: Install VCS
       homebrew:
-        name: {{ item }}
+        name: "{{ item }}"
         state: latest
       with_items:
         - git
@@ -25,7 +25,7 @@
 
     - name: Install Utilities
       homebrew:
-        name: {{ item }}
+        name: "{{ item }}"
         state: latest
       with_items:
         - tree
@@ -46,7 +46,7 @@
 
     - name: Install RBEnv
       homebrew:
-        name: {{ item }}
+        name: "{{ item }}"
         state: latest
       with_items:
         - ruby-build
