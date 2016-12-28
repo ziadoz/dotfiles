@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: yes
   vars_files:
     - vars/vars.yml
   tasks:
