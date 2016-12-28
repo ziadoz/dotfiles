@@ -86,4 +86,4 @@
         mode: 0600
 
     - name: Homebrew Cleanup
-      command: brew cleanup && brew prune
+      shell: brew cleanup && brew prune
