@@ -78,3 +78,6 @@
         src: hgrc.j2
         dest: hg/.hgrc
         mode: 0600
+
+    - name: Homebrew Cleanup
+      command: brew cleanup && brew prune
