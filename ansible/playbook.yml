@@ -44,6 +44,13 @@
         options: with-iri
         state: latest
 
+    - name: Install Cask Applications
+      homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - keepingyouawake
+
     - name: Install RBEnv
       homebrew:
         name: "{{ item }}"
