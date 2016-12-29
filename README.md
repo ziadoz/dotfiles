@@ -22,3 +22,5 @@ Run the install script and when prompted, enter your user account password:
 - http://docs.ansible.com/ansible/intro_inventory.html#non-ssh-connection-types
 - http://ansible.pickle.io/post/86598332429/running-ansible-playbook-in-localhost
 - http://superuser.com/questions/974714/previous-commands-wrapped-with-square-brackets-in-os-x-terminal
+- http://fredkelly.net/articles/2014/10/19/developing_on_yosemite.html
+- https://gist.github.com/g3d/2709563

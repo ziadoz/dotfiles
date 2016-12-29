@@ -111,5 +111,20 @@
       shell: dscacheutil -flushcache && killall -HUP mDNSResponder
       ignore_errors: yes
 
+    - name: Copy Mac OS Script
+      template:
+        src: .macos.j2
+        dest: /tmp/macos.sh
+        mode: 0700
+
+    - name: Run Mac OS Script
+      shell: /bin/bash /tmp/macos.sh
+      become: yes
+
+    - name: Remove Mac OS Script
+      file:
+        path: /tmp/macos.sh
+        state: absent
+
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
