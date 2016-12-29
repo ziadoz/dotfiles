@@ -11,5 +11,4 @@ hg:
   email: foo@bar.com
 
 ruby_version: 2.4.0
-symlink_photos: yes
 computer_name: Example
