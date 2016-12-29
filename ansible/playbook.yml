@@ -85,18 +85,18 @@
         dest: ~/.hgrc
         mode: 0600
 
-    - name: Create Raw Photo Library Directory
-      file:
-        path: ~/Pictures/Raw
-        state: directory
+    - name: Check Photo Library Exists
+      stat:
+        path: "~/Pictures/Photos Library.photoslibrary/Masters/"
       when: symlink_photos
+      register: photo_library
 
-    - name: Symlink Photo Library
+    - name: Symlink Photos Library
       file:
-        src: ~/Pictures/Photos\ Library.photoslibrary/Masters/
-        dest: ~/Pictures/Raw
+        src: "~/Pictures/Photos Library.photoslibrary/Masters/"
+        dest: "~/Pictures/Photos Library Raw"
         state: link
-      when: symlink_photos
+      when: symlink_photos and photo_library.stat.exists
 
     - name: Update Hosts
       blockinfile:
@@ -108,6 +108,7 @@
 
     - name: Reload Hosts
       shell: dscacheutil -flushcache && killall -HUP mDNSResponder
+      ignore_errors: yes
 
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
