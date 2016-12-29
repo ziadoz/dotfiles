@@ -36,6 +36,7 @@
         - neofetch
         - httpie
         - sleepwatcher
+        - tmux
 
     - name: Install WGet
       homebrew:
