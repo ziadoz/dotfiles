@@ -118,7 +118,6 @@
 
     - name: Run Mac OS Script
       shell: /bin/bash /tmp/macos.sh
-      become: yes
 
     - name: Remove Mac OS Script
       file:
