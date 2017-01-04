@@ -23,3 +23,4 @@ Run the install script and when prompted, enter your user account password:
 - http://superuser.com/questions/974714/previous-commands-wrapped-with-square-brackets-in-os-x-terminal
 - http://fredkelly.net/articles/2014/10/19/developing_on_yosemite.html
 - https://gist.github.com/g3d/2709563
+- https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
