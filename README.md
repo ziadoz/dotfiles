@@ -13,7 +13,6 @@ Run the install script and when prompted, enter your user account password:
 ```
 
 ## Todos
-* Add `.macos` script from [Mathias Bynens's Dotfiles](https://github.com/mathiasbynens/dotfiles).
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 
 ## Links
