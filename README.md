@@ -13,7 +13,10 @@ Run the install script and when prompted, enter your user account password:
 ```
 
 ## Useful Commands
-Run a specific set of commands again by tag name: `ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playbook.yml`
+Run a specific set of commands again by tag name:
+```
+ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playbook.yml
+```
 
 ## Todos
 * Add tags to each task so re-running specific things is easier.
