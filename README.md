@@ -20,7 +20,6 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 
 ## Todos
 * Add tags to each task so re-running specific things is easier.
-* Look at keeping SleepWatcher logs in `~/Library/Logs/SleepWatcher` so they can be viewed in the Console app.
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 
 ## Links

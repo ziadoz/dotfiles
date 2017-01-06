@@ -1,6 +1,0 @@
-#!/bin/bash
-sleep 10
-/usr/sbin/networksetup setairportpower en0 on
-
-echo "Waking Up: `date`" >> /tmp/sleep.log
-echo `/usr/sbin/networksetup getairportpower en0` >> /tmp/sleep.log

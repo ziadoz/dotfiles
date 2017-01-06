@@ -87,10 +87,13 @@
         mode: 0600
 
     - name: Copy SleepWatcher Configuration
-      copy:
-        src: sleepwatcher/
-        dest: ~/
+      template:
+        src: "{{ item }}"
+        dest: ~/{{ item | basename | regex_replace('\.j2','') }}
         mode: 0744
+      with_items:
+        - sleepwatcher/.sleep.j2
+        - sleepwatcher/.wakeup.j2
       tags:
         - sleepwatcher
 
@@ -100,13 +103,21 @@
       tags:
         - sleepwatcher
 
-    # - name: Create SleepWatcher Log Directory
-    #   file:
-    #     path: ~/Library/Logs/SleepWatcher
-    #     state: directory
-    #     mode: 0751
-    #   tags:
-    #     - sleepwatcher
+    - name: Create SleepWatcher Log Directory
+      file:
+        path: "{{ sleepwatcher.log | dirname }}"
+        state: directory
+        mode: 0751
+      tags:
+        - sleepwatcher
+
+    - name: Create SleepWatcher Log File
+      file:
+        path: "{{ sleepwatcher.log }}"
+        state: touch
+        mode: 0644
+      tags:
+        - sleepwatcher
 
     - name: Check Photo Library Exists
       stat:

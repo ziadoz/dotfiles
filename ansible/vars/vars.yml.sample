@@ -1,14 +1,20 @@
 ---
+ruby_version: 2.4.0
+computer_name: Example
+
 ssh_config:
   - host: alias
     hostname: 127.0.0.1
     user: foo
+
 git:
   name: Foo
   email: foo@bar.com
+
 hg:
   name: Foo
   email: foo@bar.com
 
-ruby_version: 2.4.0
-computer_name: Example
+sleepwatcher:
+  wakeup_delay: 8
+  log: ~/Library/Logs/SleepWatcher/sleep.log
