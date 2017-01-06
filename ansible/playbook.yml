@@ -7,11 +7,15 @@
       homebrew:
         update_homebrew: yes
         upgrade_all: yes
+      tags:
+        - homebrew
 
     - name: Install Shell Enhancements
       homebrew:
         name: bash-completion
         state: latest
+      tags:
+        - homebrew
 
     - name: Install VCS
       homebrew:
@@ -21,6 +25,8 @@
         - git
         - mercurial
         - svn
+      tags:
+        - homebrew
 
     - name: Install Utilities
       homebrew:
@@ -37,12 +43,16 @@
         - httpie
         - sleepwatcher
         - tmux
+      tags:
+        - homebrew
 
     - name: Install WGet
       homebrew:
         name: wget
         options: with-iri
         state: latest
+      tags:
+        - homebrew
 
     - name: Install Cask Applications
       homebrew_cask:
@@ -50,6 +60,9 @@
         state: present
       with_items:
         - keepingyouawake
+      tags:
+        - homebrew
+        - cask
 
     - name: Install RBEnv
       homebrew:
@@ -58,33 +71,45 @@
       with_items:
         - ruby-build
         - rbenv
+      tags:
+        - ruby
 
     - name: Install Ruby
       shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
+      tags:
+        - ruby
 
     - name: Copy Bash Configuration
       copy:
         src: bash/
         dest: ~/
         mode: 0600
+      tags:
+        - shell
 
     - name: Copy SSH Configuration
       template:
         src: config.j2
         dest: ~/.ssh/config
         mode: 0600
+      tags:
+        - shell
 
     - name: Copy Git Configuration
       template:
         src: .gitconfig.j2
         dest: ~/.gitconfig
         mode: 0600
+      tags:
+        - shell
 
     - name: Copy Mecurial Configuration
       template:
         src: .hgrc.j2
         dest: ~/.hgrc
         mode: 0600
+      tags:
+        - shell
 
     - name: Copy SleepWatcher Configuration
       template:
@@ -123,6 +148,8 @@
       stat:
         path: "~/Pictures/Photos Library.photoslibrary/Masters/"
       register: photo_library
+      tags:
+        - photos
 
     - name: Symlink Photos Library
       file:
@@ -130,6 +157,8 @@
         dest: "~/Pictures/Photos Library Raw"
         state: link
       when: photo_library.stat.exists
+      tags:
+        - photos
 
     - name: Update Hosts
       blockinfile:
@@ -138,24 +167,36 @@
         backup: yes
         content: "{{ lookup('file', 'hosts') }}"
       become: yes
+      tags:
+        - hosts
 
     - name: Reload Hosts
       shell: dscacheutil -flushcache && killall -HUP mDNSResponder
       ignore_errors: yes
+      tags:
+        - hosts
 
     - name: Copy Mac OS Script
       template:
         src: .macos.j2
         dest: /tmp/macos.sh
         mode: 0700
+      tags:
+        - macos
 
     - name: Run Mac OS Script
       shell: /bin/bash /tmp/macos.sh
+      tags:
+        - macos
 
     - name: Remove Mac OS Script
       file:
         path: /tmp/macos.sh
         state: absent
+      tags:
+        - macos
 
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
+      tags:
+        - homebrew      

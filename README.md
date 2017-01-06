@@ -19,7 +19,6 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 ```
 
 ## Todos
-* Add tags to each task so re-running specific things is easier.
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 
 ## Links
