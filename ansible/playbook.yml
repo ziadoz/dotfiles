@@ -86,6 +86,28 @@
         dest: ~/.hgrc
         mode: 0600
 
+    - name: Copy SleepWatcher Configuration
+      copy:
+        src: sleepwatcher/
+        dest: ~/
+        mode: 0744
+      tags:
+        - sleepwatcher
+
+    - name: Start SleepWatcher Service
+      shell: brew services start sleepwatcher
+      become_user: "{{ ansible_user_id }}"
+      tags:
+        - sleepwatcher
+
+    # - name: Create SleepWatcher Log Directory
+    #   file:
+    #     path: ~/Library/Logs/SleepWatcher
+    #     state: directory
+    #     mode: 0751
+    #   tags:
+    #     - sleepwatcher
+
     - name: Check Photo Library Exists
       stat:
         path: "~/Pictures/Photos Library.photoslibrary/Masters/"

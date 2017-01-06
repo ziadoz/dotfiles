@@ -12,7 +12,12 @@ Run the install script and when prompted, enter your user account password:
 ./install.sh
 ```
 
+## Useful Commands
+Run a specific set of commands again by tag name: `ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playbook.yml`
+
 ## Todos
+* Add tags to each task so re-running specific things is easier.
+* Look at keeping SleepWatcher logs in `~/Library/Logs/SleepWatcher` so they can be viewed in the Console app.
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 
 ## Links
