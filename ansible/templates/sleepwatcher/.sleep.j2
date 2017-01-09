@@ -1,7 +1,7 @@
 #!/bin/bash
 /usr/sbin/networksetup setairportpower en0 off
 
-echo - n > {{ sleepwatcher.log }}
+echo -n > {{ sleepwatcher.log }}
 
 echo "Sleeping: `date`" >> {{ sleepwatcher.log }}
 echo `/usr/sbin/networksetup getairportpower en0` >> {{ sleepwatcher.log }}
