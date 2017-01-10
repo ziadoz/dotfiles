@@ -43,6 +43,7 @@
         - httpie
         - sleepwatcher
         - tmux
+        - htop
       tags:
         - homebrew
 
@@ -199,4 +200,4 @@
     - name: Homebrew Cleanup
       shell: brew cleanup && brew prune
       tags:
-        - homebrew      
+        - homebrew
