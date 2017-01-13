@@ -20,6 +20,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 
 ## Todos
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
+* Look at adding `httrack`, `mobile-shell` and `rename` to HomeBrew packages.
 
 ## Links
 - https://github.com/mathiasbynens/dotfiles
