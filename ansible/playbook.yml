@@ -65,6 +65,8 @@
         - sleepwatcher
         - tmux
         - htop
+        - mobile-shell
+        - rename
       tags:
         - homebrew
 
