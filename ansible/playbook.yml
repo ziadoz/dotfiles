@@ -12,10 +12,30 @@
 
     - name: Install Shell Enhancements
       homebrew:
-        name: bash-completion
+        name: "{{ item }}"
         state: latest
+      with_items:
+        - bash
+        - bash-completion
       tags:
         - homebrew
+        - shell
+
+    - name: Add Shell
+      lineinfile:
+        dest: /etc/shells
+        line: /usr/local/bin/bash
+        backup: yes
+      become: yes
+      tags:
+        - shell
+
+    - name: Change User Shell
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: /usr/local/bin/bash
+      tags:
+        - shell
 
     - name: Install VCS
       homebrew:
@@ -27,6 +47,7 @@
         - svn
       tags:
         - homebrew
+        - vcs
 
     - name: Install Utilities
       homebrew:
@@ -102,7 +123,7 @@
         dest: ~/.gitconfig
         mode: 0600
       tags:
-        - shell
+        - vcs
 
     - name: Copy Mecurial Configuration
       template:
@@ -110,7 +131,7 @@
         dest: ~/.hgrc
         mode: 0600
       tags:
-        - shell
+        - vcs
 
     - name: Copy SleepWatcher Configuration
       template:

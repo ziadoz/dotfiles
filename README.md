@@ -31,3 +31,4 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 - http://fredkelly.net/articles/2014/10/19/developing_on_yosemite.html
 - https://gist.github.com/g3d/2709563
 - https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
+- https://johndjameson.com/blog/updating-your-shell-with-homebrew/
