@@ -182,6 +182,14 @@
       tags:
         - photos
 
+    - name: Install Custom Fonts
+      copy:
+        src: fonts/
+        dest: ~/Library/Fonts
+        mode: 0755
+      tags:
+        - fonts
+
     - name: Update Hosts
       blockinfile:
         dest: /etc/hosts
