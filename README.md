@@ -9,7 +9,7 @@ cp ansible/vars/vars.yml.sample ansible/vars/vars.yml
 
 Run the install script and when prompted, enter your user account password:
 ```
-./install.sh
+./install
 ```
 
 ## Useful Commands
