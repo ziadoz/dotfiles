@@ -21,6 +21,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 ## Todos
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 * Look at adding `httrack` to HomeBrew packages.
+* Use `apm` command to install Atom packages and themes. Need to get Atom and other apps installed too.
 
 ## Links
 - https://github.com/mathiasbynens/dotfiles
