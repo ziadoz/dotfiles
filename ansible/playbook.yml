@@ -83,6 +83,7 @@
         state: present
       with_items:
         - keepingyouawake
+        - macdown
       tags:
         - homebrew
         - cask
