@@ -21,6 +21,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 ## Todos
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 * Look at adding `httrack` to HomeBrew packages.
+* Work out which existings apps on laptop can be installed via Cask and add them to the playbook.
 * Use `apm` command to install Atom packages and themes. Need to get Atom and other apps installed too.
 
 ## Links
