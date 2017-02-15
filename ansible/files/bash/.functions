@@ -41,3 +41,11 @@ resetdns() {
 php-lint() {
     (find $1 -path ./vendor -prune -o -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"); test $? -eq 1
 }
+
+# Display a weather forecast
+weather() {
+    local location=${1:-Leicester}
+    local lang=${2:-en}
+
+    curl -s wttr.in/$location?lang=$lang
+}
