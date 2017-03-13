@@ -66,8 +66,12 @@
         - tmux
         - htop
         - rename
+        - homebrew/dupes/srm
       tags:
         - homebrew
+
+    - name: Symlink SRM
+      shell: brew link --force srm
 
     - name: Install WGet
       homebrew:
