@@ -107,6 +107,13 @@
       tags:
         - ruby
 
+    - name: Install Golang
+      homebrew:
+        name: go
+        state: latest
+     tags:
+       - go
+
     - name: Copy Bash Configuration
       copy:
         src: bash/
