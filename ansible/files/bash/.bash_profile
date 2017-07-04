@@ -17,6 +17,14 @@ elif [ -f /etc/bash_completion ]; then
     source /etc/bash_completion;
 fi;
 
+# Add Git completion
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWDIRTYSTATE=true
+
+if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+    source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash";
+fi
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
