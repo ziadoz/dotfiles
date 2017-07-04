@@ -23,6 +23,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 * Look at adding `httrack` to HomeBrew packages.
 * Work out which existings apps on laptop can be installed via Cask and add them to the playbook.
 * Use `apm` command to install Atom packages and themes. Need to get Atom and other apps installed too.
+* Setup Bash and Git completions, and a proper Git prompt.
 
 ## Links
 - https://github.com/mathiasbynens/dotfiles
