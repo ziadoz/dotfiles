@@ -89,6 +89,8 @@
         - keepingyouawake
         - macdown
         - vagrant
+        - virtualbox
+        - virtualbox-extension-pack
       tags:
         - homebrew
         - cask
