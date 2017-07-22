@@ -3,6 +3,13 @@
   vars_files:
     - vars/vars.yml
   tasks:
+    - name: Hombrew Taps
+      homebrew_tap:
+        name: homebrew/homebrew-php
+        state: present
+      tags:
+        - homebrew
+
     - name: Update Homebrew
       homebrew:
         update_homebrew: yes
@@ -66,6 +73,7 @@
         - tmux
         - htop
         - rename
+        - php71
       tags:
         - homebrew
 
