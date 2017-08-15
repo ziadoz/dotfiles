@@ -1,3 +1,51 @@
 [user]
-	name = {{ git.name }}
-	email = {{ git.email }}
+    name = {{ git.name }}
+    email = {{ git.email }}
+[color]
+	ui = auto
+[alias]
+    # Shortcuts
+    # http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+    cl = clone
+    co = checkout
+    cob = checkout -b
+    ci = commit
+    st = status
+    br = branch
+    cp = cherry-pick
+    fp = format-patch
+    last = log -1 HEAD
+    recent = log -5 HEAD
+
+    # Stash
+    sl = stash list
+    sa = stash apply
+    sp = stash pop
+    ss = stash save --include-untracked
+
+    # Diff
+    d = diff
+    ds = diff --stat
+
+    # List Aliases
+    la = "!git config -l | grep alias | cut -c 7- #"
+
+    # Undo
+    # https://stackoverflow.com/questions/3321492/
+    undo = "!git reset --soft HEAD~1 #"
+    wipe = "!git reset --hard && git clean -f #"
+    restore = "!git checkout \"$1\" -- \"$2\" #"
+
+    # Patch
+    # https://robots.thoughtbot.com/send-a-patch-to-someone-using-git-format-patch
+    fop = "!git format-patch \"$1\" --stdout > \"$2\" #"
+
+    # Branch
+    brmv = "!git branch -m \"$1\" \"$2\" #"
+
+    # Log
+    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ll = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --numstat
+    lr = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    lnc = log --pretty=format:"%h\\ [%ad]\\ %d\\ %s\\ [%cn] --date=short"
+    lc = "!git ls \"$1\"^..\"$1\" #"
