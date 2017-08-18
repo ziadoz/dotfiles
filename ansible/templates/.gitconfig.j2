@@ -14,12 +14,13 @@
     br = branch
     cp = cherry-pick
     fp = format-patch
+    rl = reflog
     last = log -1 HEAD
     recent = log -5 HEAD
 
     # Stash
     sl = stash list
-    sa = stash apply
+    sa = "!git stash apply stash@{\"$1\"} #"
     sp = stash pop
     ss = stash save --include-untracked
 
