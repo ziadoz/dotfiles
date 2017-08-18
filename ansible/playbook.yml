@@ -44,30 +44,18 @@
       tags:
         - shell
 
-    - name: Install VCS
+    - name: Install Utilities
       homebrew:
         name: "{{ item }}"
         state: latest
       with_items:
         - git
         - mercurial
-        - svn
-      tags:
-        - homebrew
-        - vcs
-
-    - name: Install Utilities
-      homebrew:
-        name: "{{ item }}"
-        state: latest
-      with_items:
         - tree
         - ncdu
-        - mosh
         - ack
         - p7zip
         - archey
-        - neofetch
         - httpie
         - sleepwatcher
         - tmux
