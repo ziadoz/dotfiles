@@ -40,6 +40,7 @@
     # https://stackoverflow.com/questions/3321492/
     undo = "!git reset --soft HEAD~1 #"
     wipe = "!git reset --hard && git clean -f #"
+    discard = "!git checkout -- \"$1\" #"
     restore = "!git checkout \"$1\" -- \"$2\" #"
     unstage = "!git reset -- \"$1\" #"
 
