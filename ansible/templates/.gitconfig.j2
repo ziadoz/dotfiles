@@ -27,6 +27,7 @@
     ssm = "!git stash save --include-untracked \"$1\" #"
     sd = stash drop
     sdf = "!git diff stash@{\"$1\"} #"
+    sdfs = "!git diff --stat stash@{\"$1\"} #"
 
     # Diff
     df = diff
