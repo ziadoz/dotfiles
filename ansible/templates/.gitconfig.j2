@@ -24,10 +24,13 @@
     sa = "!git stash apply stash@{\"$1\"} #"
     sp = stash pop
     ss = stash save --include-untracked
+    ssm = "!git stash save --include-untracked \"$1\" #"
+    sd = stash drop
+    sdf = "!git diff stash@{\"$1\"} #"
 
     # Diff
-    d = diff
-    ds = diff --stat
+    df = diff
+    dfs = diff --stat
 
     # List Aliases
     la = "!git config -l | grep alias | cut -c 7- #"
