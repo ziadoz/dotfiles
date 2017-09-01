@@ -12,8 +12,8 @@
     dest: ~/{{ item | basename | regex_replace('\.j2','') }}
     mode: 0744
   with_items:
-    - sleepwatcher/.sleep.j2
-    - sleepwatcher/.wakeup.j2
+    - .sleep.j2
+    - .wakeup.j2
   tags:
     - sleepwatcher
 
