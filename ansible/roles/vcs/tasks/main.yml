@@ -1,0 +1,26 @@
+---
+- name: Install Utilities
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git
+    - mercurial
+  tags:
+    - vcs
+
+- name: Copy Git Configuration
+  template:
+    src: .gitconfig.j2
+    dest: ~/.gitconfig
+    mode: 0600
+  tags:
+    - vcs
+
+- name: Copy Mecurial Configuration
+  template:
+    src: .hgrc.j2
+    dest: ~/.hgrc
+    mode: 0600
+  tags:
+    - vcs

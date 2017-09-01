@@ -1,0 +1,15 @@
+---
+- name: Install RBEnv
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - ruby-build
+    - rbenv
+  tags:
+    - ruby
+
+- name: Install Ruby
+  shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
+  tags:
+    - ruby

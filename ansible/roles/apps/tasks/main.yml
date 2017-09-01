@@ -1,0 +1,23 @@
+---
+- name: Install Applications
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - keepingyouawake
+    - macdown
+    - vagrant
+    - virtualbox
+    - virtualbox-extension-pack
+    - visual-studio-code
+    #- sequel-pro
+    #- docker
+    #- sourcetree
+    #- google-chrome
+    #- firefox
+    #- steam
+    #- transmission
+    #- vlc
+    #- calibre
+  tags:
+    - apps

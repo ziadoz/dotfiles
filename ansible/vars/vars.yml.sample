@@ -1,5 +1,5 @@
 ---
-ruby_version: 2.4.0
+ruby_version: 2.4.1
 computer_name: Example
 
 ssh_config:

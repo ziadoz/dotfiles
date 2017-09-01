@@ -1,0 +1,4 @@
+---
+sleepwatcher:
+  wakeup_delay: 5
+  log: ~/Library/Logs/SleepWatcher/sleep.log

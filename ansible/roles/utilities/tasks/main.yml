@@ -1,0 +1,25 @@
+---
+- name: Install Utilities
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - tree
+    - ncdu
+    - ack
+    - p7zip
+    - archey
+    - httpie
+    - tmux
+    - htop
+    - rename
+  tags:
+    - utilities
+
+- name: Install WGet
+  homebrew:
+    name: wget
+    options: with-iri
+    state: latest
+  tags:
+    - utilities

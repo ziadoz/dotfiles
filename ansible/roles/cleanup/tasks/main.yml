@@ -1,0 +1,5 @@
+---
+- name: Homebrew Cleanup
+  shell: brew cleanup && brew prune
+  tags:
+    - homebrew

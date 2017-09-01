@@ -1,0 +1,8 @@
+---
+- name: Install Custom Fonts
+  copy:
+    src: files/
+    dest: ~/Library/Fonts
+    mode: 0755
+  tags:
+    - fonts
