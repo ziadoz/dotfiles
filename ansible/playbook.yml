@@ -65,9 +65,6 @@
       tags:
         - homebrew
 
-    - name: Symlink SRM
-      shell: brew link --force srm
-
     - name: Install WGet
       homebrew:
         name: wget
