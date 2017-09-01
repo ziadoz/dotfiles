@@ -1,7 +1,0 @@
----
-- name: Install PHP
-  homebrew:
-    name: php71
-    state: latest
-  tags:
-    - php

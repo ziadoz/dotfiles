@@ -1,4 +1,12 @@
 ---
+- name: Install PHP
+  homebrew:
+    name: php71
+    state: latest
+  tags:
+    - languages
+    - php
+
 - name: Install RBEnv
   homebrew:
     name: "{{ item }}"
@@ -7,9 +15,19 @@
     - ruby-build
     - rbenv
   tags:
+    - languages
     - ruby
 
 - name: Install Ruby
   shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
   tags:
+    - languages
     - ruby
+
+- name: Install Golang
+  homebrew:
+    name: go
+    state: latest
+  tags:
+    - languages
+    - go

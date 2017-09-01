@@ -9,9 +9,7 @@
     - vcs
     - sleepwatcher
     - apps
-    - php
-    - ruby
-    - go
+    - languages
     - security
     - fonts
     - macos
