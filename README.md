@@ -18,6 +18,16 @@ Run a specific set of commands again by tag name:
 ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playbook.yml
 ```
 
+Run the playbook in dry-run mode:
+```
+ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml --check --diff
+```
+
+Run the playbook with verbose output:
+```
+ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
+```
+
 ## Todos
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 * Look at adding `httrack` to HomeBrew packages.
