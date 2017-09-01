@@ -21,10 +21,8 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass --tags="tag" ansible/playb
 ## Todos
 * Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
 * Look at adding `httrack` to HomeBrew packages.
-* Work out which existings apps on laptop can be installed via Cask and add them to the playbook (e.g. LibreOffice).
 * Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
 * Download and install [Fira Mono](https://github.com/mozilla/Fira) and [Fira Code](https://github.com/tonsky/FiraCode) fonts.
-* Split out playbook into roles (e.g. macos, shell, apps, dev, vsc, fonts, themes).
 
 ## Colour Scheme
 [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)
