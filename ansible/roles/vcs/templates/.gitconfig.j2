@@ -4,6 +4,9 @@
 [color]
 	ui = auto
 [alias]
+    # List Aliases
+    la = "!f() { git config -l | grep alias | cut -c 7-; }; f"
+
     # Shortcuts
     # http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
     cl = clone
@@ -15,50 +18,66 @@
     cp = cherry-pick
     fp = format-patch
     rl = reflog
-    last = log -1 HEAD
-    recent = log -5 HEAD
-    sync = "!git pull && git push #"
+    df = diff
+    dfw = diff --word-diff
+
+    # Tags
+    lt = describe --tags --abbrev=0
+
+    # Push and Pull
+    sync = "!f() { git pull $@ && git push $@; }; f"
 
     # Stash
+    # https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script
     sl = stash list
-    sa = "!git stash apply stash@{\"$1\"} #"
+    sa = "!f() { git stash apply stash@{${1:-0}}; }; f"
     sp = stash pop
-    ss = stash save --include-untracked
-    ssm = "!git stash save --include-untracked \"$1\" #"
+    ss = "!f() { git stash save --include-untracked $@; }; f"
     sd = stash drop
-    sdf = "!git diff stash@{\"$1\"} #"
-    sdfs = "!git diff --stat stash@{\"$1\"} #"
-
-    # Diff
-    df = diff
-    dfs = diff --stat
-
-    # List Aliases
-    la = "!git config -l | grep alias | cut -c 7- #"
+    sc = stash clear
+    sdf = "!f() { git diff stash@{${1:-0}} ${@:2}; }; f"
 
     # Undo
     # https://stackoverflow.com/questions/3321492/
-    undo = "!git reset --soft HEAD~1 #"
-    wipe = "!git reset --hard && git clean -f #"
-    discard = "!git checkout -- \"$1\" #"
-    restore = "!git checkout \"$1\" -- \"$2\" #"
-    unstage = "!git reset -- \"$1\" #"
+    # https://twitter.com/coderabbi/status/904708039533584387
+    undo = "!f() { git reset --soft HEAD~1; }; f"
+    wipe = "!f() { git reset --hard && git clean -f; }; f"
+    discard = "!f() { git checkout -- $@; }; f"
+    restore = "!f() { git checkout $1 -- ${@:2}; }; f"
+    unstage = "!f() { git reset -- ${@}; }; f"
+
+    # Commit
+    # https://gist.github.com/coderabbi/b0278212b2220fdf63746906fbb82770
+    # Add to prior commit.
+    fix = "!f() { git commit --fixup $1; GIT_SEQUENCE_EDITOR=touch git rebase -i $1^^ --autosquash --autostash; }; f"
+    # Transplant commit to another branch.
+    transplant = "!f() { BRANCH=$(git symbolic-ref --short HEAD); git stash save --include-untracked; git checkout $1; git cherry-pick $BRANCH; git checkout $BRANCH; git reset HEAD~ --hard; git checkout $1; git stash pop; }; f"
 
     # Patch
     # https://robots.thoughtbot.com/send-a-patch-to-someone-using-git-format-patch
-    fop = "!git format-patch \"$1\" --stdout > \"$2\" #"
+    fop = "!f() { git format-patch $1 --stdout > $2; }; f"
 
     # Branch
-    brmv = "!git branch -m \"$1\" \"$2\" #"
+    brmv = "!f() { git branch -m $1 $2; }; f"
+    brrm = "!f() { git branch $1 -D; }; f"
 
     # Log
     ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     ll = "!git ls --numstat"
     lr = "!git ls --date=relative"
     lnc = log --pretty=format:"%h\\ [%ad]\\ %d\\ %s\\ [%cn] --date=short"
-    lc = "!git ls \"$1\"^..\"$1\" #"
+    dc = "!f() { git diff ${@:2} "${1:-HEAD}"^.."${1:-HEAD}"; }; f"
+    lc = "!f() { git ll "${1:-HEAD}"^.."${1:-HEAD}"; }; f"
 
-    # Search Logs
+    # Log Search
     # https://twitter.com/csswizardry/status/903196263763644416
-    lss = "!git ls -S\"$1\" #"
-    lsr = "!git ls -G\"$1\" #"
+    lss = "!f() { git ls -S$1; }; f"
+    lsr = "!f() { git ls -G$1; }; f"
+
+    # Search
+    grp = "!git ls-files | grep -i"
+    grr = "!f() { CWD=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $CWD; }; f"
+
+    # Merging
+    ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+    theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
