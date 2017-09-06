@@ -1,5 +1,5 @@
 # Dotfiles
-A set of basic development dotfiles for macOS.
+My custom development dotfiles for macOS.
 
 ## Usage
 First, create a `vars.yml` file in `ansible/vars` using the sample file as a starting point:
