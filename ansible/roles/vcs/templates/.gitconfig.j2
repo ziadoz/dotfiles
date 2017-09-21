@@ -163,3 +163,9 @@
 
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+
+    #############
+    # Archiving #
+    #############
+
+    zip = "!f() { BRANCH=$1; if [ -z "$2" ]; then DEST="${BRANCH////-}.zip"; else DEST=$2; fi; git archive --format zip --output $DEST $BRANCH; }; f"
