@@ -12,3 +12,6 @@
     upgrade_all: yes
   tags:
     - homebrew
+
+- name: Disable Homebrew Analytics
+  shell: brew analytics off
