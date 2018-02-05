@@ -1,7 +1,7 @@
 ---
 - name: Install PHP
   homebrew:
-    name: php71
+    name: "{{ php_version }}"
     state: latest
   tags:
     - languages
