@@ -1,0 +1,50 @@
+{
+    // Common
+    "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13,
+    "editor.rulers": [120],
+
+    // Files
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.associations": {
+        "composer.lock": "json",
+        ".php_cs": "php",
+        "Vagrantfile": "ruby"
+    },
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.list.openMode": "doubleClick",
+    "workbench.fontAliasing": "auto",
+
+    // PHP
+    "php.validate.executablePath": "/usr/local/bin/php",
+
+    // Emmet
+    "emmet.includeLanguages": {
+        "twig": "html"
+    },
+
+    // Go
+    "go.buildOnSave": "off",
+    "go.lintOnSave": "off",
+
+    // gofmt     - Formats code to Go standard (default).
+    // goimports - Formats code to Go standard and adds/removes imports.
+    // goreturns - Formats code to Go standard and zeros return values.
+    "go.formatTool": "goimports",
+
+    // Telemetry
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+
+    // Explorer
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    // Icons
+    "material-icon-theme.showUpdateMessage": false,
+    "window.zoomLevel": 0
+}
