@@ -1,12 +1,4 @@
 ---
-- name: Install PHP
-  homebrew:
-    name: "{{ php_version }}"
-    state: latest
-  tags:
-    - languages
-    - php
-
 - name: Install RBEnv
   homebrew:
     name: "{{ item }}"

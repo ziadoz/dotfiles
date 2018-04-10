@@ -1,11 +1,4 @@
 ---
-- name: Install Homebrew Taps
-  homebrew_tap:
-    name: homebrew/homebrew-php
-    state: present
-  tags:
-    - homebrew
-
 - name: Update Homebrew
   homebrew:
     update_homebrew: yes
