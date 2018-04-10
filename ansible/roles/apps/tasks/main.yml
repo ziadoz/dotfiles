@@ -10,14 +10,27 @@
     - virtualbox
     - virtualbox-extension-pack
     - visual-studio-code
-    #- sequel-pro
-    #- docker
-    #- sourcetree
-    #- google-chrome
-    #- firefox
-    #- steam
-    #- transmission
-    #- vlc
-    #- calibre
+    - sequel-pro
+    - docker
+    - sourcetree
+    - google-chrome
+    - firefox
+    - steam
+    - transmission
+    - vlc
+    - calibre
+    - visual-studio-code
+    - transmit
+    - dropbox
+    - the-unarchiver
+    - spotify
+    - skype
+    - phpstorm
+    - kap
+    - clamxav
+    - coconutbattery
+    - github
+    - sublime-text
+    - mullvadvpn
   tags:
     - apps
