@@ -29,10 +29,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 ```
 
 ## Todos
-* Implement parts of [Sensible Bash](http://mrzool.cc/writing/sensible-bash/).
-* Look at adding `httrack` to HomeBrew packages.
 * Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
-* Download and install [Fira Mono](https://github.com/mozilla/Fira) and [Fira Code](https://github.com/tonsky/FiraCode) fonts.
 * Look at improving Git aliases by using full/better word choices (e.g. [Git Legit](http://www.git-legit.org/), [Stop Aiasing Core Commands](https://jason.pureconcepts.net/2017/03/stop-aliasing-core-git-commands/)).
 
 ## Colour Scheme
