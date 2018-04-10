@@ -22,6 +22,7 @@
   user:
     name: "{{ ansible_user_id }}"
     shell: /usr/local/bin/bash
+  become: yes
   tags:
     - shell
 
@@ -33,10 +34,20 @@
   tags:
     - shell
 
+- name: Make SSH Directory
+  file:
+    src: ~/.ssh
+    state: directory
+    mode: 0700
+  when: ssh_config is defined
+  tags:
+    - shell
+
 - name: Copy SSH Configuration
   template:
     src: config.j2
     dest: ~/.ssh/config
     mode: 0600
+  when: ssh_config is defined
   tags:
     - shell
