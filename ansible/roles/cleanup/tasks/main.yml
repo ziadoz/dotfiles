@@ -3,3 +3,8 @@
   shell: brew cleanup && brew prune
   tags:
     - homebrew
+
+- name: Homebrew Cask Cleanup
+  shell: brew cask cleanup
+  tags:
+    - homebrew
