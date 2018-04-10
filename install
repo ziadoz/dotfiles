@@ -6,7 +6,7 @@ if ! which brew > /dev/null; then
 fi
 
 if ! brew info cask &>/dev/null; then
-  echo 'Installing Cask'
+  echo 'Installing HomeBrew Cask'
   brew tap caskroom/cask
 fi
 
