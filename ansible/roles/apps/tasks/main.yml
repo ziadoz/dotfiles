@@ -32,5 +32,7 @@
     - github
     - sublime-text
     - mullvadvpn
+    - table-tools
+    - comma-chameleon
   tags:
     - apps
