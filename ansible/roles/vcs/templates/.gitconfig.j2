@@ -27,6 +27,7 @@
     br = branch
     cp = cherry-pick
     fp = format-patch
+    ap = apply
     rl = reflog
     df = diff
     dfw = diff --word-diff
@@ -106,7 +107,10 @@
     # https://robots.thoughtbot.com/send-a-patch-to-someone-using-git-format-patch
 
     # Format changes into a single (one) patch
-    fop = "!f() { git format-patch $1 --stdout > $2; }; f"
+    fpo = "!f() { git format-patch $1 --stdout > $2; }; f"
+
+    # Apply (force) a patch to apply using patch
+    apf = "!f() { patch -p1 < $1; }; f"
 
     ##########
     # Branch #
