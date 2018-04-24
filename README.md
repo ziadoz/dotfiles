@@ -30,6 +30,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 
 ## Todos
 * Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
+* Download static `ffmpeg` binaries and drop them in `~/.bin`.
 * Look at improving Git aliases by using full/better word choices (e.g. [Git Legit](http://www.git-legit.org/), [Stop Aiasing Core Commands](https://jason.pureconcepts.net/2017/03/stop-aliasing-core-git-commands/)).
 
 ## Colour Scheme
