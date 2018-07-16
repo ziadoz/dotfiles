@@ -53,5 +53,5 @@ weather() {
 # Identity application using port
 # https://twitter.com/francesc/status/982025296898478080
 whoseport() {
-    lsof -i ":$1" | grep LISTEN
+    lsof -i ":$1" -sTCP:LISTEN
 }
