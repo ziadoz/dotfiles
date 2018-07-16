@@ -49,3 +49,9 @@ weather() {
 
     curl -s wttr.in/$location?lang=$lang
 }
+
+# Identity application using port
+# https://twitter.com/francesc/status/982025296898478080
+whoseport() {
+    lsof -i ":$1" | grep LISTEN
+}
