@@ -9,6 +9,15 @@
   tags:
     - languages
     - php
+    - composer
+
+- name: Install NodeJS
+  homebrew:
+    name: node
+    state: latest
+  tags:
+    - languages
+    - node
 
 - name: Install RBEnv
   homebrew:
