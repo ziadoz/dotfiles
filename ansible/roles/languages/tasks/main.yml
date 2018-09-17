@@ -1,4 +1,15 @@
 ---
+- name: Install PHP and Composer
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "php@{{ php_version }}"
+    - composer
+  tags:
+    - languages
+    - php
+
 - name: Install RBEnv
   homebrew:
     name: "{{ item }}"
