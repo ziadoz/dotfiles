@@ -38,3 +38,23 @@
     - oversight
   tags:
     - apps
+
+- name: AppStore Login
+  shell: "mas signin {{ email }}"
+  tags:
+    - apps
+    - appstore
+
+- name: Install AppStore Applications
+  shell: "mas install {{ item }}"
+  with_items:
+    - 443126292 # TrashMe
+    - 441258766 # Magnet
+    - 1063631769 # Medis
+    - 880001334 # Reeder 3
+    - 409201541 # Pages
+    - 409203825 # Numbers
+    - 409183694 # Keynote
+  tags:
+    - apps
+    - appstore
