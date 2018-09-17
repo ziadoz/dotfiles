@@ -46,3 +46,6 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 - https://gist.github.com/g3d/2709563
 - https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
 - https://johndjameson.com/blog/updating-your-shell-with-homebrew/
+- https://github.com/phpbrew/phpbrew
+- https://gist.github.com/trovster/7c5f3ef82ad7f1539e7866f5d1958485
+- https://gist.github.com/trovster/5f83a742ace0539da4047900ed617833
