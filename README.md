@@ -31,7 +31,8 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 ## Todos
 * Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
 * Download static `ffmpeg` binaries and drop them in `~/.bin`.
-* Look at improving Git aliases by using full/better word choices (e.g. [Git Legit](http://www.git-legit.org/), [Stop Aiasing Core Commands](https://jason.pureconcepts.net/2017/03/stop-aliasing-core-git-commands/)).
+* Look at improving Git aliases by using full/better word choices (e.g. [Git Legit](http://www.git-legit.org/), [Stop Aiasing Core Commands](https://jason.pureconcepts.net/2017/03/stop-aliasing-core-git-commands/)), [Git Aliases](https://dev.to/nickytonline/my-git-aliases-5dea).
+* Rewrite all `mode` options in `u=rw,g=r,o=r` style.
 
 ## Colour Scheme
 [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)
@@ -49,3 +50,4 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 - https://github.com/phpbrew/phpbrew
 - https://gist.github.com/trovster/7c5f3ef82ad7f1539e7866f5d1958485
 - https://gist.github.com/trovster/5f83a742ace0539da4047900ed617833
+- https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience
