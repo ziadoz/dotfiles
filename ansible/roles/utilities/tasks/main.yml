@@ -27,3 +27,42 @@
     state: latest
   tags:
     - utilities
+
+- name: Download FFMpeg Binary Archive
+  get_url:
+    url: https://ffmpeg.zeranoe.com/builds/macos64/static/ffmpeg-latest-macos64-static.zip
+    dest: /tmp
+  tags:
+    - utilities
+    - ffmpeg
+
+# https://unix.stackexchange.com/questions/14120/extract-only-a-specific-file-from-a-zipped-archive-to-a-given-directory/57522
+- name: Unarchive FFMpeg Binaries
+  shell: unzip -jo "/tmp/ffmpeg-latest-macos64-static.zip" "ffmpeg-latest-macos64-static/bin/*" -d /usr/local/bin
+  become: yes
+  tags:
+    - utilities
+    - ffmpeg
+
+- name: Update FFMpeg Binary Permissions
+  file:
+    path: "/usr/local/bin/{{ item }}"
+    owner: root
+    group: wheel
+    mode: 0755
+  with_items:
+    - ffmpeg
+    - ffprobe
+    - ffplay
+  become: yes
+  tags:
+    - utilities
+    - ffmpeg
+
+- name: Remove FFMpeg Archive
+  file:
+    path: /tmp/ffmpeg-latest-macos64-static.zip
+    state: absent
+  tags:
+    - utilities
+    - ffmpeg
