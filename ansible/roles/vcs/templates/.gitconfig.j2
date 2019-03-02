@@ -8,38 +8,14 @@
     # List Aliases #
     ################
 
-    la = "!f() { git config -l | grep alias | cut -c 7-; }; f"
-
-    #############
-    # Shortcuts #
-    #############
-
-    # http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
-    # http://gggritso.com/human-git-aliases
-    # https://github.com/caius/zshrc/blob/master/dotfiles/gitconfig
-
-    cl = clone
-    co = checkout
-    cob = checkout -b
-    ci = commit
-    cia = commit --all
-    st = status
-    br = branch
-    cp = cherry-pick
-    fp = format-patch
-    ap = apply
-    rl = reflog
-    df = diff
-    dfw = diff --word-diff
-    sha = rev-parse HEAD
+    aliases = "!f() { git config -l | grep alias | cut -c 7-; }; f"
 
     ########
     # Tags #
     ########
 
     tags = tag
-    lasttag = describe --tags --abbrev=0
-    lt = "!git lasttag"
+    latest = describe --tags --abbrev=0
 
     #################
     # Push and Pull #
@@ -53,14 +29,18 @@
 
     # https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script
 
+    # List all stashes
     stashes = stash list
-    sl = "!git stashes"
-    sa = "!f() { git stash apply stash@{${1:-0}}; }; f"
-    sp = stash pop
-    ss = "!f() { git stash save --include-untracked $@; }; f"
-    sd = stash drop
-    sc = stash clear
-    sdf = "!f() { git diff stash@{${1:-0}} ${@:2}; }; f"
+    backups = "!git stashes"
+
+    # Stash one or more files
+    backup = "!f() { git stash save --include-untracked $@; }; f"
+
+    # Restore a stash
+    restore = "!f() { git stash apply stash@{${1:-0}}; }; f"
+
+    # Diff between stash and branch
+    backupdiff = "!f() { git diff stash@{${1:-0}} ${@:2}; }; f"
 
     ########
     # Undo #
@@ -71,7 +51,6 @@
 
     # Undo the last commit
     undo = "!f() { git reset --soft HEAD~1; }; f"
-    uncommit = "!git undo"
 
     # Wipe the staging area
     wipe = "!f() { git reset --hard && git clean -f; }; f"
@@ -81,6 +60,9 @@
 
     # Restore one or more files from a specific branch
     restore = "!f() { git checkout $1 -- ${@:2}; }; f"
+
+    # Stage one or more files
+    stage = "!f() { git add -- ${@}; }; f"
 
     # Unstage one or more files
     unstage = "!f() { git reset -- ${@}; }; f"
@@ -93,6 +75,12 @@
 
     # Amend the last commit message
     amend = commit --amend
+
+    # Commit by stepping through hunks
+    hunk = add -p
+
+    # Show the latest commit hash
+    sha = rev-parse HEAD
 
     # Add to a previous commit
     fix = "!f() { git commit --fixup $1; GIT_SEQUENCE_EDITOR=touch git rebase -i $1^^ --autosquash --autostash; }; f"
@@ -107,61 +95,84 @@
     # https://robots.thoughtbot.com/send-a-patch-to-someone-using-git-format-patch
 
     # Format changes into a single (one) patch
-    fpo = "!f() { git format-patch $1 --stdout > $2; }; f"
+    patchmake = "!f() { git format-patch $1 --stdout > $2; }; f"
 
     # Apply (force) a patch to apply using patch
-    apf = "!f() { patch -p1 < $1; }; f"
+    patchforce = "!f() { patch -p1 < $1; }; f"
 
     ##########
     # Branch #
     ##########
 
-    branches = "branch -a"
-    brmv = "!f() { git branch -m $1 $2; }; f"
-    brrm = "!f() { git branch $1 -D; }; f"
+    # https://wesbos.com/git-hot-tips/
+
+    # List all local branches
+    branches = "branch -l"
+
+    # Jump back to most recent branch
+    branchjump = git checkout -
+
+    # Rename a branch
+    branchrename = "!f() { git branch -m $1 $2; }; f"
+
+    # Delete a branch
+    branchdelete = "branch -D"
+
+    # Delete a branch and its remote
+    branchdestroy = "branch -Dr"
 
     ##########
     # Remote #
     ##########
 
+    # List all remotes
     remotes = remote -v
+
+    # Prune branches that no longer exist on remote
+    prune = git remote update --prune
+
+    # Dry run prune branches that no longer exist on remote
+    dryprune = "!f() { git remote prune "${1:-origin}" --dry-run }; f"
 
     #######
     # Log #
     #######
 
-    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-    ll = "!git ls --numstat"
-    lr = "!git ls --date=relative"
-    lnc = log --pretty=format:"%h\\ [%ad]\\ %d\\ %s\\ [%cn] --date=short"
-    dc = "!f() { git diff ${@:2} "${1:-HEAD}"^.."${1:-HEAD}"; }; f"
-    lc = "!f() { git ll "${1:-HEAD}"^.."${1:-HEAD}"; }; f"
+    # Log commits in pretty coloured format
+    logpretty = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+    # Log file changes in pretty coloured format
+    logstat = "!git logpretty --numstat"
+
+    # Log recent in pretty coloured format
+    logdate = "!git logpretty --date=relative"
+
+    # Log graph in pretty coloured format
+    loggraph = "!git logpretty --graph"
+
+    # Show file changes between two specified commits or the latest commit if none specified
+    logstatdiff = "!f() { git logstat "${1:-HEAD}"^.."${1:-HEAD}"; }; f"
+
+    # Diff between two specified commits or the latest commit if none specified
+    logdiff = "!f() { git diff ${@:2} "${1:-HEAD}"^.."${1:-HEAD}"; }; f"
 
     ##############
-    # Log Search #
+    # Search #
     ##############
 
     # https://twitter.com/csswizardry/status/903196263763644416
 
     # Search logs for a string
-    logsearch = "!f() { git ls -S$1; }; f"
-    lss = "!git logsearch"
+    logsearch = "!f() { git logpretty -S$1; }; f"
 
     # Search logs using a regular expression
-    loggrep = "!f() { git ls -G$1; }; f"
-    lsr = "!git loggrep"
-
-    ###############
-    # File Search #
-    ###############
+    loggrep = "!f() { git logpretty -G$1; }; f"
 
     # Grep repository file paths
-    greppaths = "!git ls-files | grep -i"
-    grp = "!git greppaths"
+    pathgrep = "!git ls-files | grep -i"
 
     # Grep file contents from the repository root
-    grepfiles = "!f() { CWD=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $CWD; }; f"
-    grf = "!git grepfiles"
+    filegrep = "!f() { CWD=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $CWD; }; f"
 
     ###########
     # Merging #
