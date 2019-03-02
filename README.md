@@ -30,8 +30,8 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 
 ## Todos
 * Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
-* Look at improving Git aliases by using full/better word choices (e.g. [Git Legit](http://www.git-legit.org/), [Stop Aiasing Core Commands](https://jason.pureconcepts.net/2017/03/stop-aliasing-core-git-commands/)), [Git Aliases](https://dev.to/nickytonline/my-git-aliases-5dea), [Wes Bos's Git Aliases](https://wesbos.com/git-hot-tips/).
 * Rewrite all `mode` options in `u=rw,g=r,o=r` style.
+* Add an [EditorConfig](https://editorconfig.org/) with [PHP settings](https://www.johnmackenzie.co.uk/post/my-modern-php-development-setup/).
 
 ## Colour Scheme
 [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)
