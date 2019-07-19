@@ -17,16 +17,15 @@
     - jhead
     - youtube-dl
     - mas
+    - trash
+    - fdupes
+    - nmap
+    - wget
   tags:
     - utilities
 
-- name: Install WGet
-  homebrew:
-    name: wget
-    options: with-iri
-    state: latest
-  tags:
-    - utilities
+- name: Install Homebrew Remove Tree
+  shell: brew tap beeftornado/rmtree
 
 - name: Download FFMpeg Binary Archive
   get_url:
