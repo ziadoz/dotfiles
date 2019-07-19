@@ -94,13 +94,3 @@ alias editbash="${EDITOR} ~/.bash_profile"
 
 # Open up the hosts file for editing
 alias edithosts="${EDITOR} /etc/hosts"
-
-# Arthur VM shortcuts
-export ARTHUR_DIR="~/Projects/arthur"
-
-alias arthur-go="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
-alias arthur-up="(cd $ARTHUR_DIR && vagrant up)"
-alias arthur-ssh="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
-alias arthur-halt="(cd $ARTHUR_DIR && vagrant halt)"
-alias arthur-destroy="(cd $ARTHUR_DIR && vagrant destroy)"
-alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"

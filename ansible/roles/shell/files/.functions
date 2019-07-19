@@ -55,3 +55,9 @@ weather() {
 whoseport() {
     lsof -i ":$1" -sTCP:LISTEN
 }
+
+# Arthur VM shortcut
+# https://laravel.com/docs/5.8/homestead#daily-usage
+function arthur() {
+    (cd ~/Projects/arthur && vagrant $*)
+}
