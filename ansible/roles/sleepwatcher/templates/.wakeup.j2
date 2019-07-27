@@ -1,6 +1,10 @@
 #!/bin/bash
-sleep {{ sleepwatcher.wakeup_delay }}
-/usr/sbin/networksetup setairportpower en0 on
+DELAY={{ sleepwatcher.wakeup_delay }}
+LOG_FILE="{{ sleepwatcher.log_file }}"
 
-echo "Waking Up: `date`" >> {{ sleepwatcher.log }}
-echo `/usr/sbin/networksetup getairportpower en0` >> {{ sleepwatcher.log }}
+echo "[`date`] Waiting $DELAY Seconds" >> $LOG_FILE
+sleep $DELAY
+
+echo "[`date`] Waking Up Networking" >> $LOG_FILE
+/usr/sbin/networksetup setairportpower en0 on >> $LOG_FILE
+echo `/usr/sbin/networksetup getairportpower en0` >> $LOG_FILE

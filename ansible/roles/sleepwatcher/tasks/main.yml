@@ -25,7 +25,7 @@
 
 - name: Create SleepWatcher Log Directory
   file:
-    path: "{{ sleepwatcher.log | dirname }}"
+    path: "{{ sleepwatcher.log_file | dirname }}"
     state: directory
     mode: 0751
   tags:
@@ -33,7 +33,7 @@
 
 - name: Create SleepWatcher Log File
   file:
-    path: "{{ sleepwatcher.log }}"
+    path: "{{ sleepwatcher.log_file }}"
     state: touch
     mode: 0644
   tags:
