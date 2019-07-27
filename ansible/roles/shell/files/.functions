@@ -29,12 +29,20 @@ remac() {
     echo $(ifconfig en0 | grep ether)
 }
 
-# Reset device DNS
+# Set DNS servers
 # http://osxdaily.com/2015/06/02/change-dns-command-line-mac-os-x/
 # http://osxdaily.com/2014/09/03/list-all-network-hardware-from-the-command-line-in-os-x/
-resetdns() {
-    sudo networksetup -setdnsservers "Ethernet" 192.168.0.3 1.1.1.1 1.0.0.1
-    sudo networksetup -setdnsservers "Wi-Fi" 192.168.0.3 1.1.1.1 1.0.0.1
+# https://superuser.com/questions/86184/change-dns-server-from-terminal-or-script-on-mac-os-x
+# https://superuser.com/questions/258151/how-do-i-check-what-dns-server-im-using-on-mac-os-x
+setdnsservers() {
+    local dns_servers="${*:-192.168.0.3 1.1.1.1 1.0.0.1}"
+    if [ "$(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)" != "$dns_servers" ]; then
+        sudo networksetup -setdnsservers Wi-Fi empty
+        sudo networksetup -setdnsservers Wi-Fi $dns_servers
+        echo "DNS servers set: $(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)"
+    else
+        echo "DNS servers already set: $(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)"
+    fi
 }
 
 # Lint the PHP files in the specified directory
