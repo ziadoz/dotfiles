@@ -58,7 +58,10 @@
     # Discards changes on one or more files
     discard = "!f() { git checkout -- $@; }; f"
 
-    # Restore one or more files from a specific branch
+    # Realign branch to a specifc remote
+    realign = "!f() { BRANCH=$(git symbolic-ref --short HEAD); git reset --hard ${1:origin}/$BRANCH }; f"
+
+    # Restore one or more files from a specific branch (added in Git 2.23)
     restore = "!f() { git checkout $1 -- ${@:2}; }; f"
 
     # Stage one or more files
@@ -120,6 +123,12 @@
 
     # Delete a branch and its remote
     branchdestroy = "branch -Dr"
+
+    # Switch to a branch (added in Git 2.23)
+    branchswitch = "!f() { git checkout $1; }; f"
+
+    # Create a branch
+    branchcreate = "!f() { git checkout -b $1 $2; }; f"
 
     ##########
     # Remote #
