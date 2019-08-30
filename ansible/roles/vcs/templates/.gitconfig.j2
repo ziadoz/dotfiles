@@ -59,7 +59,7 @@
     discard = "!f() { git checkout -- $@; }; f"
 
     # Realign branch to a specifc remote
-    realign = "!f() { BRANCH=$(git symbolic-ref --short HEAD); git reset --hard ${1:origin}/$BRANCH }; f"
+    realign = "!f() { BRANCH=$(git symbolic-ref --short HEAD); git reset --hard ${1:-origin}/$BRANCH; }; f"
 
     # Restore one or more files from a specific branch (added in Git 2.23)
     restore = "!f() { git checkout $1 -- ${@:2}; }; f"
