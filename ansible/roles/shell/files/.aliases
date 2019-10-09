@@ -90,7 +90,7 @@ alias reload="exec $SHELL -l"
 alias reloadbash="reload"
 
 # Open up the bash profile for editing
-alias editbash="${EDITOR} ~/.bash_profile"
+alias editshell="${EDITOR} ~/.bash_profile"
 
 # Open up the hosts file for editing
 alias edithosts="${EDITOR} /etc/hosts"
