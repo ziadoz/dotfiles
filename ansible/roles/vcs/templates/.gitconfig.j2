@@ -109,8 +109,14 @@
 
     # https://wesbos.com/git-hot-tips/
 
-    # List all local branches
-    branches = "branch -l"
+    # List branches
+    branches = "branch --list --all"
+
+    # List branches on a remote
+    branchesremote = "!f() { git remote prune "${1:-origin}" --dry-run; }; f"
+
+    # Prune branches that no longer exist on remote
+    branchesprune = "!f() { git remote prune "${1:-origin}"; }; f"
 
     # Jump back to most recent branch
     branchjump = git checkout -
@@ -136,12 +142,6 @@
 
     # List all remotes
     remotes = remote -v
-
-    # Prune branches that no longer exist on remote
-    prune = git remote update --prune
-
-    # Dry run prune branches that no longer exist on remote
-    dryprune = "!f() { git remote prune "${1:-origin}" --dry-run }; f"
 
     #######
     # Log #
