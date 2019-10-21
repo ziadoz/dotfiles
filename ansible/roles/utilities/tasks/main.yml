@@ -21,6 +21,7 @@
     - fdupes
     - nmap
     - wget
+    - blueutil
   tags:
     - utilities
 
