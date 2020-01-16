@@ -1,5 +1,5 @@
 ---
-- name: Install Utilities
+- name: Install VCS
   homebrew:
     name: "{{ item }}"
     state: latest
@@ -9,18 +9,21 @@
   tags:
     - vcs
 
-- name: Copy Git Configuration
+- name: Copy VCS Configurations
   template:
-    src: .gitconfig.j2
-    dest: ~/.gitconfig
+    src: "{{ item.src }}"
+    dest: "~/{{ item.dest }}"
     mode: 0600
+  with_items:
+    - { src: '.gitconfig.j2', dest: '.gitconfig' }
+    - { src: '.hgrc.j2', dest: '.hgrc' }
   tags:
     - vcs
 
-- name: Copy Mecurial Configuration
-  template:
-    src: .hgrc.j2
-    dest: ~/.hgrc
+- name: Copy Global Git Ignores
+  copy:
+    src: .gitignore
+    dest: ~/.gitignore
     mode: 0600
   tags:
     - vcs
