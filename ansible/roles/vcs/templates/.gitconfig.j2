@@ -19,6 +19,9 @@
     tags = tag
     latest = describe --tags --abbrev=0
 
+    # Destroy a remote tag
+    tagdestroy = "!f() { git push --delete ${2:-origin} $1; }; f"
+
     #################
     # Push and Pull #
     #################
