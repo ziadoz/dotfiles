@@ -22,6 +22,7 @@
     - nmap
     - wget
     - blueutil
+    - jq
   tags:
     - utilities
 
