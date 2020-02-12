@@ -23,6 +23,7 @@
     - wget
     - blueutil
     - jq
+    - github/gh/gh
   tags:
     - utilities
 
