@@ -69,3 +69,10 @@ whoseport() {
 function arthur() {
     (cd ~/Projects/arthur && vagrant $*)
 }
+
+# For when speakers aren't showing up.
+# https://apple.stackexchange.com/questions/16842/restarting-sound-service
+function restartaudio() {
+    sudo kextunload /System/Library/Extensions/AppleHDA.kext 
+    sudo kextload /System/Library/Extensions/AppleHDA.kext
+}
