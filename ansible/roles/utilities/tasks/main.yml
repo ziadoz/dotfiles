@@ -24,6 +24,7 @@
     - blueutil
     - jq
     - github/gh/gh
+    - osxfuse
   tags:
     - utilities
 
