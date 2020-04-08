@@ -79,5 +79,5 @@ function restartaudio() {
 
 # Export iCloud tabs to CSV file
 function icloudtabs() {
-    sqlite3 ~/Library/Safari/CloudTabs.db "select title || ',' || url from cloud_tabs" > ${1:-$HOME/Documents/Bookmarks/icloud_tabs.csv}
+    sqlite3 ~/Library/Safari/CloudTabs.db "select ctd.device_name || ',' || ct.title || ',' || ct.url from cloud_tabs as ct inner join cloud_tab_devices as ctd on ctd.device_uuid = ct.device_uuid order by device_name asc, position asc"
 }
