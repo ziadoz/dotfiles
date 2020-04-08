@@ -76,3 +76,8 @@ function restartaudio() {
     sudo kextunload /System/Library/Extensions/AppleHDA.kext 
     sudo kextload /System/Library/Extensions/AppleHDA.kext
 }
+
+# Export iCloud tabs to CSV file
+function icloudtabs() {
+    sqlite3 ~/Library/Safari/CloudTabs.db "select title || ',' || url from cloud_tabs" > ${1:-$HOME/Documents/Bookmarks/icloud_tabs.csv}
+}
