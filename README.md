@@ -32,6 +32,7 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 * Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
 * Rewrite all `mode` options in `u=rw,g=r,o=r` style.
 * Add an [EditorConfig](https://editorconfig.org/) with [PHP settings](https://www.johnmackenzie.co.uk/post/my-modern-php-development-setup/).
+* Look at using [prompts](https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html) for certain steps.
 
 ## Colour Scheme
 [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)
