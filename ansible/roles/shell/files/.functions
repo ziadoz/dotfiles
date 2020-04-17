@@ -73,11 +73,11 @@ function arthur() {
 # For when speakers aren't showing up.
 # https://apple.stackexchange.com/questions/16842/restarting-sound-service
 function restartaudio() {
-    sudo kextunload /System/Library/Extensions/AppleHDA.kext 
+    sudo kextunload /System/Library/Extensions/AppleHDA.kext
     sudo kextload /System/Library/Extensions/AppleHDA.kext
 }
 
-# Export iCloud tabs to CSV file
+# Export iCloud tabs as a CSV
 function icloudtabs() {
-    sqlite3 ~/Library/Safari/CloudTabs.db "select ctd.device_name || ',' || ct.title || ',' || ct.url from cloud_tabs as ct inner join cloud_tab_devices as ctd on ctd.device_uuid = ct.device_uuid order by device_name asc, position asc"
+    sqlite3 -header -csv ~/Library/Safari/CloudTabs.db "select ctd.device_name, ct.title, ct.url from cloud_tabs as ct inner join cloud_tab_devices as ctd on ctd.device_uuid = ct.device_uuid order by device_name asc, position asc"
 }
