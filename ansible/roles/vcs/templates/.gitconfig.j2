@@ -36,16 +36,15 @@
 
     # List all stashes
     stashes = stash list
-    backups = "!git stashes"
 
     # Stash one or more files
-    backup = "!f() { git stash save --include-untracked $@; }; f"
+    stashbackup = "!f() { git stash save --include-untracked $@; }; f"
 
     # Restore a stash
-    restore = "!f() { git stash apply stash@{${1:-0}}; }; f"
+    stashrestore = "!f() { git stash apply stash@{${1:-0}}; }; f"
 
     # Diff between stash and branch
-    backupdiff = "!f() { git diff stash@{${1:-0}} ${@:2}; }; f"
+    stashdiff = "!f() { git diff stash@{${1:-0}} ${@:2}; }; f"
 
     ########
     # Undo #
@@ -186,7 +185,10 @@
     # Merging #
     ###########
 
+    # Checkout our changes
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+    
+    # Checkout their changes
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 
     #############
