@@ -25,6 +25,7 @@
     - jq
     - github/gh/gh
     - osxfuse
+    - sqlmap
   tags:
     - utilities
 
