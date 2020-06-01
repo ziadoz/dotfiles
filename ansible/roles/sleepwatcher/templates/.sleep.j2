@@ -1,6 +1,0 @@
-#!/bin/bash
-LOG_FILE="{{ sleepwatcher.log }}"
-
-echo "[`date`] Sleeping Networking" >> $LOG_FILE
-/usr/sbin/networksetup setairportpower en0 off >> $LOG_FILE
-echo `/usr/sbin/networksetup getairportpower en0` >> $LOG_FILE

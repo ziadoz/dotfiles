@@ -1,4 +1,0 @@
----
-sleepwatcher:
-  wakeup_delay: 5
-  log_file: "{{ lookup('env','HOME') }}/Library/Logs/SleepWatcher/sleepwatcher.log"
