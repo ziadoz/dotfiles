@@ -1,15 +1,15 @@
 ---
-- name: Install PHP and Composer
-  homebrew:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - "php@{{ php_version }}"
-    - composer
-  tags:
-    - languages
-    - php
-    - composer
+#- name: Install PHP and Composer
+#  homebrew:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items:
+#    - "php@{{ php_version }}"
+#    - composer
+#  tags:
+#    - languages
+#    - php
+#    - composer
 
 - name: Install NodeJS
   homebrew:
@@ -19,22 +19,22 @@
     - languages
     - node
 
-- name: Install RBEnv
-  homebrew:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - ruby-build
-    - rbenv
-  tags:
-    - languages
-    - ruby
-
-- name: Install Ruby
-  shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
-  tags:
-    - languages
-    - ruby
+#- name: Install RBEnv
+#  homebrew:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items:
+#    - ruby-build
+#    - rbenv
+#  tags:
+#    - languages
+#    - ruby
+#
+#- name: Install Ruby
+#  shell: rbenv install --skip-existing {{ ruby_version }} && rbenv global {{ ruby_version }}
+#  tags:
+#    - languages
+#    - ruby
 
 - name: Install Golang
   homebrew:
