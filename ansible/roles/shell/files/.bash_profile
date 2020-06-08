@@ -18,8 +18,10 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 # Add Git completion
+# https://blog.backslasher.net/git-prompt-variables.html
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
 
 if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
     source "$(brew --prefix)/etc/bash_completion.d/git-completion.bash";
