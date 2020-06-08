@@ -1,10 +1,5 @@
 ---
 - name: Homebrew Cleanup
-  shell: brew cleanup && brew prune
-  tags:
-    - homebrew
-
-- name: Homebrew Cask Cleanup
-  shell: brew cask cleanup
+  shell: brew cleanup && brew cleanup --prune-prefix
   tags:
     - homebrew
