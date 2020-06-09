@@ -52,10 +52,10 @@ php-lint() {
 
 # Display a weather forecast
 weather() {
-    local location=${1:-Leicester}
+    local location=${1:-London}
     local lang=${2:-en}
 
-    curl -s wttr.in/$location?lang=$lang
+    curl -s "wttr.in/$location?lang=$lang"
 }
 
 # Identity application using port
