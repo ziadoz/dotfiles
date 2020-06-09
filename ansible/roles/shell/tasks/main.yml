@@ -1,32 +1,50 @@
 ---
-- name: Install Shell Enhancements
+- name: Install Shells And Enhancements
   homebrew:
     name: "{{ item }}"
     state: latest
   with_items:
     - bash
     - bash-completion
+    - zsh
+    - zsh-autosuggestions
   tags:
     - shell
 
-- name: Add Shell
+- name: Add Custom Shells
   lineinfile:
     dest: /etc/shells
-    line: /usr/local/bin/bash
+    line: "{{ item }}"
     backup: yes
   become: yes
+  with_items:
+    - /usr/local/bin/bash
+    - /usr/local/bin/zsh
   tags:
     - shell
 
-- name: Change User Shell
+- name: Clone Shell Themes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "~/.zsh/{{ item.dest }}"
+    depth: "{{ item.depth | default('') }}"
+    update: yes
+  with_items:
+    - repo: git@github.com:sindresorhus/pure.git
+      dest: pure
+    - repo: git@github.com:romkatv/powerlevel10k.git
+      dest: powerlevel10k
+      depth: 1
+
+- name: Change User Default Shell
   user:
     name: "{{ ansible_user_id }}"
-    shell: /usr/local/bin/bash
+    shell: "/usr/local/bin/{{ shell }}"
   become: yes
   tags:
     - shell
 
-- name: Copy Shell Configuration
+- name: Copy Shell Configuration Files
   copy:
     src: files/
     dest: ~/
