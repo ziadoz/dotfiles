@@ -1,8 +1,8 @@
 ---
 email: foo@bar.com
 computer_name: Example
-php_version: 7.2
-ruby_version: 2.5.1
+php_version: 7.x
+ruby_version: 2.x.x
 
 ssh_config:
   - host: alias
@@ -16,7 +16,3 @@ git:
 hg:
   name: Foo
   email: foo@bar.com
-
-sleepwatcher:
-  wakeup_delay: 8
-  log: ~/Library/Logs/SleepWatcher/sleep.log
