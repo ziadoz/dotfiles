@@ -10,6 +10,9 @@ if command -v rbenv > /dev/null; then
     eval "$(rbenv init -)"
 fi
 
+# PHP Environment
+# [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
 # Add tab completion for many Bash commands
 if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
     source "$(brew --prefix)/etc/bash_completion";
