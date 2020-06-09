@@ -87,6 +87,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reloadshell="exec $SHELL -l"
+alias reload="reloadshell"
 
 # Open up the bash profile for editing
 alias editshell="${EDITOR} ~/.bash_profile"
