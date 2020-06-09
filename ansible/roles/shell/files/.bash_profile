@@ -1,6 +1,6 @@
-# Load Dot Files
+# Load Dotfiles
 # See: https://github.com/mathiasbynens/dotfiles
-for file in ~/.{bash_paths,bash_prompt,bash_exports,bash_aliases,bash_functions,bash_extra}; do
+for file in ~/.bash_{paths,prompt,exports,aliases,functions,extra}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
