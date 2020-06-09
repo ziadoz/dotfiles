@@ -29,13 +29,11 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 ```
 
 ## Todos
-* Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
 * Rewrite all `mode` options in `u=rw,g=r,o=r` style.
-* Add an [EditorConfig](https://editorconfig.org/) with [PHP settings](https://www.johnmackenzie.co.uk/post/my-modern-php-development-setup/).
 * Look at using [prompts](https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html) for certain steps.
-
-## Colour Scheme
-[Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)
+* Add an [EditorConfig](https://editorconfig.org/) with [PHP settings](https://www.johnmackenzie.co.uk/post/my-modern-php-development-setup/).
+* Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
+* Start storing Windows configurations (e.g. Terminal `settings.json`).
 
 ## Links
 - https://github.com/mathiasbynens/dotfiles
@@ -51,3 +49,4 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 - https://gist.github.com/trovster/7c5f3ef82ad7f1539e7866f5d1958485
 - https://gist.github.com/trovster/5f83a742ace0539da4047900ed617833
 - https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience
+- https://github.com/voronianski/oceanic-next-color-scheme
