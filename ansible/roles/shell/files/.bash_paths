@@ -1,6 +1,7 @@
 # Change Directory Path
 # https://twitter.com/paulredmond/status/1204557648026144768
-export CDPATH=".:$HOME:$HOME/Projects:$HOME/Go"
+# https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
+export CDPATH=".:$HOME:$HOME/Projects"
 
 # Homebrew Path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
