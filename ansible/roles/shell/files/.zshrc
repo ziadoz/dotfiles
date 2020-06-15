@@ -1,15 +1,15 @@
 # Pure theme and prompt
 # https://github.com/sindresorhus/pure
-# fpath+=$HOME/.zsh/pure
-# autoload -U promptinit; promptinit
-# prompt pure
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 
 # Powerlevel10k theme and prompt
 # https://github.com/romkatv/powerlevel10k
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Auto suggestions
 # https://github.com/zsh-users/zsh-autosuggestions
