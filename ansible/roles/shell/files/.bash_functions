@@ -81,3 +81,12 @@ function restartaudio() {
 function icloudtabs() {
     sqlite3 -header -csv ~/Library/Safari/CloudTabs.db "select ctd.device_name, ct.title, ct.url from cloud_tabs as ct inner join cloud_tab_devices as ctd on ctd.device_uuid = ct.device_uuid order by device_name asc, position asc"
 }
+
+# Overwrite iCloud tabs as a CSV and remove non-unique entries
+function icloudtabs_backup() {
+	local file="$HOME/Dropbox/Bookmarks/iCloud Tabs/icloud_tabs.csv"
+
+    if [ -f "$file" ]; then
+        icloudtabs >> $file && sort -u $file >> $file
+    fi
+}
