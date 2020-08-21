@@ -94,3 +94,6 @@ alias editshell="${EDITOR} ~/.bash_profile"
 
 # Open up the hosts file for editing
 alias edithosts="${EDITOR} /etc/hosts"
+
+# VLC shortcut
+alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"

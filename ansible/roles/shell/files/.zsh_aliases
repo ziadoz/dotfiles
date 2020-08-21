@@ -97,3 +97,6 @@ alias edithosts="${EDITOR} /etc/hosts"
 
 # Empty Filebot history file
 alias emptyfilebot="rm -f ~/.filebot/history.xml && rm -f ~/.filebot/error.log"
+
+# VLC shortcut
+alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
