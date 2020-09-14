@@ -195,4 +195,6 @@
     # Archiving #
     #############
 
-    zip = "!f() { BRANCH=$1; if [ -z "$2" ]; then DEST="${BRANCH////-}.zip"; else DEST=$2; fi; git archive --format zip --output $DEST $BRANCH; }; f"
+    # Compress branch into a zip file.
+    # Usage: git compress [BRANCH] [FILE]
+    compress = "!f() { if [ -z "$1" ]; then BRANCH="$(git rev-parse --abbrev-ref HEAD)"; else BRANCH="$1"; fi; if [ -z "$2" ]; then DEST="$(echo "$BRANCH.zip" | sed -e 's|/|-|g')"; else DEST=$2; fi; git archive --format zip --output $DEST $BRANCH; }; f"
