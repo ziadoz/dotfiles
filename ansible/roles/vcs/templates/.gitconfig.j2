@@ -113,11 +113,11 @@
     # List branches
     branches = "branch --list --all"
 
-    # List branches on a remote
-    branchesremote = "!f() { git remote prune "${1:-origin}" --dry-run; }; f"
-
     # Prune branches that no longer exist on remote
     branchesprune = "!f() { git remote prune "${1:-origin}"; }; f"
+    
+    # Dry run pruning branches that no longer exist on remote
+    branchesdryprune = "!f() { git remote prune "${1:-origin}" --dry-run; }; f"
 
     # Jump back to most recent branch
     branchjump = git checkout -
