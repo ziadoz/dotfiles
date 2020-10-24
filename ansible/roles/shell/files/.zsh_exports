@@ -7,7 +7,7 @@ fi
 
 # Ignore specific commands from history.
 # https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
-export HISTORY_IGNORE='(media-swapper)'
+export HISTORY_IGNORE="(media-swapper)"
 
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
