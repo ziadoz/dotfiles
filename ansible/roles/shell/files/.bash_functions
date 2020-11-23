@@ -90,3 +90,9 @@ function icloudtabs_backup() {
         icloudtabs >> $file && sort -u $file >> $file
     fi
 }
+
+# Kill process listening on a specific port
+# https://stackoverflow.com/questions/33615683/how-to-access-the-pid-from-an-lsof
+function killport() {
+    lsof -t -i:$1 | xargs kill -9
+}
