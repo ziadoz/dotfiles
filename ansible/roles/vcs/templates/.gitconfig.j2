@@ -28,6 +28,9 @@
 
     sync = "!f() { git pull $@ && git push $@; }; f"
 
+    # https://tekin.co.uk/2020/01/git-alias-to-push-and-set-upstream-trackng-on-a-branch
+    upstream = "!f() { git push -u origin HEAD }; f"
+
     #########
     # Stash #
     #########
