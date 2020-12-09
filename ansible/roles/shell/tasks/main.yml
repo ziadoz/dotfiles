@@ -4,24 +4,24 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - bash
+    # - bash
     - bash-completion
-    - zsh
+    # - zsh
     - zsh-autosuggestions
   tags:
     - shell
 
-- name: Add Custom Shells
-  lineinfile:
-    dest: /etc/shells
-    line: "{{ item }}"
-    backup: yes
-  become: yes
-  with_items:
-    - /usr/local/bin/bash
-    - /usr/local/bin/zsh
-  tags:
-    - shell
+#- name: Add Custom Shells
+#  lineinfile:
+#    dest: /etc/shells
+#    line: "{{ item }}"
+#    backup: yes
+#  become: yes
+#  with_items:
+#    - /usr/local/bin/bash
+#    - /usr/local/bin/zsh
+#  tags:
+#    - shell
 
 - name: Clone Shell Themes
   git:
@@ -36,13 +36,13 @@
       dest: powerlevel10k
       depth: 1
 
-- name: Change User Default Shell
-  user:
-    name: "{{ ansible_user_id }}"
-    shell: "/usr/local/bin/{{ shell }}"
-  become: yes
-  tags:
-    - shell
+#- name: Change User Default Shell
+#  user:
+#    name: "{{ ansible_user_id }}"
+#    shell: "/usr/local/bin/{{ shell }}"
+#  become: yes
+#  tags:
+#    - shell
 
 - name: Copy Shell Configuration Files
   copy:
