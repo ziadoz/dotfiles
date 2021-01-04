@@ -83,6 +83,10 @@
     # Amend the last commit message
     amend = commit --amend
 
+    # Empty commit to nudge continuous integration
+    # https://twitter.com/satyarohith_/status/1345755762623086592?s=21
+    empty = commit -m 'empty ci commit' --allow-empty
+
     # Commit by stepping through hunks
     hunk = add -p
 
@@ -118,7 +122,7 @@
 
     # Prune branches that no longer exist on remote
     branchesprune = "!f() { git remote prune "${1:-origin}"; }; f"
-    
+
     # Dry run pruning branches that no longer exist on remote
     branchesdryprune = "!f() { git remote prune "${1:-origin}" --dry-run; }; f"
 
@@ -190,7 +194,7 @@
 
     # Checkout our changes
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
-    
+
     # Checkout their changes
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 
