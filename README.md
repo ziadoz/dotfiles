@@ -32,8 +32,8 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 * Rewrite all `mode` options in `u=rw,g=r,o=r` style.
 * Look at using [prompts](https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html) for certain steps.
 * Add an [EditorConfig](https://editorconfig.org/) with [PHP settings](https://www.johnmackenzie.co.uk/post/my-modern-php-development-setup/).
-* Copy over VS Code settings JSON file and install extensions and colour scheme if possible.
 * Start storing Windows configurations (e.g. Terminal `settings.json`).
+* Look as using a [Brewfile](https://thoughtbot.com/blog/brewfile-a-gemfile-but-for-homebrew).
 
 ## Links
 - https://github.com/mathiasbynens/dotfiles
