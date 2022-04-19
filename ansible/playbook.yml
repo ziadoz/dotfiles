@@ -8,10 +8,6 @@
   roles:
     - homebrew
     - shell
-    - utilities
-    - vcs
-    - apps
-    - languages
     - fonts
     - macos
     - cleanup
