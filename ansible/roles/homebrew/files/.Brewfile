@@ -63,6 +63,10 @@ brew "go"
 brew "goreleaser"
 brew "node"
 brew "php"
+brew "ruby"
+
+# Package Managers
+brew "composer"
 brew "yarn"
 
 # Casks
