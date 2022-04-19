@@ -33,7 +33,6 @@ ansible-playbook -i ansible/inventory --ask-sudo-pass ansible/playbook.yml -v
 * Look at using [prompts](https://docs.ansible.com/ansible/latest/user_guide/playbooks_prompts.html) for certain steps.
 * Add an [EditorConfig](https://editorconfig.org/) with [PHP settings](https://www.johnmackenzie.co.uk/post/my-modern-php-development-setup/).
 * Start storing Windows configurations (e.g. Terminal `settings.json`).
-* Look as using a [Brewfile](https://thoughtbot.com/blog/brewfile-a-gemfile-but-for-homebrew).
 * Add [PHPStorm CLI shortcut](https://www.jetbrains.com/help/phpstorm/working-with-the-ide-features-from-command-line.html#toolbox).
 
 ## Links
