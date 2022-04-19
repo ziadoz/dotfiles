@@ -9,14 +9,6 @@
 - name: Disable Homebrew Analytics
   shell: brew analytics off
 
-- name: Copy Brewfile
-  copy:
-    src: .Brewfile
-    dest: ~/.Brewfile
-    mode: 0644
-  tags:
-    - homebrew
-
 - name: Copy Git Configuration
   template:
     src: .gitconfig.j2
@@ -39,6 +31,14 @@
     shell: "mas signin {{ email }}"
     tags:
       - homebrew
+
+- name: Copy Brewfile
+  copy:
+    src: .Brewfile
+    dest: ~/.Brewfile
+    mode: 0644
+  tags:
+    - homebrew
 
   - name: Install Homebrew Packages
     shell: brew bundle --file ~/.Brewfile
