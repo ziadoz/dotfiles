@@ -1,5 +1,6 @@
 # @see: https://thoughtbot.com/blog/brewfile-a-gemfile-but-for-homebrew
 # @see: https://github.com/pndurette/mac-setup/blob/master/.Brewfile
+# @see: https://github.com/dropkick/dot/blob/main/Brewfile
 
 # Taps
 tap "beeftornado/rmtree"
@@ -26,6 +27,7 @@ brew "jless"
 brew "jq"
 brew "libav"
 brew "monolith"
+brew "nano"
 brew "neofetch"
 brew "ncdu"
 brew "nmap"
@@ -64,6 +66,7 @@ brew "php"
 brew "yarn"
 
 # Casks
+cask "1password"
 cask "balenaetcher"
 cask "calibre"
 cask "cyberduck"
