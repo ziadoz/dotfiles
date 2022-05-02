@@ -73,6 +73,7 @@ brew "yarn"
 
 # Casks
 cask "1password"
+cask "alt-tab"
 cask "balenaetcher"
 cask "calibre"
 cask "chromedriver"
