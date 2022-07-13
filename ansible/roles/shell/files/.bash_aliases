@@ -97,3 +97,6 @@ alias edithosts="${EDITOR} /etc/hosts"
 
 # VLC shortcut
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+
+# Laravel Sail
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'

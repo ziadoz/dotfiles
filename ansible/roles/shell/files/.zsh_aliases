@@ -100,3 +100,6 @@ alias emptyfilebot="rm -f ~/.filebot/history.xml && rm -f ~/.filebot/error.log"
 
 # VLC shortcut
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+
+# Laravel Sail
+alias sail='[ -f sail ] && zsh sail || zsh vendor/bin/sail'
