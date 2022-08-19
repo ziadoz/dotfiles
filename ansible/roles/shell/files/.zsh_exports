@@ -13,3 +13,7 @@ export HISTORY_IGNORE="(media-swapper*)"
 export LANG='en_US.UTF-8';
 export LANGUAGE='en_US:en';
 export LC_ALL='en_US.UTF-8';
+
+# Composer OAuth
+# https://www.previousnext.com.au/blog/managing-composer-github-access-personal-access-tokens
+# export COMPOSER_AUTH='{"github-oauth": {"github.com": "xxx"}}'
