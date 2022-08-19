@@ -23,18 +23,8 @@
 #  tags:
 #    - shell
 
-- name: Clone Shell Themes
-  git:
-    repo: "{{ item.repo }}"
-    dest: "~/.zsh/{{ item.dest }}"
-    depth: "{{ item.depth | default('') }}"
-    update: yes
-  with_items:
-    - repo: git@github.com:sindresorhus/pure.git
-      dest: pure
-    - repo: git@github.com:romkatv/powerlevel10k.git
-      dest: powerlevel10k
-      depth: 1
+- name: Install Shell Theme
+  shell: brew install pure
 
 #- name: Change User Default Shell
 #  user:
