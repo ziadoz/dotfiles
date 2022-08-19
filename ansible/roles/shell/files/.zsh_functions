@@ -45,37 +45,12 @@ setdnsservers() {
     fi
 }
 
-# Lint the PHP files in the specified directory
-php-lint() {
-    (find $1 -path ./vendor -prune -o -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"); test $? -eq 1
-}
-
 # Display a weather forecast
 weather() {
     local location=${1:-London}
     local lang=${2:-en}
 
     curl -s "wttr.in/$location?lang=$lang"
-}
-
-# Arthur VM shortcut
-# https://laravel.com/docs/5.8/homestead#daily-usage
-function arthur() {
-    (cd ~/Projects/arthur && vagrant $*)
-}
-
-# Export iCloud tabs as a CSV
-function icloudtabs() {
-    sqlite3 -header -csv ~/Library/Safari/CloudTabs.db "select ctd.device_name, ct.title, ct.url from cloud_tabs as ct inner join cloud_tab_devices as ctd on ctd.device_uuid = ct.device_uuid order by device_name asc, position asc"
-}
-
-# Overwrite iCloud tabs as a CSV and remove non-unique entries
-function icloudtabs_backup() {
-	local file="$HOME/Dropbox/Bookmarks/iCloud Tabs/icloud_tabs.csv"
-
-    if [ -f "$file" ]; then
-        icloudtabs >> $file && sort -u $file >> $file
-    fi
 }
 
 # Kill process listening on a specific port
