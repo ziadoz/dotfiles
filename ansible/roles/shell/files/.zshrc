@@ -3,6 +3,7 @@
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
 prompt pure
+zstyle :prompt:pure:git:stash show yes
 
 # Auto suggestions
 # https://github.com/zsh-users/zsh-autosuggestions
