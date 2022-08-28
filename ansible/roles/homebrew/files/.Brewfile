@@ -9,6 +9,9 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "shivammathur/php"
 
+# Shell
+brew "pure"
+
 # Utilities
 brew "ansible"
 brew "ansible-lint"
