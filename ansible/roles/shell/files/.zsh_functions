@@ -58,3 +58,16 @@ weather() {
 function killport() {
     lsof -t -i:$1 | xargs kill -9
 }
+
+# Make and then change into directory
+# @see: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/functions.zsh#L36
+function mkcd takedir() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
+# Git clone and then change into directory
+# @see: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/functions.zsh#L36
+function takegit() {
+  git clone "$1"
+  cd "$(basename ${1%%.git})"
+}
