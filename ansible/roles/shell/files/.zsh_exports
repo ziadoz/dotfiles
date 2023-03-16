@@ -9,6 +9,10 @@ fi
 # https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
 export HISTORY_IGNORE="(media-swapper*)"
 
+# Remove duplicate commands from history.
+# https://unix.stackexchange.com/questions/599641/why-do-i-have-duplicates-in-my-zsh-history
+setopt HIST_IGNORE_DUPS
+
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
 export LANGUAGE='en_US:en';
@@ -17,3 +21,6 @@ export LC_ALL='en_US.UTF-8';
 # Composer OAuth
 # https://www.previousnext.com.au/blog/managing-composer-github-access-personal-access-tokens
 # export COMPOSER_AUTH='{"github-oauth": {"github.com": "xxx"}}'
+
+# Disable Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
