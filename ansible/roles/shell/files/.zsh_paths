@@ -4,9 +4,6 @@
 setopt auto_cd
 cdpath=($HOME/Projects)
 
-# Homebrew Path
-# export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
 # Local Binary Path
 # export PATH="$HOME/.bin:$PATH"
 
