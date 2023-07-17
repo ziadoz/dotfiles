@@ -74,6 +74,7 @@ function takegit() {
 
 # Snapshot a webpage
 # @see: https://github.com/Y2Z/monolith
+# @see: https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
 function snapshot() {
     local slug="$(echo "$1" | iconv -t ascii//TRANSLIT | sed -E -e 's/[^[:alnum:]]+/-/g' -e 's/^-+|-+$//g' | tr '[:upper:]' '[:lower:]')"
 
