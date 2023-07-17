@@ -71,3 +71,11 @@ function takegit() {
   git clone "$1"
   cd "$(basename ${1%%.git})"
 }
+
+# Snapshot a webpage
+# @see: https://github.com/Y2Z/monolith
+function snapshot() {
+    local slug="$(echo "$1" | iconv -t ascii//TRANSLIT | sed -E -e 's/[^[:alnum:]]+/-/g' -e 's/^-+|-+$//g' | tr '[:upper:]' '[:lower:]')"
+
+    monolith --no-audio --no-frames --no-fonts --no-js --insecure --no-metadata --no-video --isolate --output="$slug.html" "$1"
+}
