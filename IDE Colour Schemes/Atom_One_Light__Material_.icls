@@ -1,11 +1,11 @@
-<scheme name="Atom One Light (Material) Tweaked" version="142" parent_scheme="Default">
+<scheme name="Atom One Light (Material)" version="142" parent_scheme="Default">
   <option name="FONT_SCALE" value="1.0" />
   <metaInfo>
-    <property name="created">2023-10-18T11:20:57</property>
+    <property name="created">2023-10-18T11:38:45</property>
     <property name="ide">PhpStorm</property>
-    <property name="ideVersion">2023.2.2.0.0</property>
-    <property name="modified">2023-10-18T11:21:10</property>
-    <property name="originalScheme">Atom One Light (Material) Tweaked</property>
+    <property name="ideVersion">2023.2.3.0.0</property>
+    <property name="modified">2023-10-18T11:38:51</property>
+    <property name="originalScheme">Atom One Light (Material)</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.4" />
   <option name="EDITOR_FONT_SIZE" value="12" />
