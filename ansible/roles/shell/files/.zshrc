@@ -1,7 +1,7 @@
 # Homebrew configuration
 # @see: https://docs.brew.sh/Installation
 if [ "$(command -v brew)" ]; then
-    eval "$(/usr/local/bin/brew shellenv)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Pure theme and prompt
