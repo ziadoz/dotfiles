@@ -1,16 +1,8 @@
 # Change Directory Path
-# https://twitter.com/paulredmond/status/1204557648026144768
-# https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
+# @see: https://twitter.com/paulredmond/status/1204557648026144768
+# @see: https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
 setopt auto_cd
 cdpath=($HOME/Projects)
 
 # Local Binary Path
-# export PATH="$HOME/.bin:$PATH"
-
-# Ruby Environment Path
-# export PATH="$HOME/.rbenv/bin:$PATH"
-
-# Go Path
-# export GOPATH="$HOME/Go"
-# export GOBIN="$GOPATH/bin"
-# export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH="$PATH:$HOME/.bin"
