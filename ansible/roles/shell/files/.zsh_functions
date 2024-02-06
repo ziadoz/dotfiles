@@ -58,10 +58,9 @@ singlefile() {
 
 # Sync 1Password 7 Vault
 function syncvault() {
-    # Sync Dropbox to iCloud:
-    rsync --archive --compress --progress --verbose "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Users/Jamie/Library/Mobile Documents/com~apple~CloudDocs/1Password/"
+    echo "Backing up 1Password to iCloud..."
+    rsync --archive --compress --progress --verbose --quiet "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Users/Jamie/Library/Mobile Documents/com~apple~CloudDocs/1Password/"
 
-    # Sync Backups to NAS:
-    rsync --archive --compress --progress --verbose "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Volumes/files/Backups/1Password/Latest/"
-    rsync --recursive --times --update --compress --progress --verbose "/Users/Jamie/Library/Group Containers/2BUA8C4S2C.com.agilebits/Library/Application Support/1Password/Backups/" "/Volumes/files/Backups/1Password/Snapshots/"
+    echo "Backing up 1Password to NAS..."
+    rsync --archive --compress --progress --verbose --quiet "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Volumes/files/Backups/1Password/Latest/"
 }
