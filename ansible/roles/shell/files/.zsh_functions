@@ -57,16 +57,10 @@ singlefile() {
 }
 
 # Sync 1Password 7 Vault
-# Automatic Snapshots Directory: /Users/Jamie/Library/Group Containers/2BUA8C4S2C.com.agilebits/Library/Application Support/1Password/Backups
 function syncvault() {
     echo "Backing up 1Password to iCloud..."
     rsync --archive --compress --progress --verbose --quiet "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Users/Jamie/Library/Mobile Documents/com~apple~CloudDocs/1Password/"
 
-    echo "Rotating 1Password on NAS..."
-    mkdir -p "/Volumes/files/Backups/1Password/Backups"
-    rsync --archive --compress --progress --verbose --quiet "/Volumes/files/Backups/1Password/Latest/1Password.opvault" "/Volumes/files/Backups/1Password/Backups/1Password-$(date +%F).opvault"
-
     echo "Backing up 1Password to NAS..."
     rsync --archive --compress --progress --verbose --quiet "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Volumes/files/Backups/1Password/Latest/"
 }
-
