@@ -57,9 +57,5 @@ alias edithosts="${EDITOR} /etc/hosts"
 # Empty Filebot history file and logs
 alias emptyfilebot="rm -f ~/.filebot/history.xml && rm -f ~/.filebot/error.log"
 
-# Encrypt/descrypt files quickly
-alias decrypt="openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in $1 -out $2"
-alias encrypt="openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in $1 -out $2"
-
 # Laravel Sail shortcut
 alias sail='[ -f sail ] && zsh sail || zsh vendor/bin/sail'

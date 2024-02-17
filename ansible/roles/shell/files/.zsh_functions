@@ -56,6 +56,15 @@ singlefile() {
     fi   
 }
 
+# Encrypt and decrypt files quickly
+function enc() {
+    openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in "$1" -out "$1.enc"
+}
+
+function dec() {
+    openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$1" -out "$(basename $1 .enc)"
+}
+
 # Sync 1Password 7 Vault
 function syncvault() {
     echo "Backing up 1Password to iCloud..."
