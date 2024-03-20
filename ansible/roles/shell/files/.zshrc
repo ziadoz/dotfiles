@@ -1,16 +1,13 @@
+# Pure theme and prompt
+# @see: https://github.com/sindresorhus/pure
+if [ -d "$HOME/.zsh/pure" ]; then
+    fpath+=($HOME/.zsh/pure)
+fi
+
 # Homebrew configuration
 # @see: https://docs.brew.sh/Installation
 if [ "$(command -v brew)" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# Pure theme and prompt
-# @see: https://github.com/sindresorhus/pure
-if [ "$(command -v brew)" ]; then
-    fpath+=("$(brew --prefix)/share/zsh/site-functions")
-    autoload -U promptinit; promptinit
-    prompt pure
-    zstyle :prompt:pure:git:stash show yes
 fi
 
 # Auto suggestions
