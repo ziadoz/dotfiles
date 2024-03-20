@@ -2,6 +2,9 @@
 # @see: https://github.com/sindresorhus/pure
 if [ -d "$HOME/.zsh/pure" ]; then
     fpath+=($HOME/.zsh/pure)
+    autoload -U promptinit; promptinit
+    prompt pure    
+    zstyle :prompt:pure:git:stash show yes
 fi
 
 # Homebrew configuration
