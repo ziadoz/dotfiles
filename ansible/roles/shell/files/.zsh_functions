@@ -45,17 +45,6 @@ setdns() {
     fi
 }
 
-
-# Download a snapshot of a webpage to a single HTML file
-# @see: https://github.com/gildas-lormeau/SingleFile
-singlefile() {
-    if [ "$(command -v docker)" ]; then
-        docker run capsulecode/singlefile "$1" > "$2"
-    else
-        echo "Docker needs to be installed to run SingleFile"
-    fi   
-}
-
 # Encrypt and decrypt files quickly
 function enc() {
     openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in "$1" -out "$1.enc"
@@ -63,13 +52,4 @@ function enc() {
 
 function dec() {
     openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$1" -out "$(basename $1 .enc)"
-}
-
-# Sync 1Password 7 Vault
-function syncvault() {
-    echo "Backing up 1Password to iCloud..."
-    rsync --archive --compress --progress --verbose --quiet "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Users/Jamie/Library/Mobile Documents/com~apple~CloudDocs/1Password/"
-
-    echo "Backing up 1Password to NAS..."
-    rsync --archive --compress --progress --verbose --quiet "/Users/Jamie/Dropbox/1Password/1Password.opvault" "/Volumes/files/Backups/1Password/"
 }
