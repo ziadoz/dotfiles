@@ -1,11 +1,11 @@
 # Homebrew configuration
-# https://docs.brew.sh/Installation
+# @see: https://docs.brew.sh/Installation
 if [ "$(command -v brew)" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Pure theme and prompt
-# https://github.com/sindresorhus/pure
+# @see: https://github.com/sindresorhus/pure
 if [ "$(command -v brew)" ]; then
     fpath+=("$(brew --prefix)/share/zsh/site-functions")
     autoload -U promptinit; promptinit
@@ -14,7 +14,7 @@ if [ "$(command -v brew)" ]; then
 fi
 
 # Auto suggestions
-# https://github.com/zsh-users/zsh-autosuggestions
+# @see: https://github.com/zsh-users/zsh-autosuggestions
 if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi

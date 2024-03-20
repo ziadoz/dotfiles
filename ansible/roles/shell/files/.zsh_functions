@@ -1,4 +1,4 @@
-# Extract based upon file ext
+# Extract compressed file based upon its extension
 function extract() {
     if [ -f $1 ]; then
         case $1 in
@@ -21,7 +21,7 @@ function extract() {
 }
 
 # Regenerate MAC address
-# http://jezenthomas.com/free-internet-on-trains/
+# @see: http://jezenthomas.com/free-internet-on-trains/
 remac() {
     sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
     sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
@@ -30,11 +30,11 @@ remac() {
 }
 
 # Set DNS servers
-# http://osxdaily.com/2015/06/02/change-dns-command-line-mac-os-x/
-# http://osxdaily.com/2014/09/03/list-all-network-hardware-from-the-command-line-in-os-x/
-# https://superuser.com/questions/86184/change-dns-server-from-terminal-or-script-on-mac-os-x
-# https://superuser.com/questions/258151/how-do-i-check-what-dns-server-im-using-on-mac-os-x
-setdnsservers() {
+# @see: http://osxdaily.com/2015/06/02/change-dns-command-line-mac-os-x/
+# @see: http://osxdaily.com/2014/09/03/list-all-network-hardware-from-the-command-line-in-os-x/
+# @see: https://superuser.com/questions/86184/change-dns-server-from-terminal-or-script-on-mac-os-x
+# @see: https://superuser.com/questions/258151/how-do-i-check-what-dns-server-im-using-on-mac-os-x
+setdns() {
     local dns_servers="${*:-192.168.0.3 1.1.1.1 1.0.0.1}"
     if [ "$(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)" != "$dns_servers" ]; then
         sudo networksetup -setdnsservers Wi-Fi empty
@@ -45,38 +45,11 @@ setdnsservers() {
     fi
 }
 
-# Display a weather forecast
-weather() {
-    local location=${1:-London}
-    local lang=${2:-en}
-
-    curl -s "wttr.in/$location?lang=$lang"
+# Encrypt and decrypt files quickly
+function enc() {
+    openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in "$1" -out "$1.enc"
 }
 
-# Kill process listening on a specific port
-# https://stackoverflow.com/questions/33615683/how-to-access-the-pid-from-an-lsof
-function killport() {
-    lsof -t -i:$1 | xargs kill -9
-}
-
-# Make and then change into directory
-# @see: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/functions.zsh#L36
-function mkcd takedir() {
-  mkdir -p $@ && cd ${@:$#}
-}
-
-# Git clone and then change into directory
-# @see: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/functions.zsh#L36
-function takegit() {
-  git clone "$1"
-  cd "$(basename ${1%%.git})"
-}
-
-# Snapshot a webpage
-# @see: https://github.com/Y2Z/monolith
-# @see: https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
-function snapshot() {
-    local slug="$(echo "$1" | iconv -t ascii//TRANSLIT | sed -E -e 's/[^[:alnum:]]+/-/g' -e 's/^-+|-+$//g' | tr '[:upper:]' '[:lower:]')"
-
-    monolith --no-audio --no-frames --no-fonts --no-js --insecure --no-metadata --no-video --isolate --output="$slug.html" "$1"
+function dec() {
+    openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$1" -out "$(basename $1 .enc)"
 }
