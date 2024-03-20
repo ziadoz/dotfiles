@@ -16,7 +16,7 @@ cp ./git/.gitconfig ~/
 echo "Copy SSH files..."
 mkdir -p ~/.ssh
 chmod +700 ~/.ssh
-cp ./ssh/config ~/.ssh/
+cp ./ssh/config ~/.ssh
 
 echo "Copy font files..."
 cp ./fonts/* ~/Library/Fonts
