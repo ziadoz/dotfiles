@@ -56,6 +56,3 @@ alias edithosts="${EDITOR} /etc/hosts"
 
 # Empty Filebot history file and logs
 alias emptyfilebot="rm -f ~/.filebot/history.xml && rm -f ~/.filebot/error.log"
-
-# Laravel Sail shortcut
-alias sail='[ -f sail ] && zsh sail || zsh vendor/bin/sail'
