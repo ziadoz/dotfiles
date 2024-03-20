@@ -8,7 +8,7 @@ cp ./brew/.Brewfile ~/
 # @todo: Cleanup HomeBrew packages
 # @todo: Install HomeBrew packages: mas signin <email> && brew bundle --file ~/.Brewfile
 # @todo: Disable HomeBrew analytics: brew analytics off
-# @todo: Cleanup HomeBrew: 
+# @todo: Cleanup HomeBrew: brew cleanup && brew cleanup --prune-prefix
 
 echo "Copy Git files..."
 cp ./git/.gitconfig ~/
