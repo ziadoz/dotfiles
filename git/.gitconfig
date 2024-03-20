@@ -1,6 +1,6 @@
 [user]
-    name = {{ git.name }}
-    email = {{ git.email }}
+    name = Jamie York
+    email = ziadoz@gmail.com
 [core]
 	excludesfile = ~/.gitignore
 [color]
