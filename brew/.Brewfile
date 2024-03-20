@@ -117,6 +117,7 @@ cask "virtualbox-extension-pack"
 
 # AppStore
 brew "mas"
+mas signin
 mas "iA Writer Classic", id: 439623248
 mas "Magnet", id: 441258766
 mas "ToothFairy", id: 1191449274
