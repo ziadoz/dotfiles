@@ -1,5 +1,0 @@
----
-- name: Homebrew Cleanup
-  shell: brew cleanup && brew cleanup --prune-prefix
-  tags:
-    - homebrew
