@@ -3,10 +3,10 @@ mkdir -p "$HOME/.zsh"
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 
 echo "Copying ZSH files..."
-cp ./zsh/* ~/
+cp ./zsh/* "$HOME"
 
 echo "Copying HomeBrew files..."
-cp ./brew/.Brewfile ~/
+cp ./brew/.Brewfile
 
 # @todo: Install HomeBrew
 # @todo: Cleanup HomeBrew packages
@@ -15,15 +15,15 @@ cp ./brew/.Brewfile ~/
 # @todo: Cleanup HomeBrew: brew cleanup && brew cleanup --prune-prefix
 
 echo "Copy Git files..."
-cp ./git/.gitconfig ~/
+cp ./git/.gitconfig "$HOME"
 
 echo "Copy SSH files..."
-mkdir -p ~/.ssh
-chmod +700 ~/.ssh
-cp ./ssh/config ~/.ssh
+mkdir -p "$HOME/.ssh"
+chmod +700 "$HOME/.ssh"
+cp ./ssh/config "$HOME/.ssh"
 
 echo "Copy font files..."
-cp ./fonts/* ~/Library/Fonts
+cp ./fonts/* "$HOME/Library/Fonts"
 
 echo "Installing Terminal theme..."
 open ./terminal/Snazzy.terminal
@@ -33,6 +33,6 @@ open ./ide/Atom One Light.icls
 open ./ide/Atom_One_Light__Material_.icls
 
 echo "Symlinking Sublime Text..."
-if [ -d "/Applications/Sublime Text.app" ] && [ ! -f "~/.bin/subl" ]; then
+if [ -d "/Applications/Sublime Text.app" ] && [ ! -f "$HOME/.bin/subl" ]; then
     ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl ~/.bin/subl
 fi
