@@ -5,6 +5,9 @@
 	excludesfile = ~/.gitignore
 [color]
 	ui = auto
+[merge]
+    # https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
+    # conflictstyle = diff3
 [alias]
     ################
     # List Aliases #
