@@ -43,6 +43,6 @@ fi
 echo "Symlinking PhpStorm..."
 if [ -d "/Applications/PhpStorm.app" ] && [ ! -f "$HOME/.bin/phpstorm" ]; then
     mkdir -p ~/.bin
-    echo -en '#!/bin/sh\n\nopen -na "PhpStorm.app" --args "$@"' > "$HOME/.bin/phpstorm"
+    echo -en '#!/usr/bin/env bash\n\nopen -na "PhpStorm.app" --args "$@"' > "$HOME/.bin/phpstorm"
     chmod +x "$HOME/.bin/phpstorm"
 fi
