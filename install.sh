@@ -32,7 +32,17 @@ echo "Installing PhpStorm theme..."
 open ./ide/Atom One Light.icls
 open ./ide/Atom_One_Light__Material_.icls
 
+# @see: https://gist.github.com/michellephung/9601603cfb235401a3fd
 echo "Symlinking Sublime Text..."
 if [ -d "/Applications/Sublime Text.app" ] && [ ! -f "$HOME/.bin/subl" ]; then
+    mkdir -p ~/.bin
     ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl ~/.bin/subl
+fi
+
+# @see: https://www.jetbrains.com/help/phpstorm/working-with-the-ide-features-from-command-line.html
+echo "Symlinking PhpStorm..."
+if [ -d "/Applications/PhpStorm.app" ] && [ ! -f "$HOME/.bin/phpstorm" ]; then
+    mkdir -p ~/.bin
+    echo -en '#!/bin/sh\n\nopen -na "PhpStorm.app" --args "$@"' > "$HOME/.bin/phpstorm"
+    chmod +x "$HOME/.bin/phpstorm"
 fi
