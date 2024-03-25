@@ -53,3 +53,15 @@ function enc() {
 function dec() {
     openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$1" -out "$(basename $1 .enc)"
 }
+
+# Slugify a string
+# Usage: echo "Foo Bar" | slugify
+# @see: https://duncanlock.net/blog/2021/06/15/good-simple-bash-slugify-function/
+# @see: https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
+function slugify() {
+  iconv -t ascii//TRANSLIT \
+    | tr -d "'" \
+    | sed -E 's/[^a-zA-Z0-9]+/-/g' \
+    | sed -E 's/^-+|-+$//g' \
+    | tr "[:upper:]" "[:lower:]"
+}
