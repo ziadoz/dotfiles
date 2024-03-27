@@ -3,7 +3,7 @@ export EDITOR='nano'
 
 # Ignore specific commands from history.
 # @see: https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
-export HISTORY_IGNORE="(media-swapper*)"
+# export HISTORY_IGNORE="()"
 
 # Remove duplicate commands from history.
 # @see: https://unix.stackexchange.com/questions/599641/why-do-i-have-duplicates-in-my-zsh-history
