@@ -32,6 +32,9 @@ echo "Installing PhpStorm theme..."
 open ./ide/Atom One Light.icls
 open ./ide/Atom_One_Light__Material_.icls
 
+echo "Copying Sublime Text preferences..."
+cp subl/* "$HOME/Library/Application Support/Sublime Text/Packages/User"
+
 # @see: https://gist.github.com/michellephung/9601603cfb235401a3fd
 echo "Symlinking Sublime Text..."
 if [ -d "/Applications/Sublime Text.app" ] && [ ! -f "$HOME/.bin/subl" ]; then
