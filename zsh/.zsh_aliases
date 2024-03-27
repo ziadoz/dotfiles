@@ -49,10 +49,10 @@ alias badge="tput bel"
 alias reloadshell="exec $SHELL -l"
 
 # Open up the bash profile for editing
-alias editshell="${EDITOR} ~/.zshrc"
+alias editshell="$EDITOR ~/.zshrc"
 
 # Open up the hosts file for editing
-alias edithosts="${EDITOR} /etc/hosts"
+alias edithosts="$EDITOR /etc/hosts"
 
 # Empty Filebot history file and logs
 alias emptyfilebot="rm -f ~/.filebot/history.xml && rm -f ~/.filebot/error.log"
