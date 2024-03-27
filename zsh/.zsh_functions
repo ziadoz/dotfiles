@@ -65,3 +65,14 @@ function slugify() {
     | sed -E 's/^-+|-+$//g' \
     | tr "[:upper:]" "[:lower:]"
 }
+
+# Convert MKV to MP4 and M4A to MP3 using FFmpeg
+# @see: https://github.com/ziadoz/media-swapper
+# @see: https://askubuntu.com/a/35994
+function mkv2mp4() {
+    find "$1" -name '*.mkv' -print -exec bash -c 'ffmpeg -i "$1" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -movflags +faststart -y "${1%.mkv}.mp4"' _ {} \;
+}
+
+function m4a2mp3() {
+    find "$1" -name '*.m4a' -print -exec bash -c 'ffmpeg -i "$1" -nostats -loglevel 0 -c:v copy -c:a copy libmp3lame -q:a 2 -y "${1%.m4a}.mp3"' _ {} \;
+}
