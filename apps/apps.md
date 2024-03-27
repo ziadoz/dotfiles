@@ -1,0 +1,23 @@
+# Applications
+
+- [1Password](https://1password.com/downloads/mac/)
+- [FileBot](https://www.filebot.net/download.html)
+- [Firefox](https://www.mozilla.org/en-GB/firefox/new/)
+- [GitHub Desktop](https://desktop.github.com/)
+- [Herd](https://herd.laravel.com/)
+- iA Writer Classic
+- [KeepingYouAwake](https://keepingyouawake.app/)
+- [LuLu](https://objective-see.org/products/lulu.html)
+- [Mullvad VPN](https://mullvad.net/en/download/vpn/macos)
+- [NameChanger](https://mrrsoftware.com/namechanger/)
+- [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
+- [Plain Text Editor](https://sindresorhus.com/plain-text-editor)
+- [Rectangle](https://rectangleapp.com/)
+- [Spotify](https://www.spotify.com/de-en/download/other/)
+- [Steam](https://store.steampowered.com/about/)
+- [Sublime Text](https://www.sublimetext.com/3)
+- [TablePlus](https://tableplus.com/download)
+- [The Unarchiver](https://theunarchiver.com/)
+- [Transmission](https://transmissionbt.com/)
+- TrashMe 3
+- [VLC](https://www.videolan.org/)
