@@ -1,6 +1,7 @@
 # Firefox Plugins
 
 - [1Password](https://addons.mozilla.org/en-GB/firefox/addon/1password-x-password-manager/)
+- [Archive Page](https://addons.mozilla.org/en-US/firefox/addon/archive-page/)
 - [Consent-O-Matic](https://addons.mozilla.org/en-GB/firefox/addon/consent-o-matic/)
 - [Containers](https://addons.mozilla.org/en-GB/firefox/addon/multi-account-containers/)
 - [Control Panel for Twitter](https://addons.mozilla.org/en-GB/firefox/addon/control-panel-for-twitter/)
