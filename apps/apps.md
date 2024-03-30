@@ -1,7 +1,6 @@
 # Applications
 
 - [1Password](https://1password.com/downloads/mac/)
-- [Cyberduck](https://cyberduck.io/)
 - [Dropbox](https://www.dropbox.com/desktop)
 - [FileBot](https://www.filebot.net/download.html)
 - [Firefox](https://www.mozilla.org/en-GB/firefox/new/)
