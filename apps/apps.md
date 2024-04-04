@@ -1,7 +1,6 @@
 # Applications
 
 - [1Password](https://1password.com/downloads/mac/)
-- [Dropbox](https://www.dropbox.com/desktop)
 - [FileBot](https://www.filebot.net/download.html)
 - [Firefox](https://www.mozilla.org/en-GB/firefox/new/)
 - [GitHub Desktop](https://desktop.github.com/)
@@ -9,6 +8,7 @@
 - iA Writer Classic
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
+- [Maestral](https://maestral.app/)
 - [Mullvad VPN](https://mullvad.net/en/download/vpn/macos)
 - [NameChanger](https://mrrsoftware.com/namechanger/)
 - [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
