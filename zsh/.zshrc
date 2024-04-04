@@ -9,9 +9,7 @@ fi
 
 # Homebrew configuration
 # @see: https://docs.brew.sh/Installation
-if [ "$(command -v brew)" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Auto suggestions
 # @see: https://github.com/zsh-users/zsh-autosuggestions
