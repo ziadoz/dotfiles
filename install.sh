@@ -6,7 +6,7 @@ echo "Copying ZSH files..."
 cp ./zsh/* "$HOME"
 
 echo "Copying HomeBrew files..."
-cp ./brew/.Brewfile
+cp ./brew/.Brewfile "$HOME"
 
 # @todo: Install HomeBrew
 # @todo: Cleanup HomeBrew packages
@@ -29,7 +29,7 @@ echo "Installing Terminal theme..."
 open ./terminal/Snazzy.terminal
 
 echo "Installing PhpStorm theme..."
-open ./ide/Atom One Light.icls
+open ./ide/Atom\ One\ Light.icls
 open ./ide/Atom_One_Light__Material_.icls
 
 echo "Copying Sublime Text preferences..."
