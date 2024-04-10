@@ -1,13 +1,26 @@
 # Preferred editor for local and remote sessions
 export EDITOR='nano'
 
-# Ignore specific commands from history.
+# Store more history
+# @see: https://martinheinz.dev/blog/110
 # @see: https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
-# export HISTORY_IGNORE="()"
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTORY_IGNORE="()"
 
-# Remove duplicate commands from history.
+# Configure history
 # @see: https://unix.stackexchange.com/questions/599641/why-do-i-have-duplicates-in-my-zsh-history
+# @see: https://martinheinz.dev/blog/110
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
 
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
