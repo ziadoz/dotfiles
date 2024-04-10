@@ -22,7 +22,7 @@ setopt HIST_VERIFY
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 
-# Prefer US English and use UTF-8.
+# Prefer US English and use UTF-8
 export LANG='en_US.UTF-8';
 export LANGUAGE='en_US:en';
 export LC_ALL='en_US.UTF-8';
