@@ -1,6 +1,7 @@
 # Applications
 
 - [1Password](https://1password.com/downloads/mac/)
+- [AppCleaner](https://freemacsoft.net/appcleaner/)
 - [FileBot](https://www.filebot.net/download.html)
 - [Firefox](https://www.mozilla.org/en-GB/firefox/new/)
 - [GitHub Desktop](https://desktop.github.com/)
@@ -8,7 +9,7 @@
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
 - [Maestral](https://maestral.app/)
-- [MarkEdit](https://markedit.app/)
+- [MarkEdit](https://markedit.app/) [1](https://github.com/MarkEdit-app/MarkEdit/issues/448)
 - [Mullvad VPN](https://mullvad.net/en/download/vpn/macos)
 - [NameChanger](https://mrrsoftware.com/namechanger/)
 - [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
@@ -20,5 +21,5 @@
 - [TablePlus](https://tableplus.com/download)
 - [The Unarchiver](https://theunarchiver.com/)
 - [Transmission](https://transmissionbt.com/)
-- TrashMe 3
+- [TrashMe 3](https://www.jibapps.com/apps/trashme3/)
 - [VLC](https://www.videolan.org/)
