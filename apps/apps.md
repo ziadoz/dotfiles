@@ -5,10 +5,10 @@
 - [Firefox](https://www.mozilla.org/en-GB/firefox/new/)
 - [GitHub Desktop](https://desktop.github.com/)
 - [Herd](https://herd.laravel.com/)
-- iA Writer Classic
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
 - [Maestral](https://maestral.app/)
+- [MarkEdit](https://markedit.app/)
 - [Mullvad VPN](https://mullvad.net/en/download/vpn/macos)
 - [NameChanger](https://mrrsoftware.com/namechanger/)
 - [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
