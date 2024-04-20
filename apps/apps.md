@@ -9,7 +9,6 @@
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
 - [Maestral](https://maestral.app/)
-- [MarkEdit](https://markedit.app/) [1](https://github.com/MarkEdit-app/MarkEdit/issues/448)
 - [Mullvad VPN](https://mullvad.net/en/download/vpn/macos)
 - [NameChanger](https://mrrsoftware.com/namechanger/)
 - [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
