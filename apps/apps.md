@@ -25,7 +25,7 @@
 - [VLC](https://www.videolan.org/)
 
 
-# App Collections
+# Application Collections
 
 - [Ecletic Light Apps](https://eclecticlight.co/downloads/)
 - [Objective See Apps](https://objective-see.org/tools.html)
