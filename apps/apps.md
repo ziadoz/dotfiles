@@ -8,6 +8,7 @@
 - [Herd](https://herd.laravel.com/)
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
+- [Mac Mouse Fix](https://github.com/noah-nuebling/mac-mouse-fix/)
 - [Maestral](https://maestral.app/)
 - [Mullvad VPN](https://mullvad.net/en/download/vpn/macos)
 - [NameChanger](https://mrrsoftware.com/namechanger/)
