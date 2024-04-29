@@ -22,3 +22,10 @@
 - [Transmission](https://transmissionbt.com/)
 - [TrashMe 3](https://www.jibapps.com/apps/trashme3/)
 - [VLC](https://www.videolan.org/)
+
+
+# App Collections
+
+- [Ecletic Light Apps](https://eclecticlight.co/downloads/)
+- [Objective See Apps](https://objective-see.org/tools.html)
+- [Sindre Sorhus](https://sindresorhus.com/apps)
