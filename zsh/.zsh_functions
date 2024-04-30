@@ -67,6 +67,8 @@ function slugify() {
 }
 
 # Convert MKV to MP4 and M4A to MP3 using FFmpeg
+# @todo: Need to copy xattrs from one file to the other.
+# @see: https://apple.stackexchange.com/questions/226485/copy-extended-attributes-to-new-file-ffmpeg
 # @see: https://github.com/ziadoz/media-swapper
 # @see: https://askubuntu.com/a/35994
 function mkv2mp4() {
