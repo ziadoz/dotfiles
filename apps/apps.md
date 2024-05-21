@@ -45,3 +45,19 @@
 - [SingleFile](https://addons.mozilla.org/en-GB/firefox/addon/single-file/)
 - [Tab Stash](https://addons.mozilla.org/en-GB/firefox/addon/tab-stash/)
 - [uBlock Origin](https://addons.mozilla.org/en-GB/firefox/addon/ublock-origin/)
+
+
+# IDE Themes
+
+- [Catppuccin](https://catppuccin.com/)
+- [Lite](https://github.com/brendt/phpstorm-light-lite-theme)
+- [Material](https://material-theme.com/)
+
+
+# Terminal Themes
+
+- [Dracula](https://draculatheme.com/)
+- [Hyper Snazzy](https://github.com/sindresorhus/hyper-snazzy)
+- [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)
+- [Solarized](https://ethanschoonover.com/solarized/)
+- [Tomorrow](https://github.com/chriskempson/tomorrow-theme)
