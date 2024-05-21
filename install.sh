@@ -43,6 +43,12 @@ if [ -d "/Applications/Sublime Text.app" ] && [ ! -f "$HOME/.bin/subl" ]; then
     ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl ~/.bin/subl
 fi
 
+echo "Symlinking VSCode..."
+if [ -d "/Applications/Visual Studio Code.app" ] && [ ! -f "$HOME/.bin/vscode" ]; then
+    mkdir -p ~/.bin
+    ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code ~/.bin/vscode
+fi
+
 # @see: https://www.jetbrains.com/help/phpstorm/working-with-the-ide-features-from-command-line.html
 echo "Symlinking PhpStorm..."
 if [ -d "/Applications/PhpStorm.app" ] && [ ! -f "$HOME/.bin/phpstorm" ]; then
