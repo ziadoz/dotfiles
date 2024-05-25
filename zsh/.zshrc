@@ -13,8 +13,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Auto suggestions
 # @see: https://github.com/zsh-users/zsh-autosuggestions
-if [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # Load custom dotfiles
