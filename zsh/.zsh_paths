@@ -1,8 +1,14 @@
 # Change Directory Path
 # @see: https://twitter.com/paulredmond/status/1204557648026144768
 # @see: https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
+# @see: https://jcode.me/cdpath-with-zsh/
 setopt auto_cd
-cdpath=($HOME/Projects)
+cdpath=($HOME/Projects $HOME/Herd)
+
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format %d
+zstyle ':completion:*:descriptions' format %B%d%b
+zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
 
 # Local Binary Path
 export PATH="$PATH:$HOME/.bin"
