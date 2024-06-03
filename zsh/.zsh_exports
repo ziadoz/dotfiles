@@ -6,7 +6,7 @@ export EDITOR='nano'
 # @see: https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTORY_IGNORE="()"
+HISTORY_IGNORE="(mkv2mp4)"
 
 # Configure history
 # @see: https://zsh.sourceforge.io/Doc/Release/Options.html
