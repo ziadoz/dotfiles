@@ -19,6 +19,7 @@
 - [Steam](https://store.steampowered.com/about/)
 - [Sublime Text](https://www.sublimetext.com/3)
 - [TablePlus](https://tableplus.com/download)
+- [TableTool](https://tabletool.io/)
 - [The Unarchiver](https://theunarchiver.com/)
 - [Transmission](https://transmissionbt.com/)
 - [TrashMe 3](https://www.jibapps.com/apps/trashme3/)
