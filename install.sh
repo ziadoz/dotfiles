@@ -56,3 +56,7 @@ if [ -d "/Applications/PhpStorm.app" ] && [ ! -f "$HOME/.bin/phpstorm" ]; then
     echo -en '#!/usr/bin/env bash\n\nopen -na "PhpStorm.app" --args "$@"' > "$HOME/.bin/phpstorm"
     chmod +x "$HOME/.bin/phpstorm"
 fi
+
+# @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
+echo "Copying Automater workflows...."
+cp -r ./automater/* "$HOME/Library/Services"

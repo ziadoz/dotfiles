@@ -71,10 +71,11 @@ function slugify() {
 # @see: https://apple.stackexchange.com/questions/226485/copy-extended-attributes-to-new-file-ffmpeg
 # @see: https://github.com/ziadoz/media-swapper
 # @see: https://askubuntu.com/a/35994
+# @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
 function mkv2mp4() {
     find "$1" -name '*.mkv' -print -exec bash -c 'ffmpeg -i "$1" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -movflags +faststart -y "${1%.mkv}.mp4"' _ {} \;
 }
 
 function m4a2mp3() {
-    find "$1" -name '*.m4a' -print -exec bash -c 'ffmpeg -i "$1" -nostats -loglevel 0 -c:v copy -c:a copy libmp3lame -q:a 2 -y "${1%.m4a}.mp3"' _ {} \;
+    find "$1" -name '*.m4a' -print -exec bash -c 'ffmpeg -i "$1" -nostats -loglevel 0 -c:a libmp3lame -q:a 2 -y "${1%.m4a}.mp3"' _ {} \;
 }
