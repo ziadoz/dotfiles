@@ -12,7 +12,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Convert to MP4</string>
+				<string>Convert M4A to MP3</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
@@ -23,7 +23,7 @@
 			</dict>
 			<key>NSSendFileTypes</key>
 			<array>
-				<string>public.movie</string>
+				<string>public.audio</string>
 			</array>
 		</dict>
 	</array>
