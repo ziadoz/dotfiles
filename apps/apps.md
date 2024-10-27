@@ -25,6 +25,7 @@
 - [TrashMe 3](https://www.jibapps.com/apps/trashme3/)
 - [VLC](https://www.videolan.org/)
 - [YACReader](https://www.yacreader.com)
+- [YubiKey Manager](https://www.yubico.com/support/download/yubikey-manager/)
 
 
 # Application Collections
