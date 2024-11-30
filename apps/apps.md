@@ -6,6 +6,7 @@
 - [Firefox](https://www.mozilla.org/en-GB/firefox/new/)
 - [GitHub Desktop](https://desktop.github.com/)
 - [Herd](https://herd.laravel.com/)
+- [ImageOptim](https://imageoptim.com/mac)
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
 - [Mac Mouse Fix](https://github.com/noah-nuebling/mac-mouse-fix/)
