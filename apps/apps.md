@@ -7,6 +7,7 @@
 - [GitHub Desktop](https://desktop.github.com/)
 - [Herd](https://herd.laravel.com/)
 - [ImageOptim](https://imageoptim.com/mac)
+- [Itsycal](https://www.mowglii.com/itsycal/)
 - [KeepingYouAwake](https://keepingyouawake.app/)
 - [LuLu](https://objective-see.org/products/lulu.html)
 - [Mac Mouse Fix](https://github.com/noah-nuebling/mac-mouse-fix/)
