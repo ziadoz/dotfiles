@@ -17,6 +17,7 @@
 - [NameChanger](https://mrrsoftware.com/namechanger/)
 - [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
 - [Plain Text Editor](https://sindresorhus.com/plain-text-editor)
+- [QuickLook Video](https://github.com/Marginal/QLVideo)
 - [Rectangle](https://rectangleapp.com/)
 - [Spotify](https://www.spotify.com/de-en/download/other/)
 - [Steam](https://store.steampowered.com/about/)
