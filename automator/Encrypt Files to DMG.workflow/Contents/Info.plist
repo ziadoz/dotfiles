@@ -12,7 +12,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Encrypt Files (Disk Image)</string>
+				<string>Encrypt Files to DMG</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
