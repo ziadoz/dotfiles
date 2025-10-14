@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>523</string>
+	<string>531</string>
 	<key>AMApplicationVersion</key>
 	<string>2.10</string>
 	<key>AMDocumentVersion</key>
@@ -161,12 +161,15 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># Encrypt
+					<string># Encrypt directories and files into ZIP file
 # @see: https://apple.stackexchange.com/questions/50441/using-automator-or-applescript-to-encrypt-decrypt-with-openssl
+
+set -e
 
 password="$1"
 shift
 if [[ -z "$password" ]]; then
+    echo "No password was entered"
     exit 1
 fi
 
@@ -292,7 +295,7 @@ mv "$zip_file.enc" "$directory/encrypted-$(date +"%Y%m%d%H%M%S").zip.enc"</strin
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>664.000000:550.000000</string>
+				<string>664.000000:777.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -302,7 +305,7 @@ mv "$zip_file.enc" "$directory/encrypted-$(date +"%Y%m%d%H%M%S").zip.enc"</strin
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>FE46DCA6-E58D-44D2-85DF-B45893991CB9</key>
+		<key>595B8EE6-4B09-48E8-A29D-E20FE129EA5E</key>
 		<dict>
 			<key>from</key>
 			<string>AAEFB63F-7791-4660-B531-971583181AA8 - AAEFB63F-7791-4660-B531-971583181AA8</string>

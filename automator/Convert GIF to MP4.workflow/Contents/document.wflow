@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>523</string>
+	<string>531</string>
 	<key>AMApplicationVersion</key>
 	<string>2.10</string>
 	<key>AMDocumentVersion</key>
@@ -59,8 +59,11 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># @see: https://old.reddit.com/r/ffmpeg/comments/14a7tq5/trying_to_convert_a_gif_to_mp4_without_losing/
+					<string># Convert GIF files to MP4 files
+# @see: https://old.reddit.com/r/ffmpeg/comments/14a7tq5/trying_to_convert_a_gif_to_mp4_without_losing/
 # @see: https://gist.github.com/gvoze32/95f96992a443e73c4794c342a44e0811
+
+set -e
 
 for f in "$@"
 do
@@ -175,8 +178,6 @@ done</string>
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
