@@ -87,10 +87,10 @@ function install_phpstorm_symlink() {
     fi
 }
 
-function install_automater_workflows() {
+function install_automator_workflows() {
     # @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
-    echo "Copying Automater workflows...."
-    cp -r ./automater/* "$HOME/Library/Services"
+    echo "Copying Automator workflows...."
+    cp -r ./automator/* "$HOME/Library/Services"
 }
 
 function install_all() {
@@ -107,7 +107,7 @@ function install_all() {
     install_sublime_symlink();
     install_vscode_symlink();
     install_phpstorm_symlink();
-    install_automater_workflows();
+    install_automator_workflows();
 }
 
 install_all();
