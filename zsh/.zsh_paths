@@ -2,7 +2,7 @@
 # @see: https://twitter.com/paulredmond/status/1204557648026144768
 # @see: https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
 # @see: https://jcode.me/cdpath-with-zsh/
-setopt auto_cd
+setopt autocd
 cdpath=($HOME/Projects $HOME/Herd)
 
 zstyle ':completion:*' group-name ''
