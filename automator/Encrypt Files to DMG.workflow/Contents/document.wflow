@@ -181,7 +181,7 @@ tmpdir=$(mktemp -d)
 echo "Created temporary directory: $tmpdir"
 
 # Ensure if the script is quit or exited we clean up the temporary directory
-trap 'rm -rf $tmpdir &amp;&amp; echo "Deleted temporary directory: $tmpdir"' EXIT
+trap 'rm -rf "$tmpdir" &amp;&amp; echo "Deleted temporary directory: $tmpdir"' EXIT
 
 # Copy files to a temporary directory
 cp -R "$@" "$tmpdir"
@@ -190,7 +190,7 @@ echo "Copied files to temporary directory"
 # Create the encrypted disk image
 now="$(date +"%Y%m%d%H%M%S")"
 
-echo -n "$password" | hdiutil create -encryption AES-256 -stdinpass -volname "Encrypted Files ($now)" -srcfolder "$tmpdir" -ov "$(dirname $1)/encrypted-files-$now.dmg"
+echo -n "$password" | hdiutil create -encryption AES-256 -stdinpass -volname "Encrypted Files ($now)" -srcfolder "$tmpdir" -ov "$(dirname "$1")/encrypted-files-$now.dmg"
 echo "Created encrypted disk image"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
