@@ -23,10 +23,6 @@ function install_homebrew_apps() {
     # @todo: Cleanup HomeBrew: brew cleanup && brew cleanup --prune-prefix
 }
 
-function install_ffmpeg_binary() {
-    # @todo: Download FFMpeg static binary from https://evermeet.cx/ffmpeg/ into ~/.bin
-}
-
 function install_git_config() {
     echo "Copy Git files..."
     cp ./git/.gitconfig "$HOME"
@@ -98,7 +94,6 @@ function install_all() {
     install_zsh_config();
     install_homebrew_config();
     install_homebrew_apps();
-    install_ffmpeg_binary();
     install_git_config();
     install_ssh_config();
     install_fonts();

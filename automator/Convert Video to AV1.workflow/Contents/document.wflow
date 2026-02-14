@@ -59,14 +59,13 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># Convert MP4 files to PNG files
+					<string># Convert video files to AV1 MP4
 
 set -e
 
 for f in "$@"
 do
-	mkdir -p "${f%.*}"
-	/opt/homebrew/bin/ffmpeg -i "$f" -vf "fps=1" -c:v png "${f%.*}/thumb%04d.png"
+	/opt/homebrew/bin/ffmpeg -i "$f" -nostats -loglevel 0 -c:v libsvtav1 -crf 30 -preset 6 -tag:v av01 -c:a copy -c:s mov_text -movflags +faststart -y "${f%.*}.mp4"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
@@ -92,7 +91,7 @@ done</string>
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>0BDCB920-961F-4C86-958D-0F36A2246689</string>
+				<string>A1E2F930-071F-4C86-958D-1F46B3357790</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -102,9 +101,9 @@ done</string>
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>3B57107B-27EA-4C46-AF7B-CD01E47752DD</string>
+				<string>4C68208C-38FB-4D57-BF8C-DE12F58863EE</string>
 				<key>UUID</key>
-				<string>9D04AC05-EF3B-4280-A7AC-E77DCBA65BBE</string>
+				<string>BE15BD16-FA4C-4391-B8BD-F88EDB76ACBF</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>

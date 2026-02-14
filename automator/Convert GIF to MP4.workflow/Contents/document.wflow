@@ -67,7 +67,7 @@ set -e
 
 for f in "$@"
 do
-    $HOME/.bin/ffmpeg -i "$f" -movflags faststart -pix_fmt yuv420p -crf 17 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "${f%.*}.mp4"
+    /opt/homebrew/bin/ffmpeg -i "$f" -movflags faststart -pix_fmt yuv420p -crf 17 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" "${f%.*}.mp4"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
