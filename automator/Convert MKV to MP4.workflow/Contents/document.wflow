@@ -65,7 +65,11 @@ set -e
 
 for f in "$@"
 do
-	$HOME/.bin/ffmpeg -i "$f" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -tag:v hvc1 -movflags +faststart -y "${f%.*}.mp4"
+	if $HOME/.bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: hevc\|Video: h265'; then
+		$HOME/.bin/ffmpeg -i "$f" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -tag:v hvc1 -movflags +faststart -y "${f%.*}.mp4"
+	else
+		$HOME/.bin/ffmpeg -i "$f" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -movflags +faststart -y "${f%.*}.mp4"
+	fi
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
