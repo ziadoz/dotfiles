@@ -65,7 +65,7 @@ set -e
 
 for f in "$@"
 do
-	$HOME/.bin/ffmpeg -i "$f" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -movflags +faststart -y "${f%.*}.mp4"
+	$HOME/.bin/ffmpeg -i "$f" -nostats -loglevel 0 -c:v copy -c:a copy -c:s mov_text -tag:v hvc1 -movflags +faststart -y "${f%.*}.mp4"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
