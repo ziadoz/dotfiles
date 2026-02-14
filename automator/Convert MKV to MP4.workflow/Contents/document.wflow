@@ -68,21 +68,21 @@ do
 	flags=(-nostats -loglevel 0 -c:v copy -c:a copy -movflags +faststart -y)
 
 	# HEVC video needs hvc1 tag for Apple device compatibility
-	if /opt/homebrew/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: hevc\|Video: h265'; then
+	if $(brew --prefix)/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: hevc\|Video: h265'; then
 		flags+=(-tag:v hvc1)
 	# AV1 video needs av01 tag for Apple device compatibility
-	elif /opt/homebrew/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: av1'; then
+	elif $(brew --prefix)/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: av1'; then
 		flags+=(-tag:v av01)
 	fi
 
 	# Bitmap subtitle formats (e.g. dvd_subtitle) can't be converted to mov_text, so drop them
-	if /opt/homebrew/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'dvd_subtitle\|hdmv_pga_subtitle'; then
+	if $(brew --prefix)/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'dvd_subtitle\|hdmv_pga_subtitle'; then
 		flags+=(-sn)
 	else
 		flags+=(-c:s mov_text)
 	fi
 
-	/opt/homebrew/bin/ffmpeg -i "$f" "${flags[@]}" "${f%.*}.mp4"
+	$(brew --prefix)/bin/ffmpeg -i "$f" "${flags[@]}" "${f%.*}.mp4"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>

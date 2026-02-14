@@ -66,7 +66,7 @@ set -e
 for f in "$@"
 do
 	mkdir -p "${f%.*}"
-	/opt/homebrew/bin/ffmpeg -i "$f" -vf "fps=1" -c:v png "${f%.*}/thumb%04d.png"
+	$(brew --prefix)/bin/ffmpeg -i "$f" -vf "fps=1" -c:v png "${f%.*}/thumb%04d.png"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
