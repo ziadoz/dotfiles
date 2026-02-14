@@ -70,6 +70,9 @@ do
 	# HEVC video needs hvc1 tag for Apple device compatibility
 	if /opt/homebrew/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: hevc\|Video: h265'; then
 		flags+=(-tag:v hvc1)
+	# AV1 video needs av01 tag for Apple device compatibility
+	elif /opt/homebrew/bin/ffmpeg -i "$f" 2>&amp;1 | grep -q 'Video: av1'; then
+		flags+=(-tag:v av01)
 	fi
 
 	# Bitmap subtitle formats (e.g. dvd_subtitle) can't be converted to mov_text, so drop them
