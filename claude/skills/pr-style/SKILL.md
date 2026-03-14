@@ -11,12 +11,12 @@ Style derived from the author's pull request history across laravel/framework, l
 
 - Short and direct. Verb-first: "Add X", "Allow X to Y", "Skip X when Y", "Fix X".
 - Use backticks for method names, class names, and config keys: `withoutAfterMaking()`, `DB::transaction()`.
-- For contributions to versioned open source packages (e.g. Laravel framework), prefix with the target branch in brackets: `[12.x]`, `[13.x]`.
+- For contributions to versioned open source packages (e.g. Laravel framework), prefix with the target branch in brackets: e.g. `[12.x]`. Use whatever the current active branch is for the package.
 - No full stop at the end.
 
 **Examples:**
 - `[12.x] Add withoutAfterMaking() and withoutAfterCreating() factory helpers`
-- `[13.x] Add backoff functionality to DB::transaction()`
+- `[12.x] Add backoff functionality to DB::transaction()`
 - `Allow job retries and backoff to be configured`
 - `Skip CSP middleware when Vite is hot reloading`
 - `[12.x] Add Event::capture() method`
