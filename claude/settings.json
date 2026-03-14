@@ -47,7 +47,11 @@
       "Skill(php-guidelines-from-spatie:*)",
       "Skill(review-pr:*)",
       "Skill(plain-english:*)",
-      "Skill(pr-style:*)"
+      "Skill(pr-style:*)",
+      "Skill(media-clean-up:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(filebot:*)",
+      "Bash(jq:*)"
     ],
     "defaultMode": "acceptEdits"
   },

@@ -142,11 +142,61 @@ if ($user->isActive()) {
 
 ## Strings & Formatting
 
-- **String interpolation** over concatenation
+- Prefer string interpolation over concatenation:
+
+```php
+// Bad
+$greeting = 'Hello ' . $name . ', you have ' . $count . ' messages.';
+
+// Good
+$greeting = "Hello {$name}, you have {$count} messages.";
+```
+
+- Use double quotes when the string contains a variable, single quotes otherwise:
+
+```php
+$plain = 'No variables here';
+$interpolated = "Hello {$name}";
+```
+
+- Wrap complex expressions in braces:
+
+```php
+$label = "Status: {$order->status->label()}";
+```
 
 ## Enums
 
-- Use PascalCase for enum values
+- Use PascalCase for enum values, no prefix or suffix:
+
+```php
+// Bad
+enum OrderStatus {
+    case STATUS_PENDING;
+    case StatusProcessing;
+}
+
+// Good
+enum OrderStatus {
+    case Pending;
+    case Processing;
+    case Shipped;
+    case Delivered;
+    case Cancelled;
+}
+```
+
+- Backed enums should use lowercase string values:
+
+```php
+enum OrderStatus: string {
+    case Pending = 'pending';
+    case Processing = 'processing';
+    case Shipped = 'shipped';
+}
+```
+
+- Use enums instead of class constants for finite sets of values.
 
 ## Comments
 

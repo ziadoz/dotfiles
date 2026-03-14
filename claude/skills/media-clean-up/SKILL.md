@@ -100,10 +100,15 @@ Search at: https://www.opensubtitles.org/en/search/subs
    Film Title (Year).en.srt       # full subtitles
    Film Title (Year).en.forced.srt  # forced subtitles only
    ```
-5. Spot-check sync by opening in QuickTime and skipping to a dialogue scene. If the timing is off, use FFmpeg to shift the subtitle delay:
+5. Spot-check sync by opening in QuickTime and skipping to a dialogue scene. If the timing is off, shift all timestamps forward or backward using FFmpeg:
    ```bash
-   ffmpeg -i "input.srt" -af "adelay=2000|2000" "output.srt"
+   # Shift forward by 2 seconds
+   ffmpeg -i "input.srt" -output_ts_offset 2 "output.srt"
+
+   # Shift backward by 2 seconds
+   ffmpeg -i "input.srt" -output_ts_offset -2 "output.srt"
    ```
+   SRT files are plain text, so large timing problems are easier to fix by editing the timestamps directly.
 
 ## Subtitle Cleaning
 

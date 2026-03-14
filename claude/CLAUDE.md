@@ -16,6 +16,8 @@ Use `gh` for all GitHub operations.
 
 Never mention Claude Code in PR titles, descriptions, or comments.
 
+When making commits, always use my git identity. Never commit as Claude or any AI assistant.
+
 Do not include a "Test plan" section in PR descriptions.
 
 ## PHP and Laravel

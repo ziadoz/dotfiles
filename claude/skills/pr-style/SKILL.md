@@ -5,7 +5,7 @@ description: Guidelines for writing pull request titles and descriptions that ma
 
 # PR Style Guide
 
-Style derived from the author's pull request history across laravel/framework, laravel/scout, spatie packages, and saloonphp/saloon.
+Style derived from the author's pull request history across laravel/framework, laravel/scout, spatie packages, and saloonphp/saloon. The author's GitHub username is `ziadoz`.
 
 ## Title
 
@@ -40,6 +40,17 @@ Keep it to 3–5 sentences of prose plus any code example. Do not pad it out.
 - Use "This PR adds..." or "This adds..." to open.
 - Mention what existing behaviour is preserved where it's non-obvious.
 - If there are limitations, mention them plainly.
+
+## Commits
+
+Commit messages use the format `wip (a short lowercase description)`.
+
+**Examples:**
+- `wip (add event capture method)`
+- `wip (fix subtitle sync on mkv conversion)`
+- `wip (allow backoff to be configured on scout jobs)`
+
+Keep the description brief and lowercase. No full stop.
 
 ### What to leave out
 
