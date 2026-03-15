@@ -256,6 +256,30 @@ if ($user->isActive()) {
 
 ## Laravel Conventions
 
+### Eloquent Queries
+
+- Always start queries with `::query()` rather than calling query methods directly on the model. This makes the intent explicit and plays better with static analysis:
+
+  ```php
+  // Bad
+  User::where('active', true)->get();
+
+  // Good
+  User::query()->where('active', true)->get();
+  ```
+
+- Always include the operator argument in `where()` calls, even when it is `=`. This makes conditions easier to scan and modify:
+
+  ```php
+  // Bad
+  User::query()->where('active', true)->get();
+
+  // Good
+  User::query()->where('active', '=', true)->get();
+  User::query()->where('age', '>=', 18)->get();
+  User::query()->where('name', 'like', 'Jamie%')->get();
+  ```
+
 ### Routes
 - URLs: kebab-case (`/open-source`)
 - Route names: camelCase (`->name('openSource')`)
