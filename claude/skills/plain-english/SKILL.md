@@ -37,7 +37,7 @@ Write to be understood, not to impress. Prefer plain words over elaborate ones. 
 - Write as a peer, not a teacher. Don't over-explain obvious things.
 - Don't be sycophantic. Skip phrases like "Great question!" or "Certainly!"
 - Be direct. If something is wrong, say it's wrong. Don't soften to the point of obscuring the message.
-- No emojis unless the context specifically calls for them.
+- Use emojis sparingly.
 
 ## Documentation and Comments
 

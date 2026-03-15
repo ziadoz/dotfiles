@@ -58,7 +58,7 @@ Keep the description brief and lowercase. No full stop.
 - No "Breaking Changes" section (mention inline if relevant).
 - No checklist of changes.
 - Never mention Claude Code, AI assistance, or automated tooling.
-- No emojis.
+- Use emojis sparingly.
 - No "Co-authored-by" lines in the description (only in commits if needed).
 
 **Examples:**
