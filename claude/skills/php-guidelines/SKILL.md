@@ -1,5 +1,5 @@
 ---
-name: php-guidelines-from-spatie
+name: php-guidelines
 description: Describes PHP and Laravel guidelines provided by Spatie. These rules result in more maintainable, and readable code.
 license: MIT
 metadata:
@@ -10,6 +10,139 @@ metadata:
 ## Core Laravel Principle
 
 **Follow Laravel conventions first.** If Laravel has a documented way to do something, use it. Only deviate when you have a clear justification.
+
+For a reference implementation of these strictness principles applied to a real Laravel app, see [nunomaduro/essentials](https://github.com/nunomaduro/essentials).
+
+## Strictness
+
+### PHP
+
+- Always add `declare(strict_types=1)` at the top of every PHP file:
+  ```php
+  <?php
+
+  declare(strict_types=1);
+  ```
+- Every new project must have [Pint](https://laravel.com/docs/pint) (or PHP CS Fixer in non-Laravel projects) configured and enforced in CI.
+- Use the [pint-strict-preset](https://github.com/nunomaduro/pint-strict-preset) as the baseline `pint.json`. Copy it into the project root as-is. For PHP CS Fixer, translate the same rules into `.php-cs-fixer.php` — the rule names are identical as Pint is built on top of PHP CS Fixer.
+
+  ```json
+  {
+      "preset": "laravel",
+      "rules": {
+          "array_push": true,
+          "backtick_to_shell_exec": true,
+          "date_time_immutable": true,
+          "declare_strict_types": true,
+          "lowercase_keywords": true,
+          "lowercase_static_reference": true,
+          "final_class": true,
+          "final_internal_class": true,
+          "final_public_method_for_abstract_class": true,
+          "fully_qualified_strict_types": true,
+          "global_namespace_import": {
+              "import_classes": true,
+              "import_constants": true,
+              "import_functions": true
+          },
+          "mb_str_functions": true,
+          "modernize_types_casting": true,
+          "new_with_parentheses": false,
+          "no_superfluous_elseif": true,
+          "no_useless_else": true,
+          "no_multiple_statements_per_line": true,
+          "ordered_class_elements": {
+              "order": [
+                  "use_trait",
+                  "case",
+                  "constant",
+                  "constant_public",
+                  "constant_protected",
+                  "constant_private",
+                  "property_public",
+                  "property_protected",
+                  "property_private",
+                  "construct",
+                  "destruct",
+                  "magic",
+                  "phpunit",
+                  "method_abstract",
+                  "method_public_static",
+                  "method_public",
+                  "method_protected_static",
+                  "method_protected",
+                  "method_private_static",
+                  "method_private"
+              ],
+              "sort_algorithm": "none"
+          },
+          "ordered_interfaces": true,
+          "ordered_traits": true,
+          "protected_to_private": true,
+          "self_accessor": true,
+          "self_static_accessor": true,
+          "strict_comparison": true,
+          "visibility_required": true
+      }
+  }
+  ```
+
+  Key rules this enforces:
+  - `declare_strict_types` — auto-adds `declare(strict_types=1)` to every file
+  - `final_class` — all classes are `final` by default, preventing unintended inheritance
+  - `global_namespace_import` — enforces `use` imports for classes, constants, and functions; no inline fully qualified names
+  - `strict_comparison` — enforces `===` and `!==` over `==` and `!=`
+  - `no_useless_else` / `no_superfluous_elseif` — removes redundant else branches after returns
+  - `ordered_class_elements` — consistent class member ordering (traits, constants, properties, constructor, methods)
+  - `protected_to_private` — tightens visibility to `private` where `protected` is unnecessary
+  - `mb_str_functions` — replaces `strlen`, `strpos` etc. with their `mb_` equivalents
+  - `date_time_immutable` — enforces `DateTimeImmutable` over mutable `DateTime`
+- Every new project must have [PHPStan](https://phpstan.org) configured. Aim for level 8 or above. Add a `phpstan.neon` to the project root.
+- Tests must be written using [Pest](https://pestphp.com) (preferred) or PHPUnit. Every new feature or bug fix should include tests.
+
+### Laravel
+
+Enable the following in `AppServiceProvider::boot()` for all environments unless there is a specific reason not to:
+
+```php
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\Date;
+
+// Strict model behaviour: throws on accessing undefined attributes,
+// lazy loading, and silently discarded fills on non-fillable attributes
+Model::shouldBeStrict();
+
+// Automatically eager load relationships defined in $with
+Model::automaticallyEagerLoadRelationships();
+
+// Use immutable dates throughout the app (prevents accidental mutation)
+Date::use(CarbonImmutable::class);
+
+// Prevent destructive Artisan commands (migrate:fresh, db:wipe etc.) in production
+DB::prohibitDestructiveCommands(app()->isProduction());
+```
+
+In tests, also enable:
+
+```php
+// Fail the test if any HTTP request is made without an explicit fake
+Http::preventStrayRequests();
+
+// Prevent actual sleep() calls slowing down the test suite
+Sleep::fake();
+```
+
+**Why each matters:**
+
+- `Model::shouldBeStrict()` — catches typos in attribute names, prevents n+1 queries from lazy loading, and surfaces mass-assignment issues at call time rather than silently ignoring them
+- `Model::automaticallyEagerLoadRelationships()` — ensures relationships declared in `$with` are always loaded, avoiding accidental n+1 queries when `$with` is defined but not respected
+- `CarbonImmutable` — mutable Carbon instances can cause subtle bugs when a date is passed to a function and modified in place; immutable instances are always safe to share
+- `DB::prohibitDestructiveCommands()` — prevents accidental data loss from running the wrong Artisan command on production
+- `Http::preventStrayRequests()` — makes tests reliable and explicit; any HTTP call that isn't faked will throw, surfacing missing fakes immediately
+- `Sleep::fake()` — keeps the test suite fast; real sleeps in tests are almost never intentional
 
 ## PHP Standards
 
@@ -54,6 +187,20 @@ metadata:
    */
   function someFunction(array $myArray, int $typedArgument) {}
   ```
+- Use `list<Type>` when the array is a plain sequential list and the keys are irrelevant — i.e. you only care about the values:
+  ```php
+  /** @return list<User> */
+  public function getUsers(): array {}
+  ```
+- Use `array<TKey, TValue>` when the key is meaningful and you need to express both types:
+  ```php
+  /** @return array<string, Permission> */   // keyed by permission name
+  public function getPermissions(): array {}
+
+  /** @return array<int, User> */            // keyed by user ID
+  public function getUsersById(): array {}
+  ```
+- The rule of thumb: if you'd iterate with `foreach ($items as $item)` and ignore the key, use `list<T>`. If you'd use `foreach ($items as $key => $value)` and the key matters, use `array<TKey, TValue>`.
 - Use array shape notation for fixed keys, put each key on its own line:
   ```php
   /** @return array{
@@ -65,7 +212,7 @@ metadata:
 ## Control Flow
 - **Happy path last**: Handle error conditions first, success case last
 - **Avoid else**: Use early returns instead of nested conditions
-- **Separate conditions**: Split compound `if` statements that use `&&` into nested `if` statements for better readability
+- **Compound conditions**: Prefer compound `if` statements using `&&` over nested `if` statements
 - **Always use curly brackets** even for single statements
 - **Ternary operators**: Each part on own line unless very short
 
@@ -85,21 +232,21 @@ if (! $user->isActive()) {
 $name = $isFoo ? 'foo' : 'bar';
 
 // Multi-line ternary
-$result = $object instanceof Model ?
-    $object->name :
-    'A default value';
+$result = $object instanceof Model 
+    ? $object->name 
+    : 'A default value';
 
 // Ternary instead of else
 $condition
     ? $this->doSomething()
     : $this->doSomethingElse();
 
-// Bad: compound condition with &&
+// Good: compound condition with &&
 if ($user->isActive() && $user->hasPermission('edit')) {
     $user->edit();
 }
 
-// Good: nested ifs
+// Bad: nested ifs
 if ($user->isActive()) {
     if ($user->hasPermission('edit')) {
         $user->edit();
@@ -268,9 +415,12 @@ $failedChecks = $site->checks()->where('status', 'failed')->get();
 
 ## Testing
 
-- Keep test classes in same file when possible
+- Use Pest (preferred) or PHPUnit
+- Keep test classes in the same file when possible
 - Use descriptive test method names
 - Follow the arrange-act-assert pattern
+- Always call `Http::preventStrayRequests()` and `Sleep::fake()` in the base test case or test setup
+- Every new feature and bug fix must have test coverage
 
 ## Quick Reference
 
@@ -297,12 +447,16 @@ $failedChecks = $site->checks()->where('status', 'failed')->get();
 - Only write `up()` methods in migrations, never `down()`
 
 ### Code Quality Reminders
+- Always declare `declare(strict_types=1)` at the top of every file
 - Use typed properties over docblocks
 - Prefer early returns over nested if/else
 - Use constructor property promotion when all properties can be promoted
 - Avoid `else` statements when possible
-- Split compound `if` conditions using `&&` into nested `if` statements
+- Prefer compound `if` conditions using `&&` over nested `if` statements
 - Use string interpolation over concatenation
 - Always use curly braces for control structures
 - Always import namespaces with `use` statements — never use inline fully qualified class names
 - Never use single-letter variable names — use descriptive names (e.g. `$exception` not `$e`)
+- Enable `Model::shouldBeStrict()` and `Model::automaticallyEagerLoadRelationships()` in `AppServiceProvider`
+- Use `CarbonImmutable` for dates
+- Enforce Pint and PHPStan (level 8+) in CI

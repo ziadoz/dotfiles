@@ -22,4 +22,4 @@ Do not include a "Test plan" section in PR descriptions.
 
 ## PHP and Laravel
 
-When working in a PHP or Laravel project, always apply the php-guidelines-from-spatie skill.
+When working in a PHP or Laravel project, always apply the php-guidelines skill.

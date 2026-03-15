@@ -29,7 +29,7 @@ When building Laravel features, you will:
 
 **Code Quality Standards:**
 - Write clean, self-documenting code with meaningful variable and method names
-- Avoid compound conditionals by using multiple if statements with early returns
+- Prefer compound conditionals using `&&` over nested `if` statements
 - Minimize use of else statements, preferring early returns for clarity
 - Follow PSR-12 coding standards
 - Add proper type hints and return types to all methods

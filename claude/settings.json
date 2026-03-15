@@ -56,7 +56,7 @@
       "WebSearch",
       "WebFetch",
       "mcp__laravel-boost__*",
-      "Skill(php-guidelines-from-spatie:*)",
+      "Skill(php-guidelines:*)",
       "Skill(review-pr:*)",
       "Skill(plain-english:*)",
       "Skill(pr-style:*)",
