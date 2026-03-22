@@ -16,11 +16,10 @@ function install_homebrew_config() {
 }
 
 function install_homebrew_apps() {
-    # @todo: Install HomeBrew
-    # @todo: Cleanup HomeBrew packages
-    # @todo: Install HomeBrew packages: mas signin <email> && brew bundle --file ~/.Brewfile
-    # @todo: Disable HomeBrew analytics: brew analytics off
-    # @todo: Cleanup HomeBrew: brew cleanup && brew cleanup --prune-prefix
+    echo "Installing Homebrew packages..."
+    brew analytics off
+    brew bundle --file "$HOME/.Brewfile"
+    brew cleanup
 }
 
 function install_git_config() {
@@ -53,6 +52,7 @@ function install_phpstorm_theme() {
 
 function install_sublime_config() {
     echo "Copying Sublime Text preferences..."
+    mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages/User"
     cp subl/* "$HOME/Library/Application Support/Sublime Text/Packages/User"
 }
 
