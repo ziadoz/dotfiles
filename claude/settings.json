@@ -52,7 +52,6 @@
       "Bash(dirname:*)",
       "Bash(tee:*)",
       "Bash(printenv:*)",
-      "Bash(php vendor/bin/phpunit:*)",
       "WebSearch",
       "WebFetch",
       "mcp__*",
