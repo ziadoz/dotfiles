@@ -89,6 +89,12 @@ function install_automator_workflows() {
     cp -r ./automator/* "$HOME/Library/Services"
 }
 
+function install_claude_config() {
+    echo "Copying Claude config files..."
+    cp -r ./claude/ "$HOME/.claude/"
+    chmod +x "$HOME/.claude/statusline.sh"
+}
+
 function install_all() {
     install_zsh_theme();
     install_zsh_config();
@@ -103,6 +109,7 @@ function install_all() {
     install_vscode_symlink();
     install_phpstorm_symlink();
     install_automator_workflows();
+    install_claude_config();
 }
 
 install_all();
