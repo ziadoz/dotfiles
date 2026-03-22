@@ -55,7 +55,7 @@
       "Bash(php vendor/bin/phpunit:*)",
       "WebSearch",
       "WebFetch",
-      "mcp__laravel-boost__*",
+      "mcp__*",
       "Skill(php-guidelines:*)",
       "Skill(review-pr:*)",
       "Skill(plain-english:*)",
