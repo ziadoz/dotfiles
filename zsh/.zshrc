@@ -9,12 +9,12 @@ fi
 
 # Homebrew configuration
 # @see: https://docs.brew.sh/Installation
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$($(brew --prefix)/bin/brew shellenv)"
 
 # Auto suggestions
 # @see: https://github.com/zsh-users/zsh-autosuggestions
-if [ -f "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # Load custom dotfiles
