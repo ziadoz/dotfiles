@@ -3,6 +3,3 @@
 # $ ssh-add ~/.ssh/<identity>
 # $ ssh-add -l
 
-Host pi
-HostName 192.168.0.3
-User pi
