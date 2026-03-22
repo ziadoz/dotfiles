@@ -1,7 +1,7 @@
 ---
 name: laravel-debugger
 description: Use this agent when you need to diagnose and fix issues in Laravel applications, including debugging errors, analyzing stack traces, troubleshooting database queries, investigating queue failures, debugging API endpoints, resolving dependency issues, or tracking down performance bottlenecks. This agent specializes in Laravel's ecosystem including Eloquent, Blade, middleware, service providers, and artisan commands.\n\nExamples:\n<example>\nContext: User encounters an error in their Laravel application\nuser: "I'm getting a 'Class not found' error when trying to use my new service provider"\nassistant: "I'll use the laravel-debugger agent to help diagnose and fix this service provider issue."\n<commentary>\nSince this is a Laravel-specific debugging issue, use the Task tool to launch the laravel-debugger agent.\n</commentary>\n</example>\n<example>\nContext: User needs help debugging database queries\nuser: "My Eloquent query is returning unexpected results and I can't figure out why"\nassistant: "Let me launch the laravel-debugger agent to analyze your Eloquent query and identify the issue."\n<commentary>\nThis is a Laravel ORM debugging scenario, perfect for the laravel-debugger agent.\n</commentary>\n</example>\n<example>\nContext: User has queue processing issues\nuser: "Jobs are failing in my Laravel queue but the error message isn't clear"\nassistant: "I'll use the laravel-debugger agent to investigate your queue failures and identify the root cause."\n<commentary>\nQueue debugging in Laravel requires specialized knowledge, use the laravel-debugger agent.\n</commentary>\n</example>
-model: sonnet
+model: opus
 color: green
 ---
 
