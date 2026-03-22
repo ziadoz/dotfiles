@@ -96,20 +96,20 @@ function install_claude_config() {
 }
 
 function install_all() {
-    install_zsh_theme();
-    install_zsh_config();
-    install_homebrew_config();
-    install_homebrew_apps();
-    install_git_config();
-    install_ssh_config();
-    install_fonts();
-    install_terminal_theme();
-    install_sublime_config();
-    install_sublime_symlink();
-    install_vscode_symlink();
-    install_phpstorm_symlink();
-    install_automator_workflows();
-    install_claude_config();
+    install_zsh_theme
+    install_zsh_config
+    install_homebrew_config
+    install_homebrew_apps
+    install_git_config
+    install_ssh_config
+    install_fonts
+    install_terminal_theme
+    install_sublime_config
+    install_sublime_symlink
+    install_vscode_symlink
+    install_phpstorm_symlink
+    install_automator_workflows
+    install_claude_config
 }
 
-install_all();
+install_all
