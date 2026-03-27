@@ -27,6 +27,16 @@ When writing responses to my prompts, ensure you always do the following:
 - When writing commit messages, always apply the pr-style skill.
 - Never mention Claude Code in PR titles, descriptions, comments or commits.
 
-## PHP and Laravel
+## Data
+
+- When modifying sensitive content (e.g. `.env` files, config files or databases), always offer to make a backup before taking destructive action.
+- When making a backup, use a `_YYYY-MM-DD` suffix on the filename or database name.
+- Never commit files that contain secrets, credentials, tokens or passwords. Warn me if I ask you to.
+- Never log, print or expose secrets in command output.
+- When working with databases, prefer reversible operations. Drop or truncate only when explicitly asked.
+- Never run destructive database commands (e.g. `DROP`, `TRUNCATE`, `DELETE` without `WHERE`) in production without confirmation.
+
+## Coding
 
 - Always aim to be working with the latest PHP and Laravel features.
+- Never modify code in package mangement directories such as `/vendor` or `node_modules`.
