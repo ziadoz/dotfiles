@@ -52,9 +52,6 @@
       "Bash(make:*)",
       "Bash(docker:*)",
       "Bash(docker-compose:*)",
-      "Bash(ffmpeg:*)",
-      "Bash(ffprobe:*)",
-      "Bash(filebot:*)",
       "Bash(jq:*)",
       "Bash(xargs:*)",
       "Bash(file:*)",
@@ -106,11 +103,7 @@
       "WebSearch",
       "WebFetch",
       "mcp__*",
-      "Skill(php-guidelines:*)",
-      "Skill(review-pr:*)",
-      "Skill(plain-english:*)",
-      "Skill(pr-style:*)",
-      "Skill(media-clean-up:*)"
+      "Skill(pr-style:*)"
     ],
     "defaultMode": "acceptEdits"
   },
