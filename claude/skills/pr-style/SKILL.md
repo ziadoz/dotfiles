@@ -43,12 +43,19 @@ Keep it to 3–5 sentences of prose plus any code example. Do not pad it out.
 
 ## Commits
 
-Commit messages use the format `wip (a short lowercase description)`.
+On feature branches, commit messages use the format `wip (a short lowercase description)`.
 
-**Examples:**
+**Branch examples:**
 - `wip (add event capture method)`
 - `wip (fix subtitle sync on mkv conversion)`
 - `wip (allow backoff to be configured on scout jobs)`
+
+On `main` or `master`, drop the `wip` prefix and brackets. Use a short lowercase description directly.
+
+**Main/master examples:**
+- `add event capture method`
+- `fix subtitle sync on mkv conversion`
+- `allow backoff to be configured on scout jobs`
 
 Keep the description brief and lowercase. No full stop.
 
