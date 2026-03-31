@@ -120,6 +120,5 @@
   },
   "alwaysThinkingEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high",
   "model": "opus"
 }
