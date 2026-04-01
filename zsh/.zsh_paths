@@ -10,4 +10,4 @@ zstyle ':completion:*:descriptions' format %B%d%b
 zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
 
 # Local Binary Path
-export PATH="$PATH:$HOME/.bin"
+export PATH="$PATH:$HOME/.bin:$HOME/.local/bin"

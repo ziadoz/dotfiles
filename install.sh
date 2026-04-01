@@ -89,6 +89,11 @@ function install_automator_workflows() {
     cp -r ./automator/* "$HOME/Library/Services"
 }
 
+function install_claude_code() {
+    echo "Installing Claude Code..."
+    curl -fsSL https://claude.ai/install.sh | bash
+}
+
 function install_claude_config() {
     echo "Copying Claude config files..."
     cp -r ./claude/ "$HOME/.claude/"
@@ -109,6 +114,7 @@ function install_all() {
     install_vscode_symlink
     install_phpstorm_symlink
     install_automator_workflows
+    install_claude_code
     install_claude_config
 }
 
