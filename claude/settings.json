@@ -118,5 +118,5 @@
   "enabledPlugins": {
     "laravel-boost@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true,
+  "skipDangerousModePermissionPrompt": true
 }
