@@ -40,3 +40,7 @@ If you think my approach on something is wrong, say so and explain why.
 - Follow the styles and conventions of any existing projects you are working on.
 - When fixing bugs or issues, check log files for relevant stack traces.
 - Ensure you understand how the surrounding code works before making changes.
+
+## Output
+
+- When outputting code or markdown or other content then might be copied and pasted, ensure there is no trailing whitespace.
