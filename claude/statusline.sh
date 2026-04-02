@@ -9,10 +9,16 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 # Extract context percentage
 ctx_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
-# Extract model name and version
+# Extract model display name
 model_name=$(echo "$input" | jq -r '.model.display_name // ""')
-model_version=$(echo "$input" | jq -r '.model.id // ""' | sed 's/claude-[a-z]*-\([0-9]*\)-\([0-9]*\).*/\1.\2/')
-model="${model_name} ${model_version}"
+
+# Fallback: extract version from model ID if display_name is empty
+if [ -z "$model_name" ] || [ "$model_name" = "null" ]; then
+  model_name=$(echo "$input" | jq -r '.model.id // ""' \
+    | sed -n 's/claude-\([a-z]*\)-\([0-9]*\)-\([0-9]*\)/Claude \u\1 \2.\3/p')
+fi
+
+model="$model_name"
 
 # Git information
 if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
@@ -31,5 +37,6 @@ if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
   printf '\033[01;36m%s\033[00m (%s) | %s | ctx: %b%s%%\033[00m' \
     "$repo_name" "$branch" "$model" "$ctx_color" "$ctx_pct"
 else
-  printf '\033[01;36m%s\033[00m | %s | ctx: %s%%' "$cwd" "$model" "$ctx_pct"
+  printf '\033[01;36m%s\033[00m | %s | ctx: %s%%' \
+    "$cwd" "$model" "$ctx_pct"
 fi
