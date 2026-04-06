@@ -40,6 +40,7 @@ If you think my approach on something is wrong, say so and explain why.
 - Follow the styles and conventions of any existing projects you are working on.
 - When fixing bugs or issues, check log files for relevant stack traces.
 - Ensure you understand how the surrounding code works before making changes.
+- Don't over-engineer simple things. Apply design patterns when a feature is complex or has clear room to grow.
 
 ## Output
 
