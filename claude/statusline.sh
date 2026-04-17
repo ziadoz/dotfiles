@@ -6,8 +6,10 @@ input=$(cat)
 # Extract current directory
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 
-# Extract context percentage
+# Extract usage percentages
 ctx_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+five_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // 0' | cut -d. -f1)
+week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // 0' | cut -d. -f1)
 
 # Extract model display name
 model_name=$(echo "$input" | jq -r '.model.display_name // ""')
@@ -20,23 +22,35 @@ fi
 
 model="$model_name"
 
+# Pick a colour for a percentage based on usage thresholds
+pct_color() {
+  local pct=$1
+  if [ "$pct" -ge 60 ]; then
+    printf '\033[01;31m' # red
+  elif [ "$pct" -ge 40 ]; then
+    printf '\033[01;33m' # yellow
+  else
+    printf '\033[01;32m' # green
+  fi
+}
+
+ctx_color=$(pct_color "$ctx_pct")
+five_color=$(pct_color "$five_pct")
+week_color=$(pct_color "$week_pct")
+
+usage=$(printf 'ctx: %b%s%%\033[00m | 5h: %b%s%%\033[00m | 7d: %b%s%%\033[00m' \
+  "$ctx_color" "$ctx_pct" \
+  "$five_color" "$five_pct" \
+  "$week_color" "$week_pct")
+
 # Git information
 if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
   repo_name=$(basename "$cwd")
   branch=$(git -C "$cwd" rev-parse --abbrev-ref HEAD 2>/dev/null)
 
-  # Color the context percentage based on usage
-  if [ "$ctx_pct" -ge 60 ]; then
-    ctx_color='\033[01;31m' # red
-  elif [ "$ctx_pct" -ge 40 ]; then
-    ctx_color='\033[01;33m' # yellow
-  else
-    ctx_color='\033[01;32m' # green
-  fi
-
-  printf '\033[01;36m%s\033[00m (%s) | %s | ctx: %b%s%%\033[00m' \
-    "$repo_name" "$branch" "$model" "$ctx_color" "$ctx_pct"
+  printf '\033[01;36m%s\033[00m (%s) | %s | %b' \
+    "$repo_name" "$branch" "$model" "$usage"
 else
-  printf '\033[01;36m%s\033[00m | %s | ctx: %s%%' \
-    "$cwd" "$model" "$ctx_pct"
+  printf '\033[01;36m%s\033[00m | %s | %b' \
+    "$cwd" "$model" "$usage"
 fi
