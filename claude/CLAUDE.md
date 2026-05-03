@@ -45,3 +45,4 @@ If you think my approach on something is wrong, say so and explain why.
 ## Output
 
 - When outputting code or markdown or other content then might be copied and pasted, ensure there is no trailing whitespace.
+- When explaining how a language, framework, library or tool works (e.g. PHP, Laravel, Composer), ask at the end of the response whether to include links to the official documentation in a follow-up. Only link to canonical sources you are confident exist, never guess URLs.
