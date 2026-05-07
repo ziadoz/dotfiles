@@ -4,7 +4,9 @@ function install_zsh_theme() {
     # @see: https://github.com/sindresorhus/pure/issues/664
     echo "Installing Pure ZSH theme..."
     mkdir -p "$HOME/.zsh"
-    git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+    if [ ! -d "$HOME/.zsh/pure" ]; then
+        git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+    fi
 }
 
 function install_zsh_config() {
