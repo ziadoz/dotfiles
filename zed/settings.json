@@ -1,0 +1,79 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "buffer_line_height": "comfortable",
+  "format_on_save": "off",
+  "indent_guides": {
+    "enabled": true
+  },
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "base_keymap": "JetBrains",
+  "ui_font_size": 16.0,
+  "buffer_font_size": 15,
+  "buffer_font_features": {
+    "calt": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "file_types": {
+    "HTML": ["blade.php"]
+  },
+  "languages": {
+    "PHP": {
+      "language_servers": ["intelephense"],
+      "format_on_save": "off"
+    }
+  },
+  "lsp": {
+    "intelephense": {
+      "settings": {
+        "intelephense": {
+          "files": {
+            "maxSize": 5000000
+          },
+          "stubs": [
+            "apache", "bcmath", "bz2", "calendar", "com_dotnet",
+            "Core", "curl", "date", "dba", "dom", "enchant",
+            "exif", "fileinfo", "filter", "fpm", "ftp", "gd",
+            "gettext", "gmp", "hash", "iconv", "imap", "intl",
+            "json", "ldap", "libxml", "mbstring", "mcrypt",
+            "meta", "mysqli", "oci8", "odbc", "openssl", "pcntl",
+            "pcre", "PDO", "pdo_ibm", "pdo_mysql", "pdo_pgsql",
+            "pdo_sqlite", "pgsql", "Phar", "posix", "pspell",
+            "readline", "recode", "Reflection", "regex", "session",
+            "shmop", "SimpleXML", "snmp", "soap", "sockets",
+            "sodium", "SPL", "sqlite3", "standard", "superglobals",
+            "sysvmsg", "sysvsem", "sysvshm", "tidy", "tokenizer",
+            "xml", "xmlreader", "xmlrpc", "xmlwriter", "xsl",
+            "Zend OPcache", "zip", "zlib",
+            "laravel"
+          ]
+        }
+      }
+    }
+  },
+}

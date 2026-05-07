@@ -44,40 +44,42 @@ function install_terminal_theme() {
     open ./terminal/Snazzy.terminal
 }
 
-function install_phpstorm_theme() {
-    echo "Installing PhpStorm theme..."
+function install_editor_themes() {
+    echo "Installing PhpStorm themes..."
     open ./ide/Atom\ One\ Light.icls
     open ./ide/Atom_One_Light__Material_.icls
 }
 
-function install_sublime_config() {
-    echo "Copying Sublime Text preferences..."
+function install_editor_configs() {
+    echo "Copying Sublime Text config..."
     mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages/User"
     cp subl/* "$HOME/Library/Application Support/Sublime Text/Packages/User"
+
+    echo "Copying VS Code config..."
+    cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
+
+    echo "Copying Zed config..."
+    mkdir -p "$HOME/.config/zed"
+    cp ./zed/settings.json "$HOME/.config/zed/settings.json"
 }
 
-function install_sublime_symlink() {
+function install_editor_symlinks() {
+    mkdir -p ~/.bin
+
     # @see: https://gist.github.com/michellephung/9601603cfb235401a3fd
     echo "Symlinking Sublime Text..."
     if [ -d "/Applications/Sublime Text.app" ] && [ ! -f "$HOME/.bin/subl" ]; then
-        mkdir -p ~/.bin
         ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl ~/.bin/subl
     fi
-}
 
-function install_vscode_symlink() {
-    echo "Symlinking VSCode..."
+    echo "Symlinking VS Code..."
     if [ -d "/Applications/Visual Studio Code.app" ] && [ ! -f "$HOME/.bin/vscode" ]; then
-        mkdir -p ~/.bin
         ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code ~/.bin/vscode
     fi
-}
 
-function install_phpstorm_symlink() {
     # @see: https://www.jetbrains.com/help/phpstorm/working-with-the-ide-features-from-command-line.html
     echo "Symlinking PhpStorm..."
     if [ -d "/Applications/PhpStorm.app" ] && [ ! -f "$HOME/.bin/phpstorm" ]; then
-        mkdir -p ~/.bin
         echo -en '#!/usr/bin/env bash\n\nopen -na "PhpStorm.app" --args "$@"' > "$HOME/.bin/phpstorm"
         chmod +x "$HOME/.bin/phpstorm"
     fi
@@ -109,10 +111,9 @@ function install_all() {
     install_ssh_config
     install_fonts
     install_terminal_theme
-    install_sublime_config
-    install_sublime_symlink
-    install_vscode_symlink
-    install_phpstorm_symlink
+    install_editor_configs
+    install_editor_symlinks
+    # install_editor_themes
     install_automator_workflows
     install_claude_code
     install_claude_config

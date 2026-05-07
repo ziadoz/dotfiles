@@ -1,0 +1,31 @@
+{
+    "workbench.colorTheme": "Atom One Light",
+    "workbench.editor.empty.hint": "hidden",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "intelephense.telemetry.enabled": false,
+    "explorer.confirmDelete": false,
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": true,
+        "/Users/ziadoz/.aitk/instructions/": true
+    },
+    "workbench.iconTheme": "catppuccin-latte",
+    "editor.fontFamily": "Jetbrains Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13,
+    "claudeCode.preferredLocation": "panel",
+    "git.autofetch": true,
+    "search.useIgnoreFiles": false,
+    "chat.disableAIFeatures": true
+}
