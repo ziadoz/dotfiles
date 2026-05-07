@@ -11,7 +11,7 @@ function install_zsh_theme() {
 
 function install_zsh_config() {
     echo "Copying ZSH files..."
-    cp ./zsh/* "$HOME"
+    cp -r ./zsh/. "$HOME"
 }
 
 function install_homebrew_config() {
