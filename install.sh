@@ -123,4 +123,5 @@ function install_all() {
     install_ai_configs
 }
 
-install_all
+# Only run install_all when executed directly, not when sourced to call individual functions.
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && install_all
