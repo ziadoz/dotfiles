@@ -1,3 +1,5 @@
+set -euo pipefail
+
 function install_zsh_theme() {
     # @see: https://github.com/sindresorhus/pure/issues/664
     echo "Installing Pure ZSH theme..."
