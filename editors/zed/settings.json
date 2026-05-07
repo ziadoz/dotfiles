@@ -30,7 +30,7 @@
   },
   "base_keymap": "JetBrains",
   "ui_font_size": 16.0,
-  "buffer_font_size": 15,
+  "buffer_font_size": 14,
   "buffer_font_features": {
     "calt": false
   },
