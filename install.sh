@@ -46,21 +46,21 @@ function install_terminal_theme() {
 
 function install_editor_themes() {
     echo "Installing PhpStorm themes..."
-    open ./ide/Atom\ One\ Light.icls
-    open ./ide/Atom_One_Light__Material_.icls
+    open ./editors/phpstorm/Atom\ One\ Light.icls
+    open ./editors/phpstorm/Atom_One_Light__Material_.icls
 }
 
 function install_editor_configs() {
     echo "Copying Sublime Text config..."
     mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages/User"
-    cp subl/* "$HOME/Library/Application Support/Sublime Text/Packages/User"
+    cp ./editors/subl/* "$HOME/Library/Application Support/Sublime Text/Packages/User"
 
     echo "Copying VS Code config..."
-    cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
+    cp ./editors/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 
     echo "Copying Zed config..."
     mkdir -p "$HOME/.config/zed"
-    cp ./zed/settings.json "$HOME/.config/zed/settings.json"
+    cp ./editors/zed/settings.json "$HOME/.config/zed/settings.json"
 }
 
 function install_editor_symlinks() {
