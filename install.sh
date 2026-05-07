@@ -40,7 +40,7 @@ function install_ssh_config() {
 
 function install_fonts() {
     echo "Copying fonts..."
-    cp ./fonts/* "$HOME/Library/Fonts"
+    find ./fonts -name "*.ttf" -o -name "*.otf" | xargs -I{} cp {} "$HOME/Library/Fonts/"
 }
 
 function install_terminal_theme() {
