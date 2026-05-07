@@ -15,7 +15,7 @@ function install_zsh_config() {
 }
 
 function install_homebrew_config() {
-    echo "Copying HomeBrew files..."
+    echo "Copying Homebrew files..."
     cp ./brew/.Brewfile "$HOME"
 }
 
@@ -27,19 +27,19 @@ function install_homebrew_apps() {
 }
 
 function install_git_config() {
-    echo "Copy Git files..."
+    echo "Copying Git files..."
     cp ./git/.gitconfig "$HOME"
 }
 
 function install_ssh_config() {
-    echo "Copy SSH files..."
+    echo "Copying SSH files..."
     mkdir -p "$HOME/.ssh"
     chmod +700 "$HOME/.ssh"
     cp ./ssh/config "$HOME/.ssh"
 }
 
 function install_fonts() {
-    echo "Copy font files..."
+    echo "Copying fonts..."
     cp ./fonts/* "$HOME/Library/Fonts"
 }
 
@@ -91,7 +91,7 @@ function install_editor_symlinks() {
 
 function install_automator_workflows() {
     # @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
-    echo "Copying Automator workflows...."
+    echo "Copying Automator workflows..."
     cp -r ./automator/* "$HOME/Library/Services"
 }
 
