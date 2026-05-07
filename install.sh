@@ -11,7 +11,7 @@ function install_zsh_theme() {
 
 function install_zsh_config() {
     echo "Copying ZSH files..."
-    cp -r ./zsh/. "$HOME"
+    cp -r ./cli/zsh/. "$HOME"
 }
 
 function install_homebrew_config() {
@@ -28,14 +28,14 @@ function install_homebrew_apps() {
 
 function install_git_config() {
     echo "Copying Git files..."
-    cp ./git/.gitconfig "$HOME"
+    cp ./cli/git/.gitconfig "$HOME"
 }
 
 function install_ssh_config() {
     echo "Copying SSH files..."
     mkdir -p "$HOME/.ssh"
     chmod +700 "$HOME/.ssh"
-    cp ./ssh/config "$HOME/.ssh"
+    cp ./cli/ssh/config "$HOME/.ssh"
 }
 
 function install_fonts() {
@@ -44,8 +44,8 @@ function install_fonts() {
 }
 
 function install_terminal_theme() {
-    echo "Installing Terminal theme..."
-    open ./terminal/Snazzy.terminal
+    echo "Installing Terminal themes..."
+    open ./cli/themes/*.terminal
 }
 
 function install_editor_themes() {
