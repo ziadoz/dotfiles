@@ -52,12 +52,32 @@ function install_editor_themes() {
     echo "Installing PhpStorm themes..."
     open ./editors/phpstorm/Atom\ One\ Light.icls
     open ./editors/phpstorm/Atom_One_Light__Material_.icls
+
+    # @see: https://github.com/catppuccin/jetbrains/releases/latest
+    echo "Installing Catppuccin PhpStorm plugin..."
+    open ./editors/phpstorm/Catppuccin.Theme-3.6.0.jar
+
+    # @see: https://github.com/catppuccin/sublime-text/tree/main/build
+    echo "Copying Catppuccin Sublime Text themes..."
+    mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages/User"
+    cp ./editors/subl/Catppuccin*.sublime-color-scheme "$HOME/Library/Application Support/Sublime Text/Packages/User"
+
+    # @see: https://github.com/catppuccin/vscode/releases/latest
+    echo "Installing Catppuccin VS Code theme..."
+    if command -v code &>/dev/null; then
+        code --install-extension ./editors/vscode/catppuccin-vsc-3.19.0.vsix
+    fi
+
+    # @see: https://github.com/catppuccin/zed/releases/latest
+    echo "Copying Catppuccin Zed themes..."
+    mkdir -p "$HOME/.config/zed/themes"
+    cp ./editors/zed/themes/*.json "$HOME/.config/zed/themes/"
 }
 
 function install_editor_configs() {
     echo "Copying Sublime Text config..."
     mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages/User"
-    cp ./editors/subl/* "$HOME/Library/Application Support/Sublime Text/Packages/User"
+    cp ./editors/subl/*.sublime-settings "$HOME/Library/Application Support/Sublime Text/Packages/User"
 
     echo "Copying VS Code config..."
     cp ./editors/vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
@@ -117,7 +137,7 @@ function install_all() {
     install_terminal_theme
     install_editor_configs
     install_editor_symlinks
-    # install_editor_themes
+    install_editor_themes
     install_automator_workflows
     install_ai_apps
     install_ai_configs
