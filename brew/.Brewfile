@@ -128,6 +128,7 @@ cask "virtualbox"
 cask "virtualbox-extension-pack"
 cask "yacreader"
 cask "yubico-yubikey-manager"
+cask "zed"
 
 # AppStore
 brew "mas"
