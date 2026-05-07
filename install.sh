@@ -98,7 +98,7 @@ function install_ai_apps() {
 
 function install_ai_configs() {
     echo "Copying Claude config..."
-    cp -r ./claude/ "$HOME/.claude/"
+    cp -r ./ai/claude/ "$HOME/.claude/"
     chmod +x "$HOME/.claude/statusline.sh"
 }
 
