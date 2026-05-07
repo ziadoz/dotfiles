@@ -34,6 +34,9 @@
   "buffer_font_features": {
     "calt": false
   },
+  "project_panel": {
+    "auto_fold_dirs": false
+  },
   "theme": {
     "mode": "system",
     "light": "One Light",
