@@ -91,13 +91,13 @@ function install_automator_workflows() {
     cp -r ./automator/* "$HOME/Library/Services"
 }
 
-function install_claude_code() {
+function install_ai_apps() {
     echo "Installing Claude Code..."
     curl -fsSL https://claude.ai/install.sh | bash
 }
 
-function install_claude_config() {
-    echo "Copying Claude config files..."
+function install_ai_configs() {
+    echo "Copying Claude config..."
     cp -r ./claude/ "$HOME/.claude/"
     chmod +x "$HOME/.claude/statusline.sh"
 }
@@ -115,8 +115,8 @@ function install_all() {
     install_editor_symlinks
     # install_editor_themes
     install_automator_workflows
-    install_claude_code
-    install_claude_config
+    install_ai_apps
+    install_ai_configs
 }
 
 install_all
