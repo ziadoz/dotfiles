@@ -1,7 +1,6 @@
 {
     "workbench.colorTheme": "Atom One Light",
     "workbench.editor.empty.hint": "hidden",
-    "github.copilot.nextEditSuggestions.enabled": true,
     "intelephense.telemetry.enabled": false,
     "explorer.confirmDelete": false,
     "[go]": {
@@ -22,8 +21,11 @@
         "/Users/ziadoz/.aitk/instructions/": true
     },
     "workbench.iconTheme": "catppuccin-latte",
-    "editor.fontFamily": "Jetbrains Mono, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 13,
+    "editor.lineHeight": 1.6,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
     "claudeCode.preferredLocation": "panel",
     "git.autofetch": true,
     "search.useIgnoreFiles": false,
