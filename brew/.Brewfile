@@ -5,8 +5,6 @@
 # Taps
 tap "beeftornado/rmtree"
 tap "github/gh"
-tap "homebrew/cask"
-tap "homebrew/cask-versions"
 tap "shivammathur/php"
 
 # Utilities
