@@ -4,7 +4,6 @@
 
 # Taps
 tap "beeftornado/rmtree"
-tap "github/gh"
 tap "shivammathur/php"
 
 # Utilities
@@ -26,7 +25,6 @@ brew "imagesnap"
 brew "jhead"
 brew "jless"
 brew "jq"
-brew "libav"
 brew "mkcert"
 brew "monolith"
 brew "nano"
@@ -34,7 +32,6 @@ brew "neofetch"
 brew "ncdu"
 brew "nmap"
 brew "p7zip"
-brew "packer"
 brew "rename"
 brew "rmtree"
 brew "tmux"
@@ -65,7 +62,7 @@ brew "deno"
 brew "go"
 brew "goreleaser"
 brew "node"
-brew "php"
+brew "shivammathur/php/php"
 brew "ruby"
 
 # Package Managers
