@@ -101,22 +101,21 @@ function install_editor_configs() {
 }
 
 function install_editor_themes() {
-    echo "Installing PhpStorm themes..."
-    open ./editors/phpstorm/Atom\ One\ Light.icls
-    open ./editors/phpstorm/Atom_One_Light__Material_.icls
-
+    # echo "Installing PhpStorm themes..."
     # Catppuccin PhpStorm plugin: install manually via Settings > Plugins > Marketplace ("Catppuccin Theme").
     # @see: https://plugins.jetbrains.com/plugin/18682-catppuccin-theme
 
+    # echo "Installing Sublime Text themes..."
     # Catppuccin Sublime Text: install manually via Package Control ("Catppuccin Color Scheme").
     # @see: https://packagecontrol.io/packages/Catppuccin%20Color%20Scheme
 
     # @see: https://github.com/catppuccin/vscode
-    echo "Installing Catppuccin VS Code theme..."
+    echo "Installing VS Code themes..."
     if command -v code &>/dev/null; then
         code --install-extension catppuccin.catppuccin-vsc
     fi
 
+    # echo "Installing Zed themes..."
     # Catppuccin Zed: install manually via the Extensions panel (cmd+shift+x, search "Catppuccin").
     # @see: https://github.com/catppuccin/zed
 }
