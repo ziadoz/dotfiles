@@ -99,25 +99,20 @@ function install_editor_themes() {
     open ./editors/phpstorm/Atom\ One\ Light.icls
     open ./editors/phpstorm/Atom_One_Light__Material_.icls
 
-    # @see: https://github.com/catppuccin/jetbrains/releases/latest
-    echo "Installing Catppuccin PhpStorm plugin..."
-    open ./editors/phpstorm/Catppuccin.Theme-3.6.0.jar
+    # Catppuccin PhpStorm plugin: install manually via Settings > Plugins > Marketplace ("Catppuccin Theme").
+    # @see: https://plugins.jetbrains.com/plugin/18682-catppuccin-theme
 
-    # @see: https://github.com/catppuccin/sublime-text/tree/main/build
-    echo "Copying Catppuccin Sublime Text themes..."
-    mkdir -p "$HOME/Library/Application Support/Sublime Text/Packages/User"
-    cp ./editors/subl/Catppuccin*.sublime-color-scheme "$HOME/Library/Application Support/Sublime Text/Packages/User"
+    # Catppuccin Sublime Text: install manually via Package Control ("Catppuccin Color Scheme").
+    # @see: https://packagecontrol.io/packages/Catppuccin%20Color%20Scheme
 
-    # @see: https://github.com/catppuccin/vscode/releases/latest
+    # @see: https://github.com/catppuccin/vscode
     echo "Installing Catppuccin VS Code theme..."
     if command -v code &>/dev/null; then
-        code --install-extension ./editors/vscode/catppuccin-vsc-3.19.0.vsix
+        code --install-extension catppuccin.catppuccin-vsc
     fi
 
-    # @see: https://github.com/catppuccin/zed/releases/latest
-    echo "Copying Catppuccin Zed themes..."
-    mkdir -p "$HOME/.config/zed/themes"
-    cp ./editors/zed/themes/*.json "$HOME/.config/zed/themes/"
+    # Catppuccin Zed: install manually via the Extensions panel (cmd+shift+x, search "Catppuccin").
+    # @see: https://github.com/catppuccin/zed
 }
 
 function install_automator_workflows() {
