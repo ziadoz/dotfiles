@@ -1,4 +1,9 @@
+#!/usr/bin/env bash
+
 set -euo pipefail
+
+# Ensure installer works no matter which directory it's run from.
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 function install_brew_config() {
     echo "Copying Homebrew files..."
