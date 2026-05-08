@@ -50,8 +50,8 @@ function install_cli_ghostty_config() {
 }
 
 function install_fonts() {
-    echo "Copying fonts..."
-    find ./fonts -name "*.ttf" -o -name "*.otf" | xargs -I{} cp {} "$HOME/Library/Fonts/"
+    echo "Installing fonts..."
+    brew bundle --file ./fonts/.Brewfile
 }
 
 function install_editor_symlinks() {
