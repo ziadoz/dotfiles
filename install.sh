@@ -5,15 +5,14 @@ set -euo pipefail
 # Ensure installer works no matter which directory it's run from.
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-function install_brew_config() {
-    echo "Copying Homebrew files..."
-    cp ./brew/.Brewfile "$HOME"
-}
+if [ "${DOTFILES_INSTALL_DEBUG:-0}" = "1" ]; then
+    set -x
+fi
 
 function install_brew_apps() {
     echo "Installing Homebrew packages..."
     brew analytics off
-    brew bundle --file "$HOME/.Brewfile"
+    brew bundle --file ./brew/.Brewfile
     brew cleanup
 }
 
@@ -39,8 +38,10 @@ function install_cli_git_config() {
 function install_cli_ssh_config() {
     echo "Copying SSH files..."
     mkdir -p "$HOME/.ssh"
-    chmod +700 "$HOME/.ssh"
-    cp ./cli/ssh/config "$HOME/.ssh"
+    chmod 700 "$HOME/.ssh"
+    if [ -s ./cli/ssh/config ]; then
+        cp ./cli/ssh/config "$HOME/.ssh"
+    fi
 }
 
 function install_cli_theme() {
@@ -69,15 +70,20 @@ function install_editor_symlinks() {
     fi
 
     echo "Symlinking VS Code..."
-    if [ -d "/Applications/Visual Studio Code.app" ] && [ ! -f "$HOME/.bin/vscode" ]; then
-        ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code ~/.bin/vscode
+    if [ -d "/Applications/Visual Studio Code.app" ] && [ ! -f "$HOME/.bin/code" ]; then
+        ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code ~/.bin/code
     fi
 
     # @see: https://www.jetbrains.com/help/phpstorm/working-with-the-ide-features-from-command-line.html
     echo "Symlinking PhpStorm..."
     if [ -d "/Applications/PhpStorm.app" ] && [ ! -f "$HOME/.bin/phpstorm" ]; then
-        echo -en '#!/usr/bin/env bash\n\nopen -na "PhpStorm.app" --args "$@"' > "$HOME/.bin/phpstorm"
-        chmod +x "$HOME/.bin/phpstorm"
+        ln -s /Applications/PhpStorm.app/Contents/MacOS/phpstorm ~/.bin/phpstorm
+    fi
+
+    # Zed bundles its CLI as `cli`, so we symlink it as `zed` to match the conventional command name.
+    echo "Symlinking Zed..."
+    if [ -d "/Applications/Zed.app" ] && [ ! -f "$HOME/.bin/zed" ]; then
+        ln -s /Applications/Zed.app/Contents/MacOS/cli ~/.bin/zed
     fi
 }
 
@@ -133,7 +139,6 @@ function install_ai_configs() {
 }
 
 function install_all() {
-    install_brew_config
     install_brew_apps
     install_cli_zsh_theme
     install_cli_zsh_config
@@ -151,4 +156,6 @@ function install_all() {
 }
 
 # Only run install_all when executed directly, not when sourced to call individual functions.
-[[ "${BASH_SOURCE[0]}" == "${0}" ]] && install_all
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    install_all
+fi
