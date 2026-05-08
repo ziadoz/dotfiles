@@ -1,0 +1,28 @@
+# Theme
+theme = Snazzy
+
+# Font
+font-family = "JetBrains Mono"
+font-size = 13
+
+# Window
+window-padding-x = 12
+window-padding-y = 12
+window-padding-balance = true
+window-save-state = always
+macos-titlebar-style = transparent
+macos-option-as-alt = true
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = cursor
+
+# Behaviour
+mouse-hide-while-typing = true
+copy-on-select = false
+confirm-close-surface = false
+clipboard-trim-trailing-spaces = true
+
+# Scrollback
+scrollback-limit = 100000

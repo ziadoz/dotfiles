@@ -43,6 +43,12 @@ function install_cli_theme() {
     open ./cli/themes/*.terminal
 }
 
+function install_cli_ghostty_config() {
+    echo "Copying Ghostty config..."
+    mkdir -p "$HOME/.config/ghostty"
+    cp ./cli/ghostty/config "$HOME/.config/ghostty/config"
+}
+
 function install_fonts() {
     echo "Copying fonts..."
     find ./fonts -name "*.ttf" -o -name "*.otf" | xargs -I{} cp {} "$HOME/Library/Fonts/"
@@ -134,6 +140,7 @@ function install_all() {
     install_cli_git_config
     install_cli_ssh_config
     install_cli_theme
+    install_cli_ghostty_config
     install_fonts
     install_editor_symlinks
     install_editor_configs
