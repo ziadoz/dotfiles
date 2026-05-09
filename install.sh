@@ -12,7 +12,7 @@ fi
 function install_brew_apps() {
     echo "Installing Homebrew packages..."
     brew analytics off
-    brew bundle --file ./brew/.Brewfile
+    brew bundle --file ./apps/.Brewfile
     brew cleanup
 }
 
