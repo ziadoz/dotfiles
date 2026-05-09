@@ -35,7 +35,7 @@
     "calt": false
   },
   "project_panel": {
-    "auto_fold_dirs": false
+    "auto_fold_dirs": true
   },
   "theme": {
     "mode": "system",
