@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Cpwd
+# Copy current working directory to clipboard
+# Usage: cpwd
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+pwd | pbcopy
+echo "Copied: $(pwd)"

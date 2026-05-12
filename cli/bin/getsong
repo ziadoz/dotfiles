@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Getsong
+# Download audio via yt-dlp (best quality)
+# Usage: getsong <url>
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 "$1"

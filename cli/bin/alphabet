@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Alphabet
+# Print the alphabet
+# Usage: alphabet
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+echo 'abcdefghijklmnopqrstuvwxyz'
+echo 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

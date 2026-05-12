@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Duck
+# Open DuckDuckGo search from the terminal
+# Usage: duck [search terms]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ $# -eq 0 ]; then
+    open 'https://duckduckgo.com'
+else
+    args="$*"
+    search="${args// /+}"
+
+    open "https://duckduckgo.com/?q=$search"
+fi

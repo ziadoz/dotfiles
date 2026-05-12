@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Pasta
+# Output clipboard contents to stdout
+# Usage: pasta
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+pbpaste

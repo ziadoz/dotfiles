@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Catbin
+# Display the source of a script in your $PATH
+# Usage: catbin scriptname
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [[ $# != 1 ]]; then
+    echo "Usage: catbin <command>" >&2
+    exit 1
+fi
+
+if command -v bat &>/dev/null; then
+    cat_command=bat
+else
+    cat_command=cat
+fi
+
+exec "$cat_command" "$(command -v "$1")"

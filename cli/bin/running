@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Running
+# List running processes with optional grep filtering
+# Usage: running [search term]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+process_list="$(ps -eo 'pid command')"
+
+if [[ $# != 0 ]]; then
+    process_list="$(echo "$process_list" | grep -iF "$*")"
+fi
+
+echo "$process_list" |
+    grep -Fv "${BASH_SOURCE[0]}" |
+    grep -Fv grep

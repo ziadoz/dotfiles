@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+# Url
+# Parse and display URL components
+# Usage: url "https://example.com/path?key=value#fragment"
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+import sys
+from urllib.parse import urlparse, parse_qsl
+
+if len(sys.argv) != 2:
+    print("Usage: url <url>", file=sys.stderr)
+    sys.exit(1)
+
+parsed = urlparse(sys.argv[1])
+
+print("original:", sys.argv[1])
+print("protocol:", parsed.scheme)
+
+if parsed.username is not None:
+    print("username:", parsed.username)
+if parsed.password is not None:
+    print("password:", parsed.password)
+if parsed.hostname is not None:
+    print("hostname:", parsed.hostname)
+if parsed.port is not None:
+    print("port:", parsed.port)
+if len(parsed.path) != 0:
+    print("path:", parsed.path)
+if len(parsed.query) != 0:
+    print("query:", parsed.query)
+    for key, value in parse_qsl(parsed.query):
+        print("-", key, value)
+if len(parsed.fragment) != 0:
+    print("hash:", parsed.fragment)

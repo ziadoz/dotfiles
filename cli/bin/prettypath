@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Prettypath
+# Print $PATH with one entry per line
+# Usage: prettypath
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+echo "$PATH" | tr ':' '\n'

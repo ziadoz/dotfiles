@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Removeexif
+# Strip EXIF data from JPEGs
+# Usage: removeexif image.jpg [image2.jpg ...]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+exec jhead -purejpg "$@"

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Wifi
+# CLI WiFi management for macOS
+# Usage: wifi [status|scan|on|off|connect SSID]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+case "${1:-status}" in
+    status)
+        networksetup -getairportnetwork en0
+        ;;
+    scan)
+        /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -s
+        ;;
+    on)
+        networksetup -setairportpower en0 on
+        echo "WiFi turned on"
+        ;;
+    off)
+        networksetup -setairportpower en0 off
+        echo "WiFi turned off"
+        ;;
+    connect)
+        if [ -z "${2:-}" ]; then
+            echo "Usage: wifi connect SSID" >&2
+            exit 1
+        fi
+        networksetup -setairportnetwork en0 "$2"
+        ;;
+    *)
+        echo "Usage: wifi [status|scan|on|off|connect SSID]" >&2
+        exit 1
+        ;;
+esac

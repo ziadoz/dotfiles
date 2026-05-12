@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Copy
+# Copy stdin to clipboard
+# Usage: echo "hello" | copy
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+pbcopy

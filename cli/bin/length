@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Length
+# Count characters in arguments
+# Usage: length "some text"
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+echo -n "$@" | wc -c | awk '{print $1}'

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Pingen
+# Generate a random PIN/digit sequence
+# Usage: pingen [length]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+length="${1:-4}"
+
+shuf -i 0-9 -n "$length" | tr -d '\n'
+echo

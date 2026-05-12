@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+# Myip
+# Show local and/or global IP address
+# Usage: myip [local|global|both]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+import socket
+import sys
+from urllib.request import urlopen
+
+def local_ip():
+    return socket.gethostbyname(socket.gethostname())
+
+def global_ip():
+    with urlopen("https://icanhazip.com/", timeout=30) as response:
+        return response.read(99).decode("utf-8").strip()
+
+arg = sys.argv[1] if len(sys.argv) > 1 else "both"
+
+if arg in ("local", "l"):
+    print(local_ip())
+elif arg in ("global", "g"):
+    print(global_ip())
+else:
+    print("local:", local_ip())
+    print("global:", global_ip())

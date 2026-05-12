@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+# Csv2md
+# Convert CSV to Markdown table
+# Usage: csv2md < file.csv
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+import csv
+import sys
+
+reader = csv.reader(sys.stdin)
+rows = list(reader)
+
+if not rows:
+    sys.exit(0)
+
+header = rows[0]
+print("| " + " | ".join(header) + " |")
+print("| " + " | ".join("---" for _ in header) + " |")
+
+for row in rows[1:]:
+    print("| " + " | ".join(row) + " |")

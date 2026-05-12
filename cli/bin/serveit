@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Serveit
+# Start a local HTTP server in the current directory
+# Usage: serveit [port]
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+python3 -m http.server "${1:-8000}"

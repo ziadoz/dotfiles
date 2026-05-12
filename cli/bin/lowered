@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Lowered
+# Convert stdin to lowercase
+# Usage: echo "HELLO" | lowered
+# @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+tr '[:upper:]' '[:lower:]'
