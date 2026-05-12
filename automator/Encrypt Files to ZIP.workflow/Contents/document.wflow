@@ -175,16 +175,18 @@ fi
 
 directory="$(dirname "$1")"
 if [[ ! -d "$directory" ]]; then
-    exit 1;
+    exit 1
 fi
 
-zip_file="$(mktemp).zip"
-trap 'rm -f "$zip_file" "$zip_file.enc"' EXIT
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
 
-zip -r "$zip_file" "$@"
+mkdir "$tmpdir/files"
+cp -R "$@" "$tmpdir/files/"
+(cd "$tmpdir/files" &amp;&amp; zip -r "$tmpdir/files.zip" .)
 
-echo -n "$password" | openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in "$zip_file" -out "$zip_file.enc" -pass stdin
-mv "$zip_file.enc" "$directory/encrypted-$(date +"%Y%m%d%H%M%S").zip.enc"</string>
+now="$(date +"%Y%m%d%H%M%S")"
+echo -n "$password" | openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in "$tmpdir/files.zip" -out "$directory/encrypted-$now.zip.enc" -pass stdin</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>

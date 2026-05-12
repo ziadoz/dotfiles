@@ -173,6 +173,9 @@ if [[ -z "$password" ]]; then
     exit 1
 fi
 
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
 for f in "$@"
 do
     if [[ "$f" != *.enc ]]; then
@@ -180,7 +183,9 @@ do
         continue
     fi
 
-    echo -n "$password" | openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$f" -out "${f%.enc}" -pass stdin
+    directory="$(dirname "$f")"
+    echo -n "$password" | openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$f" -out "$tmpdir/decrypted.zip" -pass stdin
+    unzip -o "$tmpdir/decrypted.zip" -d "$directory"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
