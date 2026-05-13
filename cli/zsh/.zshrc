@@ -37,7 +37,6 @@ alias sudo='sudo '
 
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr \"\$(route get default | awk '/interface:/{print \$2}')\""
-alias ips="ifconfig | awk '/inet6? /{print \$2}'"
 
 command -v hexdump > /dev/null || alias hd="hexdump -C"
 command -v md5sum > /dev/null || alias md5sum="md5"
