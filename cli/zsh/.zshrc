@@ -17,6 +17,28 @@ if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; 
     source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
+# Exports
+export EDITOR='nano'
+
+export LANG='en_US.UTF-8'
+export LANGUAGE='en_US:en'
+export LC_ALL='en_US.UTF-8'
+
+export HOMEBREW_NO_ANALYTICS=1
+
+# History
+# @see: https://martinheinz.dev/blog/110
+# @see: https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
+# @see: https://zsh.sourceforge.io/Doc/Release/Options.html
+# @see: https://unix.stackexchange.com/questions/599641/why-do-i-have-duplicates-in-my-zsh-history
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTORY_IGNORE="(mkv2mp4)"
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
 # Paths
 # @see: https://twitter.com/paulredmond/status/1204557648026144768
 # @see: https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
