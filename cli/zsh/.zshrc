@@ -31,6 +31,10 @@ export LANGUAGE='en_US:en'
 export LC_ALL='en_US.UTF-8'
 
 export HOMEBREW_NO_ANALYTICS=1
+# export HOMEBREW_GITHUB_API_TOKEN=""
+
+# @see: https://www.previousnext.com.au/blog/managing-composer-github-access-personal-access-tokens
+# export COMPOSER_AUTH='{"github-oauth": {"github.com": ""}}'
 
 # History
 # @see: https://martinheinz.dev/blog/110
