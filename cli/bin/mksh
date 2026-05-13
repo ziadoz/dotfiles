@@ -12,4 +12,4 @@ fi
 
 printf '#!/usr/bin/env bash\nset -euo pipefail\n\n' > "$1"
 chmod +x "$1"
-exec "${EDITOR:-vim}" "$1"
+exec "${EDITOR:-nano}" "$1"

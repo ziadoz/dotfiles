@@ -13,4 +13,4 @@ fi
 file="$(mktemp)"
 
 echo "Editing $file"
-exec "${EDITOR:-vim}" "$file"
+exec "${EDITOR:-nano}" "$file"
