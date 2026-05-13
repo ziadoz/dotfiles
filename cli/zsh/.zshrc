@@ -1,4 +1,7 @@
-# Pure theme and prompt
+#========================#
+#        Prompt          #
+#========================#
+
 # @see: https://github.com/sindresorhus/pure
 if [ -d "$HOME/.zsh/pure" ]; then
     fpath+=($HOME/.zsh/pure)
@@ -17,7 +20,10 @@ if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; 
     source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-# Exports
+#========================#
+#        Exports         #
+#========================#
+
 export EDITOR='nano'
 
 export LANG='en_US.UTF-8'
@@ -39,7 +45,10 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-# Paths
+#========================#
+#         Paths          #
+#========================#
+
 # @see: https://twitter.com/paulredmond/status/1204557648026144768
 # @see: https://thoughtbot.com/blog/cding-to-frequently-used-directories-in-zsh
 # @see: https://jcode.me/cdpath-with-zsh/
@@ -52,7 +61,10 @@ zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories path-d
 
 export PATH="$PATH:$HOME/.bin:$HOME/.local/bin"
 
-# Aliases
+#========================#
+#        Aliases         #
+#========================#
+
 alias ..="cd .."
 alias ~="cd ~"
 alias ls="ls -GpF"
@@ -75,7 +87,10 @@ alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias lowered="tr '[:upper:]' '[:lower:]'"
 alias uppered="tr '[:lower:]' '[:upper:]'"
 
-# Functions
+#========================#
+#       Functions        #
+#========================#
+
 # @see: https://github.com/sindresorhus/pure/issues/664#issuecomment-2816794108
 # @see: https://apple.stackexchange.com/a/478437
 function shell_session_save() {
