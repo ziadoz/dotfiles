@@ -46,7 +46,6 @@ function install_cli_bin_scripts() {
     info "Copying bin scripts..."
     mkdir -p "$HOME/.bin"
     cp ./cli/bin/* "$HOME/.bin/"
-    chmod +x "$HOME/.bin/"*
 }
 
 function install_cli_git_config() {
