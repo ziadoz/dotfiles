@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Httpstatus
-# HTTP status code quick reference
-# Usage: httpstatus [search term]
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "HTTP Status"
+    echo "HTTP status code quick reference"
+    echo "Usage: httpstatus [search term]"
+    exit 0
+fi
 
 statuses="100 Continue
 101 Switching Protocols

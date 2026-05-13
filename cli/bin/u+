@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 
-# U+
-# Look up Unicode character by hex codepoint
-# Usage: u+ 1F600
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
 import sys
 import unicodedata
 
-if len(sys.argv) != 2:
-    print("Usage: u+ <hex_codepoint>", file=sys.stderr)
-    sys.exit(1)
+if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+    print("Unicode Codepoint")
+    print("Look up Unicode character by hex codepoint")
+    print("Usage: u+ 1F600")
+    sys.exit(0)
 
 as_int = int(sys.argv[1], 16)
 as_chr = chr(as_int)

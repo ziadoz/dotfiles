@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Emptyfilebot
-# Usage: emptyfilebot
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Empty FileBot"
+    echo "Usage: emptyfilebot"
+    exit 0
+fi
 
 rm -f ~/.filebot/history.xml
 rm -f ~/.filebot/error.log

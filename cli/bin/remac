@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Remac
-# Usage: remac
 # @see: http://jezenthomas.com/free-internet-on-trains/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Remac"
+    echo "Usage: remac"
+    exit 0
+fi
 
 sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
 sudo ifconfig en0 ether $(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')

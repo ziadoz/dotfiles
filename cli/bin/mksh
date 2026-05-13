@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Mksh
-# Create a new shell script with shebang and open in editor
-# Usage: mksh scriptname
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
-if [[ $# != 1 ]]; then
-    echo "Usage: mksh <filename>" >&2
-    exit 1
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Mksh"
+    echo "Create a new shell script with shebang and open in editor"
+    echo "Usage: mksh scriptname"
+    exit 0
 fi
 
 printf '#!/usr/bin/env bash\nset -euo pipefail\n\n' > "$1"

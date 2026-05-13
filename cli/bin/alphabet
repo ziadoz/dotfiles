@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Alphabet
-# Print the alphabet
-# Usage: alphabet
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Alphabet"
+    echo "Print the alphabet"
+    echo "Usage: alphabet"
+    exit 0
+fi
 
 echo 'abcdefghijklmnopqrstuvwxyz'
 echo 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

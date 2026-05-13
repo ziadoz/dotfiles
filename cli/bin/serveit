@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Serveit
-# Start a local HTTP server in the current directory
-# Usage: serveit [port]
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Serve It"
+    echo "Start a local HTTP server in the current directory"
+    echo "Usage: serveit [port]"
+    exit 0
+fi
 
 python3 -m http.server "${1:-8000}"

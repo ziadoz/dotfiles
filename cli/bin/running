@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Running
-# List running processes with optional grep filtering
-# Usage: running [search term]
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Running"
+    echo "List running processes with optional grep filtering"
+    echo "Usage: running [search term]"
+    exit 0
+fi
 
 process_list="$(ps -eo 'pid command')"
 

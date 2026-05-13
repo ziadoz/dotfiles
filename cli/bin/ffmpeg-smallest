@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
-# Ffmpeg-Smallest
-# Convert media to multiple formats and keep the smallest
-# Usage: ffmpeg-smallest input.mp4 output video webm mp4
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
 from argparse import ArgumentParser
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import subprocess
+import sys
+
+if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+    print("FFmpeg Smallest")
+    print("Convert media to multiple formats and keep the smallest")
+    print("Usage: ffmpeg-smallest input.mp4 output video webm mp4")
+    sys.exit(0)
 
 def main():
     parser = ArgumentParser(

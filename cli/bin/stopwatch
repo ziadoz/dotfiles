@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Stopwatch
-# Simple terminal stopwatch (Ctrl+D to stop)
-# Usage: stopwatch
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Stopwatch"
+    echo "Simple terminal stopwatch (Ctrl+D to stop)"
+    echo "Usage: stopwatch"
+    exit 0
+fi
 
 date "+%l:%M:%S%p: stopwatch started (^D to stop)"
 time cat

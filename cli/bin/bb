@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Bb
-# Run a command silently in the background
-# Usage: bb open "https://example.com"
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Bb"
+    echo "Run a command silently in the background"
+    echo 'Usage: bb open "https://example.com"'
+    exit 0
+fi
 
 if test -t 1; then
     exec 1>/dev/null

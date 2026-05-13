@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Treefind
-# Tree with search/filter via pattern matching
-# Usage: treefind [pattern] [directory]
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Tree Find"
+    echo "Tree with search/filter via pattern matching"
+    echo "Usage: treefind [pattern] [directory]"
+    exit 0
+fi
 
 if [[ $# == 0 ]]; then
     tree .

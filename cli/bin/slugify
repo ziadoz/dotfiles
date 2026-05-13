@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Slugify
-# Usage: echo "Foo Bar" | slugify
 # @see: https://duncanlock.net/blog/2021/06/15/good-simple-bash-slugify-function/
 # @see: https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
+
+if { [ -t 0 ] && [ $# -eq 0 ]; } || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Slugify"
+    echo 'Usage: echo "Foo Bar" | slugify'
+    exit 0
+fi
 
 iconv -t ascii//TRANSLIT \
   | tr -d "'" \

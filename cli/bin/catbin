@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Catbin
-# Display the source of a script in your $PATH
-# Usage: catbin scriptname
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
-if [[ $# != 1 ]]; then
-    echo "Usage: catbin <command>" >&2
-    exit 1
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Cat Bin"
+    echo 'Display the source of a script in your $PATH'
+    echo "Usage: catbin scriptname"
+    exit 0
 fi
 
 if command -v bat &>/dev/null; then

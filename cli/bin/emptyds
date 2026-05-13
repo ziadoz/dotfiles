@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Emptyds
-# Usage: emptyds
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Empty .DS_Store"
+    echo "Usage: emptyds"
+    exit 0
+fi
 
 find . -type f -name '*.DS_Store' -ls -delete

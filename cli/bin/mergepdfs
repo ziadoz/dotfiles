@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Mergepdfs
-# Usage: mergepdfs -o output.pdf input1.pdf input2.pdf ...
 # @see: https://apple.stackexchange.com/questions/230437/how-can-i-combine-multiple-pdfs-using-the-command-line/230447#230447
+
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Merge PDFs"
+    echo "Usage: mergepdfs -o output.pdf input1.pdf input2.pdf ..."
+    exit 0
+fi
 
 exec '/System/Library/Automator/Combine PDF Pages.action/Contents/MacOS/join' "$@"

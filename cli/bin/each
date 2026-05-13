@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 
-# Each
-# Run a command for each line of stdin
-# Usage: ls | each "echo processing {}"
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
 import shlex
 import subprocess
 import sys
 
-if len(sys.argv) != 2 or "{}" not in sys.argv[1]:
-    print("Usage: each 'command {}'", file=sys.stderr)
-    print("  {} is replaced with each line from stdin", file=sys.stderr)
+if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+    print("Each")
+    print("Run a command for each line of stdin")
+    print('Usage: ls | each "echo processing {}"')
+    sys.exit(0)
+
+if "{}" not in sys.argv[1]:
+    print("Each: missing {} placeholder", file=sys.stderr)
     sys.exit(1)
 
 command = sys.argv[1]

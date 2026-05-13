@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Hoy
-# Print today's date in ISO format
-# Usage: hoy
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Hoy"
+    echo "Print today's date in ISO format"
+    echo "Usage: hoy"
+    exit 0
+fi
 
 date +%Y-%m-%d

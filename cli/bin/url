@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 
-# Url
-# Parse and display URL components
-# Usage: url "https://example.com/path?key=value#fragment"
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
 import sys
 from urllib.parse import urlparse, parse_qsl
 
-if len(sys.argv) != 2:
-    print("Usage: url <url>", file=sys.stderr)
-    sys.exit(1)
+if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+    print("URL")
+    print("Parse and display URL components")
+    print('Usage: url "https://example.com/path?key=value#fragment"')
+    sys.exit(0)
 
 parsed = urlparse(sys.argv[1])
 

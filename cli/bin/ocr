@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Ocr
-# Extract text from images using macOS built-in OCR
-# Usage: ocr image.png
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 # @see: https://blog.greg.technology/2024/01/02/how-do-you-ocr-on-a-mac.html
+
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "OCR"
+    echo "Extract text from images using macOS built-in OCR"
+    echo "Usage: ocr image.png"
+    exit 0
+fi
 
 shortcuts run "Extract Text from Image" -i "$1"

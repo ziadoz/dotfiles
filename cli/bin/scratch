@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Scratch
-# Open a temp file in $EDITOR
-# Usage: scratch
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Scratch"
+    echo 'Open a temp file in $EDITOR'
+    echo "Usage: scratch"
+    exit 0
+fi
 
 file="$(mktemp)"
 

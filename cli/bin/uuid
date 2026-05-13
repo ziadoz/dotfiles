@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Uuid
-# Generate a random UUID
-# Usage: uuid
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "UUID"
+    echo "Generate a random UUID"
+    echo "Usage: uuid"
+    exit 0
+fi
 
 uuidgen | tr '[:upper:]' '[:lower:]'

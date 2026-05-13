@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Mkv2mp4
-# Usage: mkv2mp4 <directory>
 # @see: https://github.com/ziadoz/media-swapper
 # @see: https://askubuntu.com/a/35994
+
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "MKV to MP4"
+    echo "Usage: mkv2mp4 <directory>"
+    exit 0
+fi
 
 _mkv2mp4_convert() {
     local f="$1"

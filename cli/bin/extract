@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Extract
-# Usage: extract archive.tar.gz
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Extract"
+    echo "Usage: extract archive.tar.gz"
+    exit 0
+fi
 
 if [ -f "$1" ]; then
     case "$1" in

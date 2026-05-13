@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Setdns
-# Usage: setdns [servers...]
 # @see: http://osxdaily.com/2015/06/02/change-dns-command-line-mac-os-x/
 # @see: http://osxdaily.com/2014/09/03/list-all-network-hardware-from-the-command-line-in-os-x/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Set DNS"
+    echo "Usage: setdns [servers...]"
+    exit 0
+fi
 
 dns_servers="${*:-192.168.0.3 1.1.1.1 1.0.0.1}"
 

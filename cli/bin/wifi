@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Wifi
-# CLI WiFi management for macOS
-# Usage: wifi [status|scan|on|off|connect SSID]
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "WiFi"
+    echo "CLI WiFi management for macOS"
+    echo "Usage: wifi [status|scan|on|off|connect SSID]"
+    exit 0
+fi
 
 case "${1:-status}" in
     status)

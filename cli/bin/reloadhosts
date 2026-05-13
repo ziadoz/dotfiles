@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Reloadhosts
-# Usage: reloadhosts
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Reload Hosts"
+    echo "Usage: reloadhosts"
+    exit 0
+fi
 
 sudo dscacheutil -flushcache
 sudo killall -HUP mDNSResponder

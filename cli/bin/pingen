@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Pingen
-# Generate a random PIN/digit sequence
-# Usage: pingen [length]
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "PIN Generator"
+    echo "Generate a random PIN/digit sequence"
+    echo "Usage: pingen [length]"
+    exit 0
+fi
 
 length="${1:-4}"
 

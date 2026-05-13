@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
-# Markdownquote
-# Prefix stdin lines with > for Markdown quoting
-# Usage: echo "some text" | markdownquote
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
 
 import sys
+
+if (sys.stdin.isatty() and len(sys.argv) == 1) or (len(sys.argv) > 1 and sys.argv[1] in ("-h", "--help")):
+    print("Markdown Quote")
+    print("Prefix stdin lines with > for Markdown quoting")
+    print('Usage: echo "some text" | markdownquote')
+    sys.exit(0)
 
 for line in sys.stdin:
     trimmed = line.strip()

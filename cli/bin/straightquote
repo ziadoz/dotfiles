@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Straightquote
-# Convert smart/curly quotes to straight quotes
-# Usage: echo "text" | straightquote
 # @see: https://evanhahn.com/scripts-i-wrote-that-i-use-all-the-time/
+
+if { [ -t 0 ] && [ $# -eq 0 ]; } || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Straight Quote"
+    echo "Convert smart/curly quotes to straight quotes"
+    echo 'Usage: echo "text" | straightquote'
+    exit 0
+fi
 
 sed "s/['']/'/g; s/[""]/\"/g"
