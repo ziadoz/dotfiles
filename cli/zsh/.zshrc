@@ -53,25 +53,31 @@ zstyle ':completion:*:complete:(cd|pushd):*' tag-order 'local-directories path-d
 export PATH="$PATH:$HOME/.bin:$HOME/.local/bin"
 
 # Aliases
+
+# Navigation
 alias ..="cd .."
 alias ~="cd ~"
+alias ls="ls -GpF"
+
+# Shell
 alias sudo='sudo '
-
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr \"\$(route get default | awk '/interface:/{print \$2}')\""
-
-command -v hexdump > /dev/null || alias hd="hexdump -C"
-command -v md5sum > /dev/null || alias md5sum="md5"
-command -v sha1sum > /dev/null || alias sha1sum="shasum"
-
 alias badge="tput bel"
-
 alias reloadshell="exec $SHELL -l"
 alias editshell="$EDITOR ~/.zshrc"
 alias edithosts="$EDITOR /etc/hosts"
 
+# Network
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr \"\$(route get default | awk '/interface:/{print \$2}')\""
+
+# Checksums
+command -v hexdump > /dev/null || alias hd="hexdump -C"
+command -v md5sum > /dev/null || alias md5sum="md5"
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Utilities
 alias prettypath="echo \$PATH | tr ':' '\n'"
-alias serveit="python3 -m http.server"
+alias serve="php -S localhost:8000"
 alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
 alias lowered="tr '[:upper:]' '[:lower:]'"
 alias uppered="tr '[:lower:]' '[:upper:]'"
