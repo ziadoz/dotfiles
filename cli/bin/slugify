@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Slugify
+# Usage: echo "Foo Bar" | slugify
+# @see: https://duncanlock.net/blog/2021/06/15/good-simple-bash-slugify-function/
+# @see: https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
+
+iconv -t ascii//TRANSLIT \
+  | tr -d "'" \
+  | sed -E 's/[^a-zA-Z0-9]+/-/g' \
+  | sed -E 's/^-+|-+$//g' \
+  | tr "[:upper:]" "[:lower:]"

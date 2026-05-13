@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Mkv2mp4
+# Usage: mkv2mp4 <directory>
+# @see: https://github.com/ziadoz/media-swapper
+# @see: https://askubuntu.com/a/35994
+
+_mkv2mp4_convert() {
+    local f="$1"
+    local flags=(-nostats -loglevel 0 -c:v copy -c:a copy -movflags +faststart -y)
+    local probe
+    probe=$(ffmpeg -i "$f" 2>&1)
+
+    # HEVC video needs hvc1 tag for Apple device compatibility
+    if echo "$probe" | grep -q 'Video: hevc\|Video: h265'; then
+        flags+=(-tag:v hvc1)
+    # AV1 video needs av01 tag for Apple device compatibility
+    elif echo "$probe" | grep -q 'Video: av1'; then
+        flags+=(-tag:v av01)
+    fi
+
+    # Bitmap subtitle formats cannot be converted to mov_text, so drop them
+    if echo "$probe" | grep -q 'dvd_subtitle\|hdmv_pgs_subtitle'; then
+        flags+=(-sn)
+    else
+        flags+=(-c:s mov_text)
+    fi
+
+    ffmpeg -i "$f" "${flags[@]}" "${f%.mkv}.mp4"
+}
+
+export -f _mkv2mp4_convert
+find "$1" -name '*.mkv' -print -exec bash -c '_mkv2mp4_convert "$1"' _ {} \;

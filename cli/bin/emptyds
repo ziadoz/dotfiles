@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Emptyds
+# Usage: emptyds
+
+find . -type f -name '*.DS_Store' -ls -delete

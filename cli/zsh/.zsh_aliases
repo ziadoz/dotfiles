@@ -13,9 +13,6 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
-# Flush Directory Service cache
-alias reloadhosts="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
 # Get the hex dump of a file (some systems have this symlinked)
 command -v hexdump > /dev/null || alias hd="hexdump -C"
 
@@ -25,21 +22,7 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 # Get the sha1 checksum of a file (macOS does not have `sha1sum`)
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
-# Recursively delete `.DS_Store` files
-alias emptyds="find . -type f -name '*.DS_Store' -ls -delete"
-
-# Empty Apple’s system logs to improve shell startup speed
-alias emptysystemlogs="sudo rm -rfv /private/var/log/asl/*.asl"
-
-# Show/hide hidden files in Finder or use (CMD + Shift + .)
-alias showhidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hidehidden="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
-# Merge PDF files together
-# @see: https://apple.stackexchange.com/questions/230437/how-can-i-combine-multiple-pdfs-using-the-command-line/230447#230447
-alias mergepdfs='/System/Library/Automator/Combine PDF Pages.action/Contents/MacOS/join'
-
-# Ring the terminal bell and put a badge on Terminal app's Dock icon (useful when executing time-consuming commands)
+# Ring the terminal bell and put a badge on Terminal app’s Dock icon (useful when executing time-consuming commands)
 alias badge="tput bel"
 
 # Reload the shell (i.e. invoke as a login shell)
@@ -50,6 +33,3 @@ alias editshell="$EDITOR ~/.zshrc"
 
 # Open up the hosts file for editing
 alias edithosts="$EDITOR /etc/hosts"
-
-# Empty Filebot history file and logs
-alias emptyfilebot="rm -f ~/.filebot/history.xml && rm -f ~/.filebot/error.log"

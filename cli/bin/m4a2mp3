@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# M4a2mp3
+# Usage: m4a2mp3 <directory>
+# @see: https://github.com/ziadoz/media-swapper
+# @see: https://askubuntu.com/a/35994
+
+find "$1" -name '*.m4a' -print -exec bash -c 'ffmpeg -i "$1" -nostats -loglevel 0 -c:a libmp3lame -q:a 2 -y "${1%.m4a}.mp3"' _ {} \;

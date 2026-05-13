@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Setdns
+# Usage: setdns [servers...]
+# @see: http://osxdaily.com/2015/06/02/change-dns-command-line-mac-os-x/
+# @see: http://osxdaily.com/2014/09/03/list-all-network-hardware-from-the-command-line-in-os-x/
+
+dns_servers="${*:-192.168.0.3 1.1.1.1 1.0.0.1}"
+
+if [ "$(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)" != "$dns_servers" ]; then
+    sudo networksetup -setdnsservers Wi-Fi empty
+    sudo networksetup -setdnsservers Wi-Fi $dns_servers
+    echo "DNS servers set: $(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)"
+else
+    echo "DNS servers already set: $(networksetup -getdnsservers Wi-Fi | tr '\n' ' ' | xargs)"
+fi

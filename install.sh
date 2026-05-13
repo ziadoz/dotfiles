@@ -30,6 +30,13 @@ function install_cli_zsh_config() {
     cp -r ./cli/zsh/. "$HOME"
 }
 
+function install_cli_bin_scripts() {
+    echo "Copying bin scripts..."
+    mkdir -p "$HOME/.bin"
+    cp ./cli/bin/* "$HOME/.bin/"
+    chmod +x "$HOME/.bin/"*
+}
+
 function install_cli_git_config() {
     echo "Copying Git files..."
     cp ./cli/git/.gitconfig "$HOME"
@@ -141,6 +148,7 @@ function install_all() {
     install_brew_apps
     install_cli_zsh_theme
     install_cli_zsh_config
+    install_cli_bin_scripts
     install_cli_git_config
     install_cli_ssh_config
     install_cli_theme
