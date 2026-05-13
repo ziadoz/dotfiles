@@ -39,7 +39,8 @@ export HOMEBREW_NO_ANALYTICS=1
 # @see: https://unix.stackexchange.com/questions/599641/why-do-i-have-duplicates-in-my-zsh-history
 HISTSIZE=10000000
 SAVEHIST=10000000
-# HISTORY_IGNORE=""
+HISTORY_IGNORE=""
+
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -67,7 +68,6 @@ export PATH="$PATH:$HOME/.bin:$HOME/.local/bin"
 
 alias ..="cd .."
 alias ~="cd ~"
-alias ls="ls -GpF"
 
 alias sudo='sudo '
 alias badge="tput bel"
