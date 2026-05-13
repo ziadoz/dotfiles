@@ -70,6 +70,12 @@ alias reloadshell="exec $SHELL -l"
 alias editshell="$EDITOR ~/.zshrc"
 alias edithosts="$EDITOR /etc/hosts"
 
+alias prettypath="echo \$PATH | tr ':' '\n'"
+alias serveit="python3 -m http.server"
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
+alias lowered="tr '[:upper:]' '[:lower:]'"
+alias uppered="tr '[:lower:]' '[:upper:]'"
+
 # Functions
 # @see: https://github.com/sindresorhus/pure/issues/664#issuecomment-2816794108
 # @see: https://apple.stackexchange.com/a/478437
