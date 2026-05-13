@@ -9,9 +9,17 @@ if [ "${DOTFILES_INSTALL_DEBUG:-0}" = "1" ]; then
     set -x
 fi
 
-function success() { echo "$(tput setaf 2)$*$(tput sgr0)"; }
-function info()    { echo "$(tput setaf 4)$*$(tput sgr0)"; }
-function error()   { echo "$(tput setaf 1)$*$(tput sgr0)" >&2; }
+function success() {
+    echo "$(tput setaf 2)$*$(tput sgr0)"
+}
+
+function info(){
+    echo "$(tput setaf 4)$*$(tput sgr0)"
+}
+
+function error() {
+    echo "$(tput setaf 1)$*$(tput sgr0)" >&2
+}
 
 function install_brew_apps() {
     info "Installing Homebrew packages..."
