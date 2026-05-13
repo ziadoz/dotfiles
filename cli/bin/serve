@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Serve"
+    echo "Start a local PHP server in the current directory"
+    echo "Usage: serve [port]"
+    exit 0
+fi
+
+php -S "localhost:${1:-8000}"
