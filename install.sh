@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Ensure installer works no matter which directory it's run from.
-cd "$(dirname "$0")"
+cd "$(dirname "${BASH_SOURCE[0]:-$0}")"
 
 if [ "${DOTFILES_INSTALL_DEBUG:-0}" = "1" ]; then
     set -x
@@ -174,7 +174,15 @@ function install_all() {
     success "All done."
 }
 
+function _is_sourced() {
+    if [ -n "${BASH_SOURCE+x}" ]; then
+        [[ "${BASH_SOURCE[0]}" != "${0}" ]]
+    else
+        [[ "${ZSH_EVAL_CONTEXT}" == *file* ]]
+    fi
+}
+
 # Only run install_all when executed directly, not when sourced to call individual functions.
-if [[ "${ZSH_EVAL_CONTEXT}" != *file* ]]; then
+if ! _is_sourced; then
     install_all
 fi
