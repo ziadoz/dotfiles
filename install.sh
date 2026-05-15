@@ -174,6 +174,7 @@ function install_all() {
     success "All done."
 }
 
+# Only run install_all when executed directly, not when sourced to call individual functions.
 function _is_sourced() {
     if [ -n "${BASH_SOURCE+x}" ]; then
         [[ "${BASH_SOURCE[0]}" != "${0}" ]]
@@ -182,7 +183,6 @@ function _is_sourced() {
     fi
 }
 
-# Only run install_all when executed directly, not when sourced to call individual functions.
 if ! _is_sourced; then
     install_all
 fi
