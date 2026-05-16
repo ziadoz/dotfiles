@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Unquarantine"
+    echo "Remove the macOS quarantine flag from an app or file"
+    echo "Usage: unquarantine /path/to/app"
+    exit 0
+fi
+
+xattr -rd com.apple.quarantine "$@"
