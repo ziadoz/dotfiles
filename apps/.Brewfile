@@ -7,6 +7,7 @@ tap "beeftornado/rmtree"
 tap "shivammathur/php"
 
 # Utilities
+brew "btop"
 brew "duf"
 brew "fastfetch"
 brew "ffmpeg"
