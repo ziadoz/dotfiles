@@ -155,6 +155,11 @@ function install_ai_configs() {
     chmod +x "$HOME/.claude/statusline.sh"
 }
 
+function install_macos_defaults() {
+    info "Applying macOS defaults..."
+    bash ./macos/macos.sh
+}
+
 function install_all() {
     install_brew_apps
     install_cli_zsh_theme
@@ -171,6 +176,7 @@ function install_all() {
     install_automator_workflows
     install_ai_apps
     install_ai_configs
+    install_macos_defaults
     success "All done."
 }
 
