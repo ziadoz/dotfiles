@@ -51,6 +51,9 @@ defaults write com.apple.screensaver askForPassword -int 1
 # Show path bar.
 defaults write com.apple.finder ShowPathbar -bool true
 
+# Show status bar.
+defaults write com.apple.finder ShowStatusBar -bool true
+
 # Use icon view in all Finder windows by default.
 defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
 
