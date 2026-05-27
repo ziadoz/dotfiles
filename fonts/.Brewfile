@@ -1,6 +1,7 @@
 cask "font-courier-prime"
 cask "font-fira-code"
 cask "font-fira-mono"
+cask "font-geist-mono"
 cask "font-hack"
 cask "font-jetbrains-mono"
 cask "font-zed-mono"
