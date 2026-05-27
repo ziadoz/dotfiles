@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Snooze"
+    echo "Put the display or system to sleep"
+    echo "Usage: snooze [display|system]"
+    echo ""
+    echo "  display  Sleep the display only (default)"
+    echo "  system   Sleep the entire system"
+    exit 0
+fi
+
+case "${1:-display}" in
+    display)
+        pmset displaysleepnow
+        ;;
+    system)
+        sudo pmset sleepnow
+        ;;
+    *)
+        echo "Usage: snooze [display|system]" >&2
+        exit 1
+        ;;
+esac

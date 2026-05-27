@@ -31,6 +31,8 @@ If you think my approach on something is wrong, say so and explain why.
 - When adding, modifying or deleting data such as `.env` files, config files or databases, always make a backup first.
 - When making a backup, use a `_YYYY-MM-DD` suffix on the copy filename or database name.
 - Never commit files that contain secrets, credentials, tokens or passwords. Warn me if I ask you to.
+- Never use `rm` to delete files. Always move files to `~/.Trash/` using `mv` so they can be recovered.
+- Before moving, renaming, or deleting any file, always read its contents first to understand what it contains.
 
 ## Plans
 
