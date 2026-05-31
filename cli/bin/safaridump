@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""Safaridump
+
+Export Safari reading list, local tabs, and iCloud tabs to a CSV file.
+
+Usage: safaridump [folder]
+
+  folder   Directory to write safari_export.csv into (default: current directory).
+           Created if it doesn't exist.
+
+Needs Full Disk Access on your terminal to read the reading list and iCloud
+tabs. Sources it can't read are skipped with a warning. macOS only.
+"""
+
+import argparse
+import csv
+import plistlib
+import sqlite3
+import subprocess
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+BOOKMARKS_PLIST = Path.home() / "Library/Safari/Bookmarks.plist"
+CLOUD_TABS_DB = Path.home() / "Library/Containers/com.apple.Safari/Data/Library/Safari/CloudTabs.db"
+OUTPUT_FILENAME = "safari_export.csv"
+
+FIELDS = ["source", "device", "title", "url", "date_added", "read"]
+
+
+def apple_epoch_to_iso(ts):
+    """Convert Apple Core Data timestamp (seconds since 2001-01-01) or datetime to ISO string."""
+    if not ts:
+        return ""
+    if isinstance(ts, datetime):
+        return ts.strftime("%Y-%m-%d %H:%M:%S")
+    epoch = datetime(2001, 1, 1, tzinfo=timezone.utc)
+    dt = epoch + timedelta(seconds=float(ts))
+    return dt.strftime("%Y-%m-%d %H:%M:%S")
+
+
+def get_reading_list():
+    if not BOOKMARKS_PLIST.exists():
+        print(f"Warning: {BOOKMARKS_PLIST} not found", file=sys.stderr)
+        return []
+
+    with open(BOOKMARKS_PLIST, "rb") as f:
+        pl = plistlib.load(f)
+
+    def find_node(node, title):
+        if isinstance(node, dict):
+            if node.get("Title") == title:
+                return node
+            for v in node.values():
+                result = find_node(v, title)
+                if result is not None:
+                    return result
+        elif isinstance(node, list):
+            for item in node:
+                result = find_node(item, title)
+                if result is not None:
+                    return result
+        return None
+
+    rl_node = find_node(pl, "com.apple.ReadingList")
+    if not rl_node:
+        return []
+
+    rows = []
+    for item in rl_node.get("Children", []):
+        url = item.get("URLString", "")
+        title = item.get("URIDictionary", {}).get("title", "")
+        date_added = apple_epoch_to_iso(item.get("ReadingList", {}).get("DateAdded"))
+        # DateLastFetched presence indicates it's been viewed/read
+        read = "yes" if "DateLastFetched" in item.get("ReadingList", {}) else "no"
+        rows.append({
+            "source": "reading_list",
+            "device": "",
+            "title": title,
+            "url": url,
+            "date_added": date_added,
+            "read": read,
+        })
+    return rows
+
+
+def get_local_tabs():
+    script = """
+    tell application "Safari"
+        set output to ""
+        repeat with w in windows
+            repeat with t in tabs of w
+                set output to output & (name of t) & "|||" & (URL of t) & linefeed
+            end repeat
+        end repeat
+        return output
+    end tell
+    """
+    result = subprocess.run(["osascript", "-e", script], capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Warning: AppleScript failed: {result.stderr.strip()}", file=sys.stderr)
+        return []
+
+    rows = []
+    for line in result.stdout.strip().split("\n"):
+        if "|||" not in line:
+            continue
+        title, url = line.split("|||", 1)
+        if not url or url == "favorites://":
+            continue
+        rows.append({
+            "source": "local_tab",
+            "device": "this mac",
+            "title": title,
+            "url": url,
+            "date_added": "",
+            "read": "",
+        })
+    return rows
+
+
+def get_icloud_tabs():
+    if not CLOUD_TABS_DB.exists():
+        print(f"Warning: {CLOUD_TABS_DB} not found", file=sys.stderr)
+        return []
+
+    con = sqlite3.connect(f"file:{CLOUD_TABS_DB}?mode=ro", uri=True)
+    con.row_factory = sqlite3.Row
+    try:
+        rows_db = con.execute("""
+            SELECT t.title, t.url, t.last_viewed_time, d.device_name
+            FROM cloud_tabs t
+            LEFT JOIN cloud_tab_devices d ON t.device_uuid = d.device_uuid
+            WHERE t.url IS NOT NULL AND t.url != ''
+            ORDER BY d.device_name, t.last_viewed_time DESC
+        """).fetchall()
+    finally:
+        con.close()
+
+    rows = []
+    for r in rows_db:
+        rows.append({
+            "source": "icloud_tab",
+            "device": r["device_name"] or "",
+            "title": r["title"] or "",
+            "url": r["url"],
+            "date_added": apple_epoch_to_iso(r["last_viewed_time"]) if r["last_viewed_time"] else "",
+            "read": "",
+        })
+    return rows
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="safaridump",
+        description="Export Safari reading list, local tabs, and iCloud tabs to CSV.",
+    )
+    parser.add_argument(
+        "folder", type=Path, nargs="?", default=Path.cwd(),
+        help=f"directory to write {OUTPUT_FILENAME} into (default: current directory)",
+    )
+    args = parser.parse_args()
+
+    output_dir = args.folder.expanduser()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_file = output_dir / OUTPUT_FILENAME
+
+    print("Exporting Safari data...")
+
+    reading_list = get_reading_list()
+    print(f"  Reading list: {len(reading_list)} items")
+
+    local_tabs = get_local_tabs()
+    print(f"  Local tabs:   {len(local_tabs)} items")
+
+    icloud_tabs = get_icloud_tabs()
+    print(f"  iCloud tabs:  {len(icloud_tabs)} items")
+
+    all_rows = reading_list + local_tabs + icloud_tabs
+
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=FIELDS)
+        writer.writeheader()
+        writer.writerows(all_rows)
+
+    print(f"\nWritten {len(all_rows)} rows to {output_file}")
+
+
+if __name__ == "__main__":
+    main()
