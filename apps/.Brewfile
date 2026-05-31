@@ -8,7 +8,6 @@ tap "shivammathur/php"
 
 # Utilities
 brew "btop"
-brew "ddev/ddev/ddev"
 brew "duf"
 brew "fastfetch"
 brew "ffmpeg"
