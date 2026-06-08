@@ -69,12 +69,12 @@ for f in "$@"
 do
 	# Skip files this workflow already produced
 	case "$f" in
-		*.720p.mp4) continue ;;
+		*.720p.h265.mp4) continue ;;
 	esac
 
 	"$hb" \
 		--input "$f" \
-		--output "${f%.*}.720p.mp4" \
+		--output "${f%.*}.720p.h265.mp4" \
 		--format av_mp4 \
 		--optimize \
 		--align-av \
