@@ -107,7 +107,7 @@
       "Grep",
       "WebSearch",
       "WebFetch",
-      "mcp__*",
+      "mcp__plugin_laravel-boost_laravel-boost__*",
       "Skill(pr-style:*)"
     ],
     "defaultMode": "acceptEdits"
