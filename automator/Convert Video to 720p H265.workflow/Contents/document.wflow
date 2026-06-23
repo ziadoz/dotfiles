@@ -79,7 +79,7 @@ do
 		--optimize \
 		--align-av \
 		--markers \
-		--encoder x265_10bit \
+		--encoder x265 \
 		--quality 23 \
 		--encoder-preset medium \
 		--maxHeight 720 --maxWidth 1280 \

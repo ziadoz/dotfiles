@@ -73,12 +73,8 @@ do
 		*.720p.av1.mp4) continue ;;
 	esac
 
-	# Match the source bit depth so 10-bit sources don't get banding
-	pixfmt=$("$ffprobe" -v error -select_streams v:0 -show_entries stream=pix_fmt -of csv=p=0 "$f")
-	case "$pixfmt" in
-		*10le|*10be|*p010*) encoder=svt_av1_10bit ;;
-		*) encoder=svt_av1 ;;
-	esac
+	# Force 8-bit AV1 for older-device compatibility (no 10-bit decode support)
+	encoder=svt_av1
 
 	"$hb" \
 		--input "$f" \
