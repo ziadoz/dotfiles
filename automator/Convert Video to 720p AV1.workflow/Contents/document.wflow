@@ -64,7 +64,11 @@
 set -e
 
 hb=/opt/homebrew/bin/HandBrakeCLI
-ffprobe=/opt/homebrew/bin/ffprobe
+
+notify() { osascript -e 'on run {m,t}' -e 'display notification m with title t' -e 'end run' -- "$1" "$2" 2&gt;/dev/null || true; }
+
+total=$#
+i=0
 
 for f in "$@"
 do
@@ -76,7 +80,10 @@ do
 	# Force 8-bit AV1 for older-device compatibility (no 10-bit decode support)
 	encoder=svt_av1
 
-	"$hb" \
+	i=$((i+1))
+	name=$(basename "$f")
+
+	if "$hb" \
 		--input "$f" \
 		--output "${f%.*}.720p.av1.mp4" \
 		--format av_mp4 \
@@ -91,7 +98,14 @@ do
 		--rate 30 --pfr \
 		--aencoder ca_aac --ab 160 --mixdown stereo \
 		--subtitle scan --subtitle-forced --subtitle-burned
-done</string>
+	then
+		notify "Converted $i/$total: $name" "AV1 720p"
+	else
+		notify "Failed Conversion $i/$total: $name" "AV1 720p"
+	fi
+done
+
+notify "Done: $i file(s)" "AV1 720p"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
