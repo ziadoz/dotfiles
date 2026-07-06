@@ -36,6 +36,9 @@ export HOMEBREW_NO_ANALYTICS=1
 # @see: https://www.previousnext.com.au/blog/managing-composer-github-access-personal-access-tokens
 # export COMPOSER_AUTH='{"github-oauth": {"github.com": ""}}'
 
+# No Claude telemetry
+export DISABLE_TELEMETRY=1
+
 # History
 # @see: https://martinheinz.dev/blog/110
 # @see: https://stackoverflow.com/questions/38549251/histignore-not-working-in-zsh
