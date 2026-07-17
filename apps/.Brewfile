@@ -3,7 +3,6 @@
 # @see: https://github.com/dropkick/dot/blob/main/Brewfile
 
 # Taps
-tap "beeftornado/rmtree"
 tap "shivammathur/php"
 
 # Utilities
@@ -25,7 +24,6 @@ brew "nss"
 brew "sevenzip"
 brew "rename"
 brew "unrar"
-brew "beeftornado/rmtree/brew-rmtree"
 brew "tmux"
 brew "trash"
 brew "tree"
