@@ -112,9 +112,14 @@
       "WebSearch",
       "WebFetch",
       "mcp__plugin_laravel-boost_laravel-boost__*",
-      "Skill(pr-style:*)"
+      "Skill(pr-style:*)",
+      "Write(/Users/ziadoz/Documents/Claude Plans/**)",
+      "Edit(/Users/ziadoz/Documents/Claude Plans/**)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "/Users/ziadoz/Documents/Claude Plans"
+    ]
   },
   "statusLine": {
     "type": "command",
