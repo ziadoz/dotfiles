@@ -43,7 +43,7 @@ Keep it to 3–5 sentences of prose plus any code example. Do not pad it out.
 
 ## Commits
 
-Cmmit messages use the format `a short lowercase description`.
+Commit messages use the format `a short lowercase description`.
 
 **Examples:**
 - `add event capture method`
