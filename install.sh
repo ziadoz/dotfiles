@@ -150,9 +150,13 @@ function install_ai_apps() {
 }
 
 function install_ai_configs() {
-    info "Copying Claude config..."
-    cp -r ./ai/claude/ "$HOME/.claude/"
-    chmod +x "$HOME/.claude/statusline.sh"
+    info "Symlinking Claude config..."
+    mkdir -p "$HOME/.claude"
+    chmod +x ./ai/claude/statusline.sh
+    ln -sfn "$(pwd)/ai/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+    ln -sfn "$(pwd)/ai/claude/settings.json" "$HOME/.claude/settings.json"
+    ln -sfn "$(pwd)/ai/claude/statusline.sh" "$HOME/.claude/statusline.sh"
+    ln -sfn "$(pwd)/ai/claude/skills" "$HOME/.claude/skills"
 }
 
 function install_macos_defaults() {
