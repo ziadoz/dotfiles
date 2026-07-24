@@ -37,14 +37,14 @@ If you think my approach on something is wrong, say so and explain why.
 
 ## Plans
 
-- When I ask you to save, write or store a plan, save it to `~/Documents/Claude Plans/`.
+- When I ask you to save, write or store a plan, save it to `~/Documents/Claude/`.
 - Create a subdirectory per plan named `YYYY-MM-DD - <Topic>` using today's date.
 - The main document is always `plan.md` inside that folder. Supporting files (scripts, transcripts, screenshots, prior versions) live next to it in the same folder.
 - If a plan grows multiple plan documents, name the primary one `plan.md` and the others `plan-<original-name>.md` (where `<original-name>` is the original filename minus the extension).
 - Do not put a date inside `plan.md` filenames. The folder carries the date.
 - If I ask you to update an existing plan, edit the existing `plan.md` in place rather than creating a new dated folder.
 - If I ask you to "save this conversation as a plan" without specifying a topic, infer the topic from the conversation and confirm the folder name with me before writing.
-- To resume discussing a plan, say "resume the <topic> plan". Read `plan.md` and any `plan-*.md` files in the relevant folder under `~/Documents/Claude Plans/` before responding, so you have full context before asking questions or making suggestions.
+- To resume discussing a plan, say "resume the <topic> plan". Read `plan.md` and any `plan-*.md` files in the relevant folder under `~/Documents/Claude/` before responding, so you have full context before asking questions or making suggestions.
 
 ## Coding
 

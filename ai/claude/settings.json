@@ -113,12 +113,12 @@
       "WebFetch",
       "mcp__plugin_laravel-boost_laravel-boost__*",
       "Skill(pr-style:*)",
-      "Write(/Users/ziadoz/Documents/Claude Plans/**)",
-      "Edit(/Users/ziadoz/Documents/Claude Plans/**)"
+      "Write(/Users/ziadoz/Documents/Claude/**)",
+      "Edit(/Users/ziadoz/Documents/Claude/**)"
     ],
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
-      "/Users/ziadoz/Documents/Claude Plans"
+      "/Users/ziadoz/Documents/Claude"
     ]
   },
   "statusLine": {
