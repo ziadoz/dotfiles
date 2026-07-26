@@ -114,7 +114,6 @@
       "WebFetch",
       "mcp__plugin_laravel-boost_laravel-boost__*",
       "Skill(pr-style:*)",
-      "Write(/Users/ziadoz/Documents/Claude/**)",
       "Edit(/Users/ziadoz/Documents/Claude/**)"
     ],
     "defaultMode": "acceptEdits",
