@@ -140,6 +140,16 @@ function install_editor_themes() {
 
 function install_automator_workflows() {
     # @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
+    info "Validating Automator workflows..."
+    for workflow in ./automator/*.workflow; do
+        for plist in "$workflow/Contents/Info.plist" "$workflow/Contents/document.wflow"; do
+            if ! plutil -lint "$plist" >/dev/null; then
+                error "Invalid Automator Workflow: ${workflow:t:r}"
+                return 1
+            fi
+        done
+    done
+
     info "Copying Automator workflows..."
     mkdir -p "$HOME/Library/Services"
     cp -r ./automator/*.workflow "$HOME/Library/Services"
