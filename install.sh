@@ -141,7 +141,9 @@ function install_editor_themes() {
 function install_automator_workflows() {
     # @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
     info "Copying Automator workflows..."
-    cp -r ./automator/* "$HOME/Library/Services"
+    mkdir -p "$HOME/Library/Services"
+    cp -r ./automator/*.workflow "$HOME/Library/Services"
+    /System/Library/CoreServices/pbs -flush
 }
 
 function install_ai_apps() {
