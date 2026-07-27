@@ -59,17 +59,30 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># Extract embedded cover art to cover.jpg (one per folder)
+					<string># Extract embedded cover art to cover.jpg, always a JPEG (one per folder).
+# Existing JPEG art is copied byte-for-byte; anything else (e.g. PNG) is
+# re-encoded to JPEG. Files with no embedded art are skipped.
 
 set -e
 typeset -A seen
+
+ffmpeg=/opt/homebrew/bin/ffmpeg
+ffprobe=/opt/homebrew/bin/ffprobe
 
 for f in "$@"
 do
 	dir=$(dirname "$f")
 	[[ -n ${seen[$dir]} ]] &amp;&amp; continue
 	seen[$dir]=1
-	/opt/homebrew/bin/ffmpeg -i "$f" -nostats -loglevel 0 -an -c:v copy -update 1 -y "$dir/cover.jpg"
+
+	codec=$("$ffprobe" -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$f")
+	[[ -z $codec ]] &amp;&amp; continue
+
+	if [[ $codec == mjpeg || $codec == jpeg ]]; then
+		"$ffmpeg" -i "$f" -nostats -loglevel 0 -an -c:v copy -update 1 -y "$dir/cover.jpg"
+	else
+		"$ffmpeg" -i "$f" -nostats -loglevel 0 -an -c:v mjpeg -q:v 2 -update 1 -y "$dir/cover.jpg"
+	fi
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
