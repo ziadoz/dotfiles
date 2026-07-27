@@ -12,7 +12,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Extract Cover Art</string>
+				<string>Extract MP3 Cover Artwork</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
