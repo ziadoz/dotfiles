@@ -3,6 +3,7 @@
 # @see: https://github.com/dropkick/dot/blob/main/Brewfile
 
 # Taps
+tap "frigadehq/tap"
 tap "shivammathur/php"
 
 # Utilities
@@ -108,6 +109,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "whatcable"
 cask "yacreader"
+cask "frigadehq/tap/yap"
 cask "yubico-yubikey-manager"
 cask "zed"
 
