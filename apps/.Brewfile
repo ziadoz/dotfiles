@@ -7,6 +7,7 @@ tap "frigadehq/tap"
 tap "shivammathur/php"
 
 # Utilities
+brew "age"
 brew "btop"
 brew "duf"
 brew "fastfetch"

@@ -51,7 +51,28 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	try		tell application "System Events" to set thePassword to text returned of (display dialog "Enter password" default answer "" with hidden answer)	on error errorMessage number errorNumber		if errorNumber is -128 then quit me		error errorMessage number errorNumber	end try	return (thePassword as list) &amp; inputend run</string>
+					<string>on run {input, parameters}
+	try
+		tell application "System Events"
+			activate
+			set thePassword to text returned of (display dialog "Enter a password to encrypt the selected items:" default answer "" with hidden answer with title "Encrypt Files to DMG")
+			set theConfirm to text returned of (display dialog "Confirm the password:" default answer "" with hidden answer with title "Encrypt Files to DMG")
+		end tell
+	on error errorMessage number errorNumber
+		if errorNumber is -128 then quit me
+		error errorMessage number errorNumber
+	end try
+	if thePassword is "" then
+		tell application "System Events" to display dialog "No password was entered. Nothing was encrypted." buttons {"OK"} default button "OK" with icon stop with title "Encrypt Files to DMG"
+		quit me
+	end if
+	if thePassword is not theConfirm then
+		tell application "System Events" to display dialog "The passwords did not match. Nothing was encrypted." buttons {"OK"} default button "OK" with icon stop with title "Encrypt Files to DMG"
+		quit me
+	end if
+	return (thePassword as list) &amp; input
+end run
+</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -161,43 +182,76 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>#!/usr/bin/env bash
-# Encrypt files and directories in a macOS disk image
-# @see: https://blog.gingerbeardman.com/2024/07/30/taking-command-of-the-context-menu-in-macos/
+					<string>#!/bin/bash
+# Encrypt the selected Finder items into an AES-256 encrypted, compressed,
+# read-only disk image (.dmg) alongside the originals.
+#
+# Input arrives on stdin, one item per line: line 1 is the password, the
+# remaining lines are the selected POSIX paths.
+#
 # @see: https://ss64.com/mac/hdiutil.html
 
-set -e
+set -euo pipefail
 
-# Get user entered password
-password="$1"
-shift
-if [[ -z "$password" ]]; then
-    echo "No password was entered"
+fail() {
+    /usr/bin/osascript -e "display dialog \"${1//\"/\\\"}\" buttons {\"OK\"} default button \"OK\" with icon stop" &gt;/dev/null 2&gt;&amp;1 || true
+    echo "$1" &gt;&amp;2
     exit 1
-fi
+}
+trap 'fail "Encryption failed. Your original files were not changed."' ERR
 
-# Create a temporary directory for later use
-tmpdir=$(mktemp -d)
-echo "Created temporary directory: $tmpdir"
+# Read the password (line 1), then the selected paths (remaining lines).
+IFS= read -r password || password=""
 
-# Ensure if the script is quit or exited we clean up the temporary directory
-trap 'rm -rf "$tmpdir" &amp;&amp; echo "Deleted temporary directory: $tmpdir"' EXIT
+firstpath=""
+paths=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ -n "$line" ]]; then
+        if [[ -z "$firstpath" ]]; then firstpath="$line"; fi
+        paths+=("$line")
+    fi
+done
 
-# Copy files to a temporary directory
-cp -R "$@" "$tmpdir"
-echo "Copied files to temporary directory"
+[[ -n "$password" ]] || fail "No password was entered. Nothing was encrypted."
+[[ ${#paths[@]} -gt 0 ]] || fail "No files were selected. Nothing was encrypted."
 
-# Create the encrypted disk image
+# Stage a plaintext copy in a temp dir. Note: rm is not a secure wipe, but this
+# is acceptable because FileVault encrypts the whole disk.
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+
+cp -R "${paths[@]}" "$tmpdir/"
+
 now="$(date +"%Y%m%d%H%M%S")"
+destdir="$(dirname "$firstpath")"
+dmg="$destdir/encrypted-files-$now.dmg"
 
-echo -n "$password" | hdiutil create -encryption AES-256 -stdinpass -volname "Encrypted Files ($now)" -srcfolder "$tmpdir" -ov "$(dirname "$1")/encrypted-files-$now.dmg"
-echo "Created encrypted disk image"</string>
+printf '%s' "$password" | /usr/bin/hdiutil create \
+    -encryption AES-256 -stdinpass \
+    -fs APFS -format UDZO \
+    -volname "Encrypted Files ($now)" \
+    -srcfolder "$tmpdir" -ov "$dmg" &gt;/dev/null
+
+# Verify the image reopens with this password and passes its checksum before we
+# trust it. If not, delete it so a corrupt backup is never left behind.
+mountpoint="$(mktemp -d)"
+if printf '%s' "$password" | /usr/bin/hdiutil attach "$dmg" \
+        -stdinpass -readonly -nobrowse -mountpoint "$mountpoint" &gt;/dev/null 2&gt;&amp;1; then
+    /usr/bin/hdiutil detach "$mountpoint" &gt;/dev/null 2&gt;&amp;1 \
+        || /usr/bin/hdiutil detach "$mountpoint" -force &gt;/dev/null 2&gt;&amp;1 || true
+    rmdir "$mountpoint" 2&gt;/dev/null || true
+else
+    rmdir "$mountpoint" 2&gt;/dev/null || true
+    rm -f "$dmg"
+    fail "Verification failed: the new image could not be reopened, so it was deleted. Your originals were not changed."
+fi
+</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
-					<integer>1</integer>
+					<integer>0</integer>
 					<key>shell</key>
-					<string>/bin/zsh</string>
+					<string>/bin/bash</string>
 					<key>source</key>
 					<string></string>
 				</dict>

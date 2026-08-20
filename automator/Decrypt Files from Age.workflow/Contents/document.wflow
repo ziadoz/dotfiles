@@ -21,129 +21,6 @@
 					<true/>
 					<key>Types</key>
 					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>AMActionVersion</key>
-				<string>1.0.2</string>
-				<key>AMApplication</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>AMParameterProperties</key>
-				<dict>
-					<key>source</key>
-					<dict/>
-				</dict>
-				<key>AMProvides</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>ActionBundlePath</key>
-				<string>/System/Library/Automator/Run AppleScript.action</string>
-				<key>ActionName</key>
-				<string>Run AppleScript</string>
-				<key>ActionParameters</key>
-				<dict>
-					<key>source</key>
-					<string>on run {input, parameters}
-	try
-		tell application "System Events"
-			activate
-			set thePassword to text returned of (display dialog "Enter a password to encrypt the selected items:" default answer "" with hidden answer with title "Encrypt Files to ZIP")
-			set theConfirm to text returned of (display dialog "Confirm the password:" default answer "" with hidden answer with title "Encrypt Files to ZIP")
-		end tell
-	on error errorMessage number errorNumber
-		if errorNumber is -128 then quit me
-		error errorMessage number errorNumber
-	end try
-	if thePassword is "" then
-		tell application "System Events" to display dialog "No password was entered. Nothing was encrypted." buttons {"OK"} default button "OK" with icon stop with title "Encrypt Files to ZIP"
-		quit me
-	end if
-	if thePassword is not theConfirm then
-		tell application "System Events" to display dialog "The passwords did not match. Nothing was encrypted." buttons {"OK"} default button "OK" with icon stop with title "Encrypt Files to ZIP"
-		quit me
-	end if
-	return (thePassword as list) &amp; input
-end run
-</string>
-				</dict>
-				<key>BundleIdentifier</key>
-				<string>com.apple.Automator.RunScript</string>
-				<key>CFBundleVersion</key>
-				<string>1.0.2</string>
-				<key>CanShowSelectedItemsWhenRun</key>
-				<false/>
-				<key>CanShowWhenRun</key>
-				<true/>
-				<key>Category</key>
-				<array>
-					<string>AMCategoryUtilities</string>
-				</array>
-				<key>Class Name</key>
-				<string>RunScriptAction</string>
-				<key>InputUUID</key>
-				<string>129AC136-DB41-4C09-B3E0-426433EFE61D</string>
-				<key>Keywords</key>
-				<array>
-					<string>Run</string>
-				</array>
-				<key>OutputUUID</key>
-				<string>9AEF6460-E524-47FF-8AC7-0591E14AFC92</string>
-				<key>UUID</key>
-				<string>AAEFB63F-7791-4660-B531-971583181AA8</string>
-				<key>UnlocalizedApplications</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>arguments</key>
-				<dict>
-					<key>0</key>
-					<dict>
-						<key>default value</key>
-						<string>on run {input, parameters}
-	
-	(* Your script goes here *)
-	
-	return input
-end run</string>
-						<key>name</key>
-						<string>source</string>
-						<key>required</key>
-						<string>0</string>
-						<key>type</key>
-						<string>0</string>
-						<key>uuid</key>
-						<string>0</string>
-					</dict>
-				</dict>
-				<key>isViewVisible</key>
-				<integer>1</integer>
-				<key>location</key>
-				<string>664.000000:368.000000</string>
-				<key>nibPath</key>
-				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
-			</dict>
-			<key>isViewVisible</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>action</key>
-			<dict>
-				<key>AMAccepts</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Optional</key>
-					<true/>
-					<key>Types</key>
-					<array>
 						<string>com.apple.cocoa.string</string>
 					</array>
 				</dict>
@@ -183,70 +60,66 @@ end run</string>
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Zip the selected Finder items and encrypt the archive with AES-256 into an .enc file alongside the originals.
+# Decrypt .age files created by "Encrypt Files to Age" workflow.
+# Extract each into a fresh timestamped folder next to the .age file. Existing files are never overwritten.
 #
-# Note: OpenSSL's CBC mode is unauthenticated (no tamper detection).
-#       It is kept here for cross-platform portability.
+# Decryption uses your private identity: ~/.config/age/identity.txt
 #
-# OpenSSL is pinned to /usr/bin/openssl (LibreSSL) so behaviour is deterministic and matches previously created .enc files.
-#
-# Input arrives on stdin, one item per line: line 1 is the password, the remaining lines are the selected POSIX paths.
+# Input: the selected POSIX paths, passed as arguments.
 
 set -euo pipefail
 
-openssl_bin="/usr/bin/openssl"
+identity="$HOME/.config/age/identity.txt"
 
 fail() {
     /usr/bin/osascript -e "display dialog \"${1//\"/\\\"}\" buttons {\"OK\"} default button \"OK\" with icon stop" &gt;/dev/null 2&gt;&amp;1 || true
     echo "$1" &gt;&amp;2
     exit 1
 }
-trap 'fail "Encryption failed. Your original files were not changed."' ERR
+trap 'fail "Decryption failed."' ERR
 
-IFS= read -r password || password=""
+# Automator's PATH excludes Homebrew, so use the absolute path directly.
+age_bin="/opt/homebrew/bin/age"
+[[ -x "$age_bin" ]] || fail "age is not installed. Install it with: brew install age"
+[[ -f "$identity" ]] || fail "No identity file at $identity. You need it to decrypt."
 
-firstpath=""
-paths=()
-while IFS= read -r line || [[ -n "$line" ]]; do
-    if [[ -n "$line" ]]; then
-        if [[ -z "$firstpath" ]]; then firstpath="$line"; fi
-        paths+=("$line")
-    fi
-done
-
-[[ -n "$password" ]] || fail "No password was entered. Nothing was encrypted."
-[[ ${#paths[@]} -gt 0 ]] || fail "No files were selected. Nothing was encrypted."
+[[ $# -gt 0 ]] || fail "No files were selected."
 
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
-mkdir "$tmpdir/files"
-cp -R "${paths[@]}" "$tmpdir/files/"
-( cd "$tmpdir/files" &amp;&amp; /usr/bin/zip -q -r "$tmpdir/files.zip" . )
-
 now="$(date +"%Y%m%d%H%M%S")"
-destdir="$(dirname "$firstpath")"
-out="$destdir/encrypted-$now.zip.enc"
+decrypted_any=0
 
-printf '%s' "$password" | "$openssl_bin" enc -aes-256-cbc -md sha512 -pbkdf2 \
-    -iter 1000000 -salt -in "$tmpdir/files.zip" -out "$out" -pass stdin
+for f in "$@"; do
+    case "$f" in
+        *.age) ;;
+        *) continue ;;
+    esac
 
-# Verify: decrypt the output back and confirm it is a valid zip before trusting
-# it. If not, delete it so a broken archive is never left behind.
-if printf '%s' "$password" | "$openssl_bin" enc -d -aes-256-cbc -md sha512 \
-        -pbkdf2 -iter 1000000 -in "$out" -out "$tmpdir/verify.zip" \
-        -pass stdin &gt;/dev/null 2&gt;&amp;1 \
-        &amp;&amp; /usr/bin/unzip -t -q "$tmpdir/verify.zip" &gt;/dev/null 2&gt;&amp;1; then
-    :
-else
-    rm -f "$out"
-    fail "Verification failed: the encrypted archive could not be reopened, so it was deleted. Your originals were not changed."
-fi
+    dir="$(dirname "$f")"
+    name="$(basename "$f")"
+    name="${name%.age}"
+    name="${name%.zip}"
+
+    if ! "$age_bin" -d -i "$identity" -o "$tmpdir/dec.zip" "$f" &gt;/dev/null 2&gt;&amp;1; then
+        fail "Could not decrypt \"$(basename "$f")\". It may be corrupt or not encrypted for your key."
+    fi
+
+    dest="$dir/${name}-decrypted-$now"
+    mkdir -p "$dest"
+    if ! /usr/bin/unzip -q "$tmpdir/dec.zip" -d "$dest" &gt;/dev/null 2&gt;&amp;1; then
+        fail "Decrypted \"$(basename "$f")\" but the archive could not be extracted."
+    fi
+    decrypted_any=1
+done
+
+[[ "$decrypted_any" -eq 1 ]] || fail "No .age files were selected."
 </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
-					<integer>0</integer>
+					<integer>1</integer>
 					<key>shell</key>
 					<string>/bin/bash</string>
 					<key>source</key>
@@ -355,7 +228,7 @@ fi
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>664.000000:777.000000</string>
+				<string>664.000000:706.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -364,15 +237,7 @@ fi
 		</dict>
 	</array>
 	<key>connectors</key>
-	<dict>
-		<key>595B8EE6-4B09-48E8-A29D-E20FE129EA5E</key>
-		<dict>
-			<key>from</key>
-			<string>AAEFB63F-7791-4660-B531-971583181AA8 - AAEFB63F-7791-4660-B531-971583181AA8</string>
-			<key>to</key>
-			<string>5350F039-1C55-4E65-9D2D-4079CD50D4D1 - 5350F039-1C55-4E65-9D2D-4079CD50D4D1</string>
-		</dict>
-	</dict>
+	<dict/>
 	<key>workflowMetaData</key>
 	<dict>
 		<key>applicationBundleID</key>
