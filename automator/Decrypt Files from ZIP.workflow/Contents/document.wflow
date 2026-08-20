@@ -178,8 +178,14 @@ end run</string>
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Decrypt encrypted ZIP files
-# @see: https://apple.stackexchange.com/questions/50441/using-automator-or-applescript-to-encrypt-decrypt-with-openssl
+# Decrypt the selected .enc files (created by "Encrypt Files to ZIP") and extract
+# each into a fresh timestamped folder next to the .enc file. Existing files are
+# never overwritten.
+#
+# OpenSSL is pinned to /usr/bin/openssl (LibreSSL) to match the encrypt workflow.
+#
+# Input arrives on stdin, one item per line: line 1 is the password, the
+# remaining lines are the selected POSIX paths.
 
 set -euo pipefail
 
