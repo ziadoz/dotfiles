@@ -51,7 +51,28 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	try		tell application "System Events" to set thePassword to text returned of (display dialog "Enter password" default answer "" with hidden answer)	on error errorMessage number errorNumber		if errorNumber is -128 then quit me		error errorMessage number errorNumber	end try	return (thePassword as list) &amp; inputend run</string>
+					<string>on run {input, parameters}
+	try
+		tell application "System Events"
+			activate
+			set thePassword to text returned of (display dialog "Enter a password to encrypt the selected items:" default answer "" with hidden answer with title "Encrypt Files to ZIP")
+			set theConfirm to text returned of (display dialog "Confirm the password:" default answer "" with hidden answer with title "Encrypt Files to ZIP")
+		end tell
+	on error errorMessage number errorNumber
+		if errorNumber is -128 then quit me
+		error errorMessage number errorNumber
+	end try
+	if thePassword is "" then
+		tell application "System Events" to display dialog "No password was entered. Nothing was encrypted." buttons {"OK"} default button "OK" with icon stop with title "Encrypt Files to ZIP"
+		quit me
+	end if
+	if thePassword is not theConfirm then
+		tell application "System Events" to display dialog "The passwords did not match. Nothing was encrypted." buttons {"OK"} default button "OK" with icon stop with title "Encrypt Files to ZIP"
+		quit me
+	end if
+	return (thePassword as list) &amp; input
+end run
+</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -161,38 +182,67 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># Encrypt directories and files into ZIP file
+					<string>#!/bin/bash
+# Encrypt directories and files into ZIP file
 # @see: https://apple.stackexchange.com/questions/50441/using-automator-or-applescript-to-encrypt-decrypt-with-openssl
 
-set -e
+set -euo pipefail
 
-password="$1"
-shift
-if [[ -z "$password" ]]; then
-    echo "No password was entered"
+openssl_bin="/usr/bin/openssl"
+
+fail() {
+    /usr/bin/osascript -e "display dialog \"${1//\"/\\\"}\" buttons {\"OK\"} default button \"OK\" with icon stop" &gt;/dev/null 2&gt;&amp;1 || true
+    echo "$1" &gt;&amp;2
     exit 1
-fi
+}
+trap 'fail "Encryption failed. Your original files were not changed."' ERR
 
-directory="$(dirname "$1")"
-if [[ ! -d "$directory" ]]; then
-    exit 1
-fi
+IFS= read -r password || password=""
 
-tmpdir=$(mktemp -d)
+firstpath=""
+paths=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ -n "$line" ]]; then
+        if [[ -z "$firstpath" ]]; then firstpath="$line"; fi
+        paths+=("$line")
+    fi
+done
+
+[[ -n "$password" ]] || fail "No password was entered. Nothing was encrypted."
+[[ ${#paths[@]} -gt 0 ]] || fail "No files were selected. Nothing was encrypted."
+
+tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
 mkdir "$tmpdir/files"
-cp -R "$@" "$tmpdir/files/"
-(cd "$tmpdir/files" &amp;&amp; zip -r "$tmpdir/files.zip" .)
+cp -R "${paths[@]}" "$tmpdir/files/"
+( cd "$tmpdir/files" &amp;&amp; /usr/bin/zip -q -r "$tmpdir/files.zip" . )
 
 now="$(date +"%Y%m%d%H%M%S")"
-echo -n "$password" | openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -salt -in "$tmpdir/files.zip" -out "$directory/encrypted-$now.zip.enc" -pass stdin</string>
+destdir="$(dirname "$firstpath")"
+out="$destdir/encrypted-$now.zip.enc"
+
+printf '%s' "$password" | "$openssl_bin" enc -aes-256-cbc -md sha512 -pbkdf2 \
+    -iter 1000000 -salt -in "$tmpdir/files.zip" -out "$out" -pass stdin
+
+# Verify: decrypt the output back and confirm it is a valid zip before trusting
+# it. If not, delete it so a broken archive is never left behind.
+if printf '%s' "$password" | "$openssl_bin" enc -d -aes-256-cbc -md sha512 \
+        -pbkdf2 -iter 1000000 -in "$out" -out "$tmpdir/verify.zip" \
+        -pass stdin &gt;/dev/null 2&gt;&amp;1 \
+        &amp;&amp; /usr/bin/unzip -t -q "$tmpdir/verify.zip" &gt;/dev/null 2&gt;&amp;1; then
+    :
+else
+    rm -f "$out"
+    fail "Verification failed: the encrypted archive could not be reopened, so it was deleted. Your originals were not changed."
+fi
+</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
-					<integer>1</integer>
+					<integer>0</integer>
 					<key>shell</key>
-					<string>/bin/zsh</string>
+					<string>/bin/bash</string>
 					<key>source</key>
 					<string></string>
 				</dict>

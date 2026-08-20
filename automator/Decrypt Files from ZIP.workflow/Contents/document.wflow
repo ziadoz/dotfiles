@@ -51,7 +51,23 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	try		tell application "System Events" to set thePassword to text returned of (display dialog "Enter password" default answer "" with hidden answer)	on error errorMessage number errorNumber		if errorNumber is -128 then quit me		error errorMessage number errorNumber	end try	return (thePassword as list) &amp; inputend run</string>
+					<string>on run {input, parameters}
+	try
+		tell application "System Events"
+			activate
+			set thePassword to text returned of (display dialog "Enter the password to decrypt the selected .enc files:" default answer "" with hidden answer with title "Decrypt Files from ZIP")
+		end tell
+	on error errorMessage number errorNumber
+		if errorNumber is -128 then quit me
+		error errorMessage number errorNumber
+	end try
+	if thePassword is "" then
+		tell application "System Events" to display dialog "No password was entered." buttons {"OK"} default button "OK" with icon stop with title "Decrypt Files from ZIP"
+		quit me
+	end if
+	return (thePassword as list) &amp; input
+end run
+</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -161,38 +177,70 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># Decrypt encrypted ZIP files
+					<string>#!/bin/bash
+# Decrypt encrypted ZIP files
 # @see: https://apple.stackexchange.com/questions/50441/using-automator-or-applescript-to-encrypt-decrypt-with-openssl
 
-set -e
+set -euo pipefail
 
-password="$1"
-shift
-if [[ -z "$password" ]]; then
-    echo "No password was entered"
+openssl_bin="/usr/bin/openssl"
+
+fail() {
+    /usr/bin/osascript -e "display dialog \"${1//\"/\\\"}\" buttons {\"OK\"} default button \"OK\" with icon stop" &gt;/dev/null 2&gt;&amp;1 || true
+    echo "$1" &gt;&amp;2
     exit 1
-fi
+}
+trap 'fail "Decryption failed." ' ERR
 
-tmpdir=$(mktemp -d)
+IFS= read -r password || password=""
+
+paths=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ -n "$line" ]]; then paths+=("$line"); fi
+done
+
+[[ -n "$password" ]] || fail "No password was entered."
+[[ ${#paths[@]} -gt 0 ]] || fail "No files were selected."
+
+tmpdir="$(mktemp -d)"
 trap 'rm -rf "$tmpdir"' EXIT
 
-for f in "$@"
-do
-    if [[ "$f" != *.enc ]]; then
-        echo "Skipping non-.enc file: $f"
-        continue
+now="$(date +"%Y%m%d%H%M%S")"
+decrypted_any=0
+
+for f in "${paths[@]}"; do
+    case "$f" in
+        *.enc) ;;
+        *) continue ;;
+    esac
+
+    dir="$(dirname "$f")"
+    name="$(basename "$f")"
+    name="${name%.enc}"
+    name="${name%.zip}"
+
+    if ! printf '%s' "$password" | "$openssl_bin" enc -d -aes-256-cbc -md sha512 \
+            -pbkdf2 -iter 1000000 -in "$f" -out "$tmpdir/dec.zip" \
+            -pass stdin &gt;/dev/null 2&gt;&amp;1; then
+        fail "Could not decrypt \"$(basename "$f")\". The password may be wrong, or the file may be corrupt."
     fi
 
-    directory="$(dirname "$f")"
-    echo -n "$password" | openssl enc -d -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -in "$f" -out "$tmpdir/decrypted.zip" -pass stdin
-    unzip -o "$tmpdir/decrypted.zip" -d "$directory"
-done</string>
+    dest="$dir/${name}-decrypted-$now"
+    mkdir -p "$dest"
+    if ! /usr/bin/unzip -q "$tmpdir/dec.zip" -d "$dest" &gt;/dev/null 2&gt;&amp;1; then
+        fail "Decrypted \"$(basename "$f")\" but the archive could not be extracted."
+    fi
+    decrypted_any=1
+done
+
+[[ "$decrypted_any" -eq 1 ]] || fail "No .enc files were selected."
+</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
-					<integer>1</integer>
+					<integer>0</integer>
 					<key>shell</key>
-					<string>/bin/zsh</string>
+					<string>/bin/bash</string>
 					<key>source</key>
 					<string></string>
 				</dict>
