@@ -183,18 +183,14 @@ end run</string>
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Zip the selected Finder items and encrypt the archive with AES-256 into an
-# .enc file alongside the originals.
+# Zip the selected Finder items and encrypt the archive with AES-256 into an .enc file alongside the originals.
 #
-# Note: openssl's CBC mode is unauthenticated (no tamper detection). It is kept
-# here for cross-platform portability. For sensitive new data prefer the
-# "Encrypt Files to Age" workflow, which is authenticated.
+# Note: OpenSSL's CBC mode is unauthenticated (no tamper detection).
+#       It is kept here for cross-platform portability.
 #
-# OpenSSL is pinned to /usr/bin/openssl (LibreSSL) so behaviour is deterministic
-# and matches previously created .enc files.
+# OpenSSL is pinned to /usr/bin/openssl (LibreSSL) so behaviour is deterministic and matches previously created .enc files.
 #
-# Input arrives on stdin, one item per line: line 1 is the password, the
-# remaining lines are the selected POSIX paths.
+# Input arrives on stdin, one item per line: line 1 is the password, the remaining lines are the selected POSIX paths.
 
 set -euo pipefail
 

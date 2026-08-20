@@ -60,20 +60,18 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Zip the selected Finder items and encrypt the archive with age into a
-# .zip.age file alongside the originals. age is authenticated, so tampering or
-# corruption is detected on decrypt.
+# Zip the selected Finder items and encrypt the archive with age into a .zip.age file alongside the originals.
 #
 # Encryption uses public recipient keys only (no password/secret needed):
 #   ~/.config/age/recipients.txt
 #
-# One-time setup:
-#   mkdir -p ~/.config/age
-#   age-keygen -o ~/.config/age/identity.txt
-#   chmod 600 ~/.config/age/identity.txt
-#   age-keygen -y ~/.config/age/identity.txt &gt; ~/.config/age/recipients.txt
-# Keep a backup copy of identity.txt inside your encrypted DMG vault. Without it
-# you cannot decrypt.
+# Setup instructions:
+# - mkdir -p ~/.config/age
+# - age-keygen -o ~/.config/age/identity.txt
+# - chmod 600 ~/.config/age/identity.txt
+# - age-keygen -y ~/.config/age/identity.txt &gt; ~/.config/age/recipients.txt
+#
+# Store the identity.txt and recipients.txt files in 1Password.
 #
 # Input: the selected POSIX paths, passed as arguments.
 

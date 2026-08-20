@@ -178,14 +178,12 @@ end run</string>
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Decrypt the selected .enc files (created by "Encrypt Files to ZIP") and extract
-# each into a fresh timestamped folder next to the .enc file. Existing files are
-# never overwritten.
+# Decrypt the selected .enc files created by "Encrypt Files to ZIP".
+# Extract each into a fresh timestamped folder next to the .enc file. Existing files are never overwritten.
 #
-# OpenSSL is pinned to /usr/bin/openssl (LibreSSL) to match the encrypt workflow.
+# OpenSSL is pinned to /usr/bin/openssl (LibreSSL) so behaviour is deterministic and matches previously created .enc files.
 #
-# Input arrives on stdin, one item per line: line 1 is the password, the
-# remaining lines are the selected POSIX paths.
+# Input arrives on stdin, one item per line: line 1 is the password, the remaining lines are the selected POSIX paths.
 
 set -euo pipefail
 

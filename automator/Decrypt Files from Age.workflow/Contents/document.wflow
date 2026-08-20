@@ -60,9 +60,8 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Decrypt .age files created by "Encrypt Files to Age" and extract each into a
-# fresh timestamped folder next to the .age file. Existing files are never
-# overwritten.
+# Decrypt .age files created by "Encrypt Files to Age" workflow.
+# Extract each into a fresh timestamped folder next to the .age file. Existing files are never overwritten.
 #
 # Decryption uses your private identity: ~/.config/age/identity.txt
 #
