@@ -60,7 +60,7 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
-# Decrypt .age files created by "Encrypt Files to age" and extract each into a
+# Decrypt .age files created by "Encrypt Files to Age" and extract each into a
 # fresh timestamped folder next to the .age file. Existing files are never
 # overwritten.
 #
@@ -79,15 +79,9 @@ fail() {
 }
 trap 'fail "Decryption failed."' ERR
 
-# Locate age. Automator's PATH excludes Homebrew, so check known locations.
-age_bin=""
-for c in /opt/homebrew/bin/age /usr/local/bin/age; do
-    if [[ -x "$c" ]]; then age_bin="$c"; break; fi
-done
-if [[ -z "$age_bin" ]]; then
-    age_bin="$(PATH="/opt/homebrew/bin:/usr/local/bin:$PATH" command -v age || true)"
-fi
-[[ -n "$age_bin" ]] || fail "age is not installed. Install it with: brew install age"
+# Automator's PATH excludes Homebrew, so use the absolute path directly.
+age_bin="/opt/homebrew/bin/age"
+[[ -x "$age_bin" ]] || fail "age is not installed. Install it with: brew install age"
 [[ -f "$identity" ]] || fail "No identity file at $identity. You need it to decrypt."
 
 [[ $# -gt 0 ]] || fail "No files were selected."
