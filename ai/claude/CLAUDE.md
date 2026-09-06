@@ -27,6 +27,7 @@ If you think my approach on something is wrong, say so and explain why.
 - When writing Git commit messages, always apply the `pr-style` skill.
 - Never mention or include Claude Code in PR titles, descriptions or comments.
 - Never include Claude Code as a co-author on commits.
+- Never commit or push code without my permission.
 
 ## Data
 
