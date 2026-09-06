@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -eq 0 ] || [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+    echo "Download"
+    echo "Download a URL to ~/Downloads, resuming after interruptions"
+    echo "Usage: download https://example.com/file.zip [filename] [max-attempts]"
+    exit 0
+fi
+
+url="$1"
+max_attempts="${3:-10}"
+
+# Determine the filename from the path component of the URL.
+path="${url%%\?*}"
+path="${path%%#*}"
+path="${path#*://}"
+path="${path%/}"
+
+if [ -n "${2:-}" ]; then
+    name="$2"
+elif [[ "$path" == */?* ]]; then
+    name="$(basename "$path")"
+else
+    echo "Cannot determine a filename from '$url', pass one as the second argument" >&2
+    exit 1
+fi
+
+if ! [[ "$max_attempts" =~ ^[1-9][0-9]*$ ]]; then
+    echo "Max attempts must be a positive integer, got '$max_attempts'" >&2
+    exit 1
+fi
+
+cd "$HOME/Downloads"
+
+attempts=1
+
+until curl -fL -C - "$url" -o "$name"; do
+    if [ "$attempts" -ge "$max_attempts" ]; then
+        echo "Giving up after $max_attempts attempts." >&2
+        exit 1
+    fi
+
+    attempts=$((attempts + 1))
+    echo "Interrupted. Retrying in 3 seconds (attempt $attempts/$max_attempts)..."
+    sleep 3
+done
+
+echo "Done! $HOME/Downloads/$name"
