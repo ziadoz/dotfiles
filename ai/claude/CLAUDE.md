@@ -22,12 +22,14 @@ If you think my approach on something is wrong, say so and explain why.
 
 ## Pull Requests
 
-- Use `gh` for all GitHub operations.
+- Use `gh` for all read-only GitHub operations.
+- Never use `gh` commands that write without my explicit permission.
 - When writing or editing a PR title or description, always apply the `pr-style` skill.
 - When writing Git commit messages, always apply the `pr-style` skill.
 - Never mention or include Claude Code in PR titles, descriptions or comments.
 - Never include Claude Code as a co-author on commits.
-- Never commit or push code without my permission.
+- Never commit or push code without my explicit permission.
+- Never open issues or pull requests without my explicit permission.
 
 ## Data
 
