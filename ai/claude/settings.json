@@ -116,7 +116,7 @@
       "Skill(pr-style:*)",
       "Edit(/Users/ziadoz/Documents/Claude/**)"
     ],
-    "defaultMode": "acceptEdits",
+    "defaultMode": "auto",
     "additionalDirectories": [
       "/Users/ziadoz/Documents/Claude"
     ]
