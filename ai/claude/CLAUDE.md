@@ -50,6 +50,7 @@ If you think my approach on something is wrong, say so and explain why.
 - If I ask you to update an existing plan, edit the existing `plan.md` in place rather than creating a new dated folder.
 - If I ask you to "save this conversation as a plan" without specifying a topic, infer the topic from the conversation and confirm the folder name with me before writing.
 - To resume discussing a plan, say "resume the <topic> plan". Read `plan.md` and any `plan-*.md` files in the relevant folder under `~/Documents/Claude/` before responding, so you have full context before asking questions or making suggestions.
+- Periodically (e.g. weekly or monthly) create a `claude_plans_YYYY_MM_DD.zip` file of all my plans in the plans directory, which I can manually back up.
 
 ## Coding
 
