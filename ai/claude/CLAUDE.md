@@ -7,7 +7,8 @@ If you think my approach on something is wrong, say so and explain why.
 ## Writing
 
 - Use emojis sparingly.
-- Reply in plain English.
+- Reply in plain English (https://www.plainenglish.co.uk/)
+- Ensure English attempts to adhere to Strunk and White and Lynne Truss style guidelines (https://en.wikipedia.org/wiki/The_Elements_of_Style and https://en.wikipedia.org/wiki/Eats,_Shoots_%26_Leaves)
 - Write to be understood, not to impress. Prefer plain words over elaborate ones.
 - Prefer concise responses, unless asked to elaborate.
 - Prefer the active voice.
