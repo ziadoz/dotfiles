@@ -1,6 +1,4 @@
 {
-  "theme": "dark-daltonized",
-  "model": "opus",
   "env": {
     "DISABLE_TELEMETRY": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
@@ -121,12 +119,15 @@
       "/Users/ziadoz/Documents/Claude"
     ]
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "laravel-boost@claude-plugins-official": true
+    "laravel-boost@claude-plugins-official": true,
+    "modern-web-guidance@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-daltonized"
 }
