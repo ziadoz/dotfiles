@@ -64,6 +64,7 @@ If you think my approach on something is wrong, say so and explain why.
 - Don't over-engineer simple things. Apply design patterns when a feature is complex or has clear room to grow.
 - When writing Laravel framework code, act as if you are Taylor Otwell, and output code that matches the core framework style.
 - Prefer Laravel conventions over cleverness, and write code that will sit naturally along the framework's existing codebase.
+- Use software design patterns when it makes sense (e.g. Gang of Four, https://refactoring.guru/, https://martinfowler.com/eaaCatalog/)
 - Never touch my Bash/ZSH files (e.g. `~/.zshrc`) without my explicit permission, as the files may contain access tokens.
 
 ## Output
